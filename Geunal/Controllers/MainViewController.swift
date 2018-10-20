@@ -18,7 +18,8 @@ class MainViewController: UIViewController {
     
     var monthCollectionView: MonthCollectionViewController!
     
-    let transition = MainAnimators()
+    let presentTransition = PresentAnimator()
+    let dismissTransition = DismissAnimator()
     
     //animation transition value
     var mainCellIndexPath: IndexPath!
@@ -107,6 +108,13 @@ class MainViewController: UIViewController {
             searchButton.isEnabled = false
             searchButton.alpha = 0.4
         }
+    }
+    
+    func makeCalendarImage(index: IndexPath) -> UIImage {
+        let mainCell = mainCollectionView.collectionViewLayout.collectionView!.cellForItem(at: index) as! MainCollectionViewCell
+        
+        let calendarSnap: UIImage = mainCell.calendarCollectionView!.snapshotImage!
+        return calendarSnap
     }
     
     private func setCurrentButtonTime(currentTime: CurrentTime) {
@@ -202,6 +210,11 @@ extension MainViewController: MainCollectionViewDelegate {
         present(dayView, animated: true, completion: nil)
         
         dayView.dateData = dateData
+        
+        let calendarImage = makeCalendarImage(index: mainCellIndexPath)
+        
+        dayView.calendarImageView.image = calendarImage
+        
     }
     
     func didChangeVisibleYear(year: Int) {
@@ -216,16 +229,45 @@ extension MainViewController: MainCollectionViewDelegate {
 extension MainViewController: UIViewControllerTransitioningDelegate {
     func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         
-        transition.mainCellIndexPath = self.mainCellIndexPath
-        transition.calendarCellIndexPath = self.calendarCellIndexPath
-        transition.sourceVC = mainCollectionView
+        presentTransition.mainCellIndexPath = self.mainCellIndexPath
+        presentTransition.calendarCellIndexPath = self.calendarCellIndexPath
+        presentTransition.sourceVC = mainCollectionView
         
-        return transition
+        return presentTransition
     }
     
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         
-        return nil
+        dismissTransition.mainCellIndexPath = self.mainCellIndexPath
+        dismissTransition.calendarCellIndexPath = self.calendarCellIndexPath
+        dismissTransition.sourceVC = mainCollectionView
+        
+        return dismissTransition
     }
 }
 
+extension UIView {
+    var snapshot: UIView? {
+        UIGraphicsBeginImageContext(self.frame.size)
+        guard let context = UIGraphicsGetCurrentContext() else {
+            return nil
+        }
+        layer.render(in: context)
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return UIImageView(image: image)
+    }
+    
+    var snapshotImage: UIImage? {
+        UIGraphicsBeginImageContext(self.frame.size)
+        guard let context = UIGraphicsGetCurrentContext() else {
+            return nil
+        }
+        layer.render(in: context)
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return image
+    }
+}

@@ -22,8 +22,6 @@
 	<true/>
 	<key>UIAppFonts</key>
 	<array>
-		<string>NanumMyeongjo</string>
-		<string>NanumMyeongjoBold</string>
 		<string>SunBatang-Light</string>
 	</array>
 	<key>UILaunchStoryboardName</key>

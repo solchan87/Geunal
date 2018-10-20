@@ -10,7 +10,7 @@
 
 import UIKit
 
-class MainAnimators: NSObject, UIViewControllerAnimatedTransitioning {
+class PresentAnimator: NSObject, UIViewControllerAnimatedTransitioning {
     
     let setDuration = 0.5
     let removeDuration = 0.4
@@ -50,7 +50,6 @@ class MainAnimators: NSObject, UIViewControllerAnimatedTransitioning {
             return
         }
         
-        
         guard let calendarCell = mainCell.calendarCollectionView.cellForItem(at: calendarCellIndexPath) as? CalendarCollectionViewCell else {
             transitionContext.completeTransition(true)
             return
@@ -61,15 +60,12 @@ class MainAnimators: NSObject, UIViewControllerAnimatedTransitioning {
             return
         }
         
-        
-        
         var startPointX: CGFloat = 0
         startPointX += startContainerView.frame.origin.x
         startPointX += mainCell.calendarBackgroundView.frame.origin.x
         startPointX += mainCell.calendarCollectionView.frame.origin.x
         startPointX += calendarCell.frame.origin.x
         startPointX += dateLabel.frame.origin.x
-        
         
         var startPointY: CGFloat = 0
         startPointY += startContainerView.frame.origin.y
@@ -79,14 +75,10 @@ class MainAnimators: NSObject, UIViewControllerAnimatedTransitioning {
         startPointY += dateLabel.frame.origin.y
 
         var dayCenterPointX: CGFloat = 0
-        dayCenterPointX += toVC.dayTableView.frame.origin.x
         dayCenterPointX += toVC.dateLabel.frame.midX
         
         var dayCenterPointY: CGFloat = 0
-        dayCenterPointY += toVC.dayTableView.frame.origin.y
         dayCenterPointY += toVC.dateLabel.frame.midY
-        
-        
         
         let bigScale: CGFloat = toVC.dateLabel.font.pointSize / dateLabel.font.pointSize
         let smallScale: CGFloat = dateLabel.font.pointSize / toVC.dateLabel.font.pointSize
@@ -110,13 +102,7 @@ class MainAnimators: NSObject, UIViewControllerAnimatedTransitioning {
         
         transitionContext.containerView.addSubview(backgroundView)
         
-        
         let transitionLabel = UILabel()
-        
-        // dateLabel 속성
-//        transitionLabel.text = dateLabel.text
-//        transitionLabel.frame = dateLabel.frame
-//        transitionLabel.font = dateLabel.font
         
         transitionLabel.text = toVC.dateLabel.text
         transitionLabel.frame = toVC.dateLabel.frame
@@ -146,15 +132,16 @@ class MainAnimators: NSObject, UIViewControllerAnimatedTransitioning {
         
 //        toVC.view.isHidden = true
         
-        UIView.animate(withDuration: setDuration, animations: {
+        
+        UIView.animate(withDuration: setDuration, delay: 0.0, options: .curveEaseOut, animations: {
             transitionLabel.transform = .identity
-            transitionLabel.center = CGPoint(x: dayCenterPointX, y: dayCenterPointY)
+            transitionLabel.center = CGPoint(x: toVC.dateLabel.frame.midX, y: toVC.dateLabel.frame.midY)
 
             backgroundView.center = CGPoint(x: centerX, y: centerY + diffY)
             backgroundView.transform = CGAffineTransform(scaleX: bigScale, y: bigScale)
             blurEffectView.effect = blurEffect
         }) { (finished) in
-            UIView.animate(withDuration: self.removeDuration, animations: {
+            UIView.animate(withDuration: self.removeDuration, delay: 0.0, options: .curveEaseOut, animations: {
                 backgroundView.alpha = 0.0
             }) { (finished) in
                 transitionLabel.removeFromSuperview()
@@ -167,17 +154,4 @@ class MainAnimators: NSObject, UIViewControllerAnimatedTransitioning {
     
 }
 
-extension UIView {
-    var snapshot: UIView? {
-        UIGraphicsBeginImageContext(self.frame.size)
-        guard let context = UIGraphicsGetCurrentContext() else {
-            return nil
-        }
-        layer.render(in: context)
-        let image = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        
-        return UIImageView(image: image)
-    }
-}
 
