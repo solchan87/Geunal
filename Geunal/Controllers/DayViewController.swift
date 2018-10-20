@@ -24,6 +24,8 @@ class DayViewController: UIViewController {
     
     @IBOutlet weak var dayTableView: UITableView!
     
+    @IBOutlet weak var midBarView: UIView!
+    
     private var sourceIndexPath: IndexPath?
     
     var dateData: DateData? {
@@ -41,8 +43,10 @@ class DayViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let longPress = UILongPressGestureRecognizer(target: self, action: #selector(DayViewController.longPressGestureRecognized(longPress:)))
-        self.dayTableView.addGestureRecognizer(longPress)
+        let penGesture = UIPanGestureRecognizer(target: self, action: #selector(DayViewController.penGestureRecognized(penGesture:)))
+        penGesture.delegate = self
+        
+        self.dayTableView.addGestureRecognizer(penGesture)
         
         weekView.layer.borderWidth = 0.5
         weekView.layer.cornerRadius = 5
@@ -51,25 +55,30 @@ class DayViewController: UIViewController {
         monthView.layer.borderWidth = 0.5
         monthView.layer.cornerRadius = 5
         monthView.layer.borderColor = UIColor(named: "NormalColor")?.cgColor
+        
+        let gradient = CAGradientLayer()
+        gradient.frame = midBarView.bounds
+        gradient.startPoint = CGPoint(x: 0.0, y: 0.5)
+        gradient.endPoint = CGPoint(x: 1.0, y: 0.5)
+        gradient.colors = [UIColor.clear.cgColor, UIColor.black.cgColor, UIColor.black.cgColor, UIColor.clear.cgColor]
+        gradient.locations = [0, 0.2, 0.8, 1]
+        midBarView.layer.mask = gradient
     }
     
-    @objc func longPressGestureRecognized(longPress: UILongPressGestureRecognizer) {
+    @objc func penGestureRecognized(penGesture: UIPanGestureRecognizer) {
         
-        let state = longPress.state
-        let location = longPress.location(in: self.dayTableView)
+        let state = penGesture.state
+        
+        let location = penGesture.location(in: self.dayTableView)
         guard let indexPath = self.dayTableView.indexPathForRow(at: location) else { return }
         let cell = self.dayTableView.cellForRow(at: indexPath) as! DayTableViewCell
+  
+        let point = penGesture.translation(in: cell).x
+        cell.showMessageLabel(point: point.magnitude)
         
-//        if cell.animationTime <= 1 {
-//            cell.animationTime = cell.animationTime + 0.02
-//        }
-//        
-//        if state == .ended {
-//            while cell.animationTime >= 0.8 {
-//                cell.animationTime = cell.animationTime - 0.01
-//            }
-//        }
-        
+        if state == .ended {
+            cell.hideMessageLabel()
+        }
     }
     
     
@@ -180,9 +189,13 @@ extension DayViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let dayCell = dayTableView.dequeueReusableCell(withIdentifier: "DayTableViewCell") as! DayTableViewCell
-        dayCell.message = "아 제발 좀 됐으면 좋겠다."
+        dayCell.message = "아 제발 좀 됐으면 좋겠다. 나는 오늘 이 어플이 작동 할 수 있기를 기원한다."
         return dayCell
     }
-    
-    
+}
+
+extension DayViewController: UIGestureRecognizerDelegate {
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
+    }
 }

@@ -7,57 +7,45 @@
 //
 
 import UIKit
+import VisualEffectView
+
 
 class DayTableViewCell: UITableViewCell {
     @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var filterView: UIView!
     
-    var animationTime: CGFloat = 0.8 {
-        didSet{
-            setAnimation(time: animationTime)
-        }
-    }
+    var visualEffectView: VisualEffectView!
     
     var message: String = "" {
         didSet{
-            
+            self.messageLabel.text = message
+            visualEffectView.blurRadius = 6
         }
     }
-    
-    var animator: UIViewPropertyAnimator?
     
     override func awakeFromNib() {
-        let temp = CALayer()
-        temp.frame = self.bounds
         super.awakeFromNib()
-        if let blurFilter = CIFilter(name: "CIGaussianBlur", parameters: [kCIInputRadiusKey: 2]){
-            
-            temp.backgroundFilters = [blurFilter]
-            
-            
-            
-//            messageLabel.layer.backgroundFilters = [blurFilter]
-//            self.filterView.layer.backgroundFilters = [blurFilter]
-            
-//            self.layer.backgroundFilters = [blurFilter]
-//            foreground.backgroundFilters = [blurFilter]
-        }
-        messageLabel.layer.addSublayer(temp)
-
-        
-    }
-    
-    func setBlurEffect(message: String) {
-        
-        
+        visualEffectView = VisualEffectView(frame: self.bounds)
+        visualEffectView.scale = 1
+        addSubview(visualEffectView)
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
     }
     
-    func setAnimation(time: CGFloat) {
-        animator?.fractionComplete = CGFloat(time)
+    func showMessageLabel(point: CGFloat) {
+        let maxSize = self.frame.width * 0.65
+        if point <= maxSize {
+            let value = 6 * (point / maxSize)
+            visualEffectView.blurRadius = 6 - value
+        }
+    }
+    
+    func hideMessageLabel() {
+        UIView.animate(withDuration: 0.5) {
+            self.visualEffectView.blurRadius = 6
+        }
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

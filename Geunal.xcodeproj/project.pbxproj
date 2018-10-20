@@ -27,6 +27,7 @@
 		29B87FFA2170D8B4003F96C3 /* MainCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B87FF92170D8B4003F96C3 /* MainCollectionViewCell.swift */; };
 		29B87FFC2170D944003F96C3 /* CalendarService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B87FFB2170D944003F96C3 /* CalendarService.swift */; };
 		29B87FFE2170DA9A003F96C3 /* CalendarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B87FFD2170DA9A003F96C3 /* CalendarCollectionViewCell.swift */; };
+		BAFC7B8958615EEE076D03EA /* Pods_Geunal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1353175E4192FB4977EE061 /* Pods_Geunal.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +53,9 @@
 		29B87FF92170D8B4003F96C3 /* MainCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCollectionViewCell.swift; sourceTree = "<group>"; };
 		29B87FFB2170D944003F96C3 /* CalendarService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarService.swift; sourceTree = "<group>"; };
 		29B87FFD2170DA9A003F96C3 /* CalendarCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCollectionViewCell.swift; sourceTree = "<group>"; };
+		482762572AC37C190BB3FA16 /* Pods-Geunal.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Geunal.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Geunal/Pods-Geunal.debug.xcconfig"; sourceTree = "<group>"; };
+		B1353175E4192FB4977EE061 /* Pods_Geunal.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Geunal.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F072318534F1BA28B77653E6 /* Pods-Geunal.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Geunal.release.xcconfig"; path = "Pods/Target Support Files/Pods-Geunal/Pods-Geunal.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +63,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BAFC7B8958615EEE076D03EA /* Pods_Geunal.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -120,6 +125,8 @@
 			children = (
 				29B87FE42170CDD7003F96C3 /* Geunal */,
 				29B87FE32170CDD7003F96C3 /* Products */,
+				C8B2AC94D3127E87B726BC6C /* Pods */,
+				3745CD4527FB0F9AFF036E07 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -149,6 +156,23 @@
 			path = Geunal;
 			sourceTree = "<group>";
 		};
+		3745CD4527FB0F9AFF036E07 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B1353175E4192FB4977EE061 /* Pods_Geunal.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C8B2AC94D3127E87B726BC6C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				482762572AC37C190BB3FA16 /* Pods-Geunal.debug.xcconfig */,
+				F072318534F1BA28B77653E6 /* Pods-Geunal.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -156,9 +180,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 29B87FF42170CDDB003F96C3 /* Build configuration list for PBXNativeTarget "Geunal" */;
 			buildPhases = (
+				E3BD8E62B5C5FFA3C6E40B53 /* [CP] Check Pods Manifest.lock */,
 				29B87FDE2170CDD7003F96C3 /* Sources */,
 				29B87FDF2170CDD7003F96C3 /* Frameworks */,
 				29B87FE02170CDD7003F96C3 /* Resources */,
+				4B91BAB2147DCFFAEEFD0F7C /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -215,6 +241,53 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4B91BAB2147DCFFAEEFD0F7C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Geunal/Pods-Geunal-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/VisualEffectView/VisualEffectView.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/VisualEffectView.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Geunal/Pods-Geunal-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E3BD8E62B5C5FFA3C6E40B53 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Geunal-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		29B87FDE2170CDD7003F96C3 /* Sources */ = {
@@ -380,6 +453,7 @@
 		};
 		29B87FF52170CDDB003F96C3 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 482762572AC37C190BB3FA16 /* Pods-Geunal.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -398,6 +472,7 @@
 		};
 		29B87FF62170CDDB003F96C3 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F072318534F1BA28B77653E6 /* Pods-Geunal.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
