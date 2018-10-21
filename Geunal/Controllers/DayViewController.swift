@@ -26,7 +26,11 @@ class DayViewController: UIViewController {
     
     @IBOutlet weak var midBarView: UIView!
     
+    @IBOutlet weak var writeContainerView: UIView!
+    
     private var sourceIndexPath: IndexPath?
+    
+    private var writeViewController: WriteViewController!
     
     var dateData: DateData? {
         didSet{
@@ -38,6 +42,11 @@ class DayViewController: UIViewController {
         
     presentingViewController?.dismiss(animated: true, completion: nil)
         
+    }
+    @IBAction func writeMessageButton(_ sender: Any) {
+        writeViewController.sendFlag = true
+        writeContainerView.isHidden = false
+        writeViewController.showWriteView()
     }
     
     override func viewDidLoad() {
@@ -63,6 +72,14 @@ class DayViewController: UIViewController {
         gradient.colors = [UIColor.clear.cgColor, UIColor.black.cgColor, UIColor.black.cgColor, UIColor.clear.cgColor]
         gradient.locations = [0, 0.2, 0.8, 1]
         midBarView.layer.mask = gradient
+        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "writeSegue") {
+            writeViewController = segue.destination as? WriteViewController
+            writeViewController.delegate = self
+        }
     }
     
     @objc func penGestureRecognized(penGesture: UIPanGestureRecognizer) {
@@ -71,8 +88,9 @@ class DayViewController: UIViewController {
         
         let location = penGesture.location(in: self.dayTableView)
         guard let indexPath = self.dayTableView.indexPathForRow(at: location) else { return }
-        let cell = self.dayTableView.cellForRow(at: indexPath) as! DayTableViewCell
-  
+        
+        guard let cell = self.dayTableView.cellForRow(at: indexPath) as? DayTableViewCell else { return }
+        
         let point = penGesture.translation(in: cell).x
         cell.showMessageLabel(point: point.magnitude)
         
@@ -184,13 +202,18 @@ extension DayViewController: UITableViewDelegate {
 
 extension DayViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return 3
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let dayCell = dayTableView.dequeueReusableCell(withIdentifier: "DayTableViewCell") as! DayTableViewCell
-        dayCell.message = "아 제발 좀 됐으면 좋겠다. 나는 오늘 이 어플이 작동 할 수 있기를 기원한다."
-        return dayCell
+        if indexPath.row == 2 {
+            let testCell = dayTableView.dequeueReusableCell(withIdentifier: "testCell")
+            return testCell!
+        }else {
+            let dayCell = dayTableView.dequeueReusableCell(withIdentifier: "DayTableViewCell") as! DayTableViewCell
+            dayCell.message = "일이삼사오육칠팔구십일이삼사오육칠팔구십일이삼사오육칠팔구십"
+            return dayCell
+        }
     }
 }
 
@@ -198,4 +221,20 @@ extension DayViewController: UIGestureRecognizerDelegate {
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return true
     }
+}
+
+extension DayViewController: WriteViewControllerDelegate {
+    func didCancelButton() {
+        writeContainerView.isHidden = true
+    }
+    
+    func didWriteButton() {
+        writeContainerView.isHidden = true
+    }
+    
+    func didUpdateButton() {
+        writeContainerView.isHidden = true
+    }
+    
+    
 }

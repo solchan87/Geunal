@@ -12,8 +12,8 @@ import UIKit
 
 class PresentAnimator: NSObject, UIViewControllerAnimatedTransitioning {
     
-    let setDuration = 0.5
-    let removeDuration = 0.4
+    let setDuration = 0.4
+    let removeDuration = 0.3
     
     var sourceVC: MainCollectionViewController!
     

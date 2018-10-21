@@ -13,6 +13,9 @@
         <array key="SunBatang-Light.ttf">
             <string>SunBatang-Light</string>
         </array>
+        <array key="SunBatang-Medium.ttf">
+            <string>SunBatang-Medium</string>
+        </array>
     </customFonts>
     <scenes>
         <!--Main View Controller-->
@@ -34,7 +37,7 @@
                                 <rect key="frame" x="0.0" y="20" width="414" height="81.666666666666671"/>
                                 <subviews>
                                     <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0XQ-HJ-std">
-                                        <rect key="frame" x="209.33333333333334" y="5" width="50.000000000000028" height="71.666666666666671"/>
+                                        <rect key="frame" x="210.66666666666666" y="5" width="49.999999999999972" height="71.666666666666671"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="50" id="Wmd-Am-Sqy"/>
                                         </constraints>
@@ -43,7 +46,7 @@
                                         </connections>
                                     </containerView>
                                     <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yut-9T-SoX">
-                                        <rect key="frame" x="136.66666666666666" y="5" width="50" height="71.666666666666671"/>
+                                        <rect key="frame" x="135.66666666666666" y="5" width="50" height="71.666666666666671"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="50" id="ZfK-yE-a6e"/>
                                         </constraints>
@@ -52,7 +55,7 @@
                                         </connections>
                                     </containerView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6j3-Xr-vPr">
-                                        <rect key="frame" x="269.33333333333331" y="5" width="50" height="71.666666666666671"/>
+                                        <rect key="frame" x="270.66666666666669" y="5" width="50" height="71.666666666666671"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="50" id="XMX-MM-mOt"/>
                                         </constraints>
@@ -65,14 +68,14 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="년" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1aG-1I-k3e">
-                                        <rect key="frame" x="188.33333333333334" y="29.333333333333336" width="16.666666666666657" height="23"/>
-                                        <fontDescription key="fontDescription" name="SunBatang-Light" family="SunBatang" pointSize="19"/>
+                                        <rect key="frame" x="187" y="29.333333333333336" width="19" height="23"/>
+                                        <fontDescription key="fontDescription" name="SunBatang-Medium" family="SunBatang" pointSize="19"/>
                                         <color key="textColor" name="NormalColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="월" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MaZ-0Y-4ar">
-                                        <rect key="frame" x="242.66666666666666" y="29.333333333333336" width="16.666666666666657" height="23"/>
-                                        <fontDescription key="fontDescription" name="SunBatang-Light" family="SunBatang" pointSize="19"/>
+                                        <rect key="frame" x="241.66666666666666" y="29.333333333333336" width="18.999999999999972" height="23"/>
+                                        <fontDescription key="fontDescription" name="SunBatang-Medium" family="SunBatang" pointSize="19"/>
                                         <color key="textColor" name="NormalColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -107,7 +110,7 @@
                                         <rect key="frame" x="0.0" y="12" width="83.666666666666671" height="83.333333333333329"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="월요일" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uyf-ps-BZp">
-                                                <rect key="frame" x="46" y="15.333333333333368" width="25" height="52.666666666666657"/>
+                                                <rect key="frame" x="46" y="15.000000000000004" width="25" height="53.333333333333343"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="25" id="WwB-EZ-RDT"/>
                                                 </constraints>
@@ -205,18 +208,49 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="tcs-lM-7EY">
-                                <rect key="frame" x="0.0" y="320.66666666666674" width="414" height="415.33333333333326"/>
+                                <rect key="frame" x="0.0" y="317.66666666666674" width="414" height="418.33333333333326"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <view key="tableHeaderView" contentMode="scaleToFill" id="e5c-tD-AyY">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="10"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </view>
                                 <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="testCell" rowHeight="80" id="Vxq-2q-B8E">
+                                        <rect key="frame" x="0.0" y="38" width="414" height="80"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Vxq-2q-B8E" id="2dr-Dq-kQt">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="80"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xiq-V2-yEH">
+                                                    <rect key="frame" x="30" y="16" width="354" height="48"/>
+                                                    <fontDescription key="fontDescription" name="SunBatang-Medium" family="SunBatang" pointSize="19"/>
+                                                    <state key="normal" title="기억 더하기">
+                                                        <color key="titleColor" name="NormalColor"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="writeMessageButton:" destination="RL7-js-PaW" eventType="touchUpInside" id="qhf-gM-L9G"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottomMargin" secondItem="Xiq-V2-yEH" secondAttribute="bottom" constant="5" id="CZp-sY-vv0"/>
+                                                <constraint firstItem="Xiq-V2-yEH" firstAttribute="leading" secondItem="2dr-Dq-kQt" secondAttribute="leadingMargin" constant="10" id="DHD-EK-xzF"/>
+                                                <constraint firstItem="Xiq-V2-yEH" firstAttribute="top" secondItem="2dr-Dq-kQt" secondAttribute="topMargin" constant="5" id="IKM-Kn-qk4"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="Xiq-V2-yEH" secondAttribute="trailing" constant="10" id="lif-0g-fdI"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="DayTableViewCell" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="DayTableViewCell" rowHeight="75" id="2WZ-8V-j7m" customClass="DayTableViewCell" customModule="Geunal" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="75"/>
+                                        <rect key="frame" x="0.0" y="118" width="414" height="75"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="2WZ-8V-j7m" id="JDo-PQ-Unn">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="75"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="아 제발 됐으면 좋겠다." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qdw-mK-xKX">
-                                                    <rect key="frame" x="41.333333333333343" y="26.333333333333329" width="331.33333333333326" height="22.666666666666671"/>
+                                                    <rect key="frame" x="51.666666666666657" y="26.333333333333336" width="310.66666666666674" height="22.333333333333336"/>
                                                     <fontDescription key="fontDescription" name="SunBatang-Light" family="SunBatang" pointSize="19"/>
                                                     <color key="textColor" name="NormalColor"/>
                                                     <nil key="highlightedColor"/>
@@ -225,7 +259,7 @@
                                             <gestureRecognizers/>
                                             <constraints>
                                                 <constraint firstItem="qdw-mK-xKX" firstAttribute="centerX" secondItem="JDo-PQ-Unn" secondAttribute="centerX" id="bc2-kN-1b3"/>
-                                                <constraint firstItem="qdw-mK-xKX" firstAttribute="width" secondItem="JDo-PQ-Unn" secondAttribute="width" multiplier="0.8" id="u3v-c2-PHf"/>
+                                                <constraint firstItem="qdw-mK-xKX" firstAttribute="width" secondItem="JDo-PQ-Unn" secondAttribute="width" multiplier="0.75" id="u3v-c2-PHf"/>
                                                 <constraint firstItem="qdw-mK-xKX" firstAttribute="centerY" secondItem="JDo-PQ-Unn" secondAttribute="centerY" id="xvh-cJ-ww6"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -246,7 +280,8 @@
                                     <constraint firstAttribute="height" constant="50" id="KnQ-CK-8Cy"/>
                                     <constraint firstAttribute="width" constant="30" id="moA-2N-RT2"/>
                                 </constraints>
-                                <color key="tintColor" name="NormalColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <color key="tintColor" name="GrayColor"/>
                                 <state key="normal" image="dismissImage"/>
                                 <connections>
                                     <action selector="dismissButton:" destination="RL7-js-PaW" eventType="touchUpInside" id="exJ-t8-sCo"/>
@@ -259,7 +294,7 @@
                                         <rect key="frame" x="0.0" y="6.6666666666666643" width="45" height="59.999999999999993"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ihz-F0-ja7">
-                                                <rect key="frame" x="6" y="3.3333333333333357" width="33" height="35.666666666666664"/>
+                                                <rect key="frame" x="5.6666666666666714" y="3.6666666666666714" width="33.666666666666664" height="35"/>
                                                 <fontDescription key="fontDescription" name="SunBatang-Light" family="SunBatang" pointSize="30"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -272,7 +307,7 @@
                                                 </constraints>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="십이월" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="brH-68-yNT">
-                                                <rect key="frame" x="6" y="43.333333333333336" width="33" height="13.333333333333336"/>
+                                                <rect key="frame" x="8.3333333333333446" y="43.666666666666664" width="28.666666666666671" height="13"/>
                                                 <fontDescription key="fontDescription" name="SunBatang-Light" family="SunBatang" pointSize="11"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -298,7 +333,7 @@
                                         <rect key="frame" x="210.33333333333337" y="6.6666666666666643" width="45" height="59.999999999999993"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="수" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fOi-Pb-c7Y">
-                                                <rect key="frame" x="9" y="4.3333333333333357" width="27" height="32"/>
+                                                <rect key="frame" x="10.666666666666631" y="4.3333333333333375" width="23.666666666666671" height="31.666666666666671"/>
                                                 <fontDescription key="fontDescription" name="SunBatang-Light" family="SunBatang" pointSize="27"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -310,7 +345,7 @@
                                                 </constraints>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WED" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tJZ-zT-ioP">
-                                                <rect key="frame" x="9.666666666666627" y="43.333333333333336" width="25.333333333333329" height="13.333333333333336"/>
+                                                <rect key="frame" x="10.000000000000002" y="43.666666666666664" width="24.666666666666671" height="13"/>
                                                 <fontDescription key="fontDescription" name="SunBatang-Light" family="SunBatang" pointSize="11"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -332,28 +367,38 @@
                                 </subviews>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="33" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pAu-Lx-TDh">
-                                <rect key="frame" x="110.66666666666667" y="103.66666666666669" width="192.66666666666663" height="207"/>
+                                <rect key="frame" x="109.66666666666667" y="103.66666666666669" width="194.66666666666663" height="204"/>
                                 <fontDescription key="fontDescription" name="SunBatang-Light" family="SunBatang" pointSize="175"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VKO-pt-s2R">
-                                <rect key="frame" x="57" y="320" width="300" height="0.66666666666668561"/>
+                                <rect key="frame" x="57" y="317" width="300" height="0.66666666666668561"/>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="300" id="4kr-by-oY1"/>
                                     <constraint firstAttribute="height" constant="0.5" id="AiI-re-v12"/>
                                 </constraints>
                             </view>
+                            <containerView hidden="YES" opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hcw-4g-oOj">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                                <connections>
+                                    <segue destination="g41-lv-aLO" kind="embed" identifier="writeSegue" id="l9y-5K-5IB"/>
+                                </connections>
+                            </containerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="WZ5-e2-ZlS" firstAttribute="leading" secondItem="w7B-k0-ovy" secondAttribute="leading" constant="10" id="4GB-id-kRL"/>
                             <constraint firstItem="w7B-k0-ovy" firstAttribute="bottom" secondItem="tcs-lM-7EY" secondAttribute="bottom" id="4nW-Zl-DSA"/>
+                            <constraint firstItem="Hcw-4g-oOj" firstAttribute="leading" secondItem="w7B-k0-ovy" secondAttribute="leading" id="9W7-XA-ua6"/>
+                            <constraint firstItem="w7B-k0-ovy" firstAttribute="bottom" secondItem="Hcw-4g-oOj" secondAttribute="bottom" id="J9X-qo-Fwy"/>
                             <constraint firstItem="tcs-lM-7EY" firstAttribute="centerX" secondItem="w7B-k0-ovy" secondAttribute="centerX" id="Jlt-fO-i9p"/>
+                            <constraint firstItem="w7B-k0-ovy" firstAttribute="trailing" secondItem="Hcw-4g-oOj" secondAttribute="trailing" id="KHU-7C-xt3"/>
                             <constraint firstItem="VKO-pt-s2R" firstAttribute="centerX" secondItem="w7B-k0-ovy" secondAttribute="centerX" id="MBa-tS-B5J"/>
                             <constraint firstItem="0fR-UU-nej" firstAttribute="centerX" secondItem="w7B-k0-ovy" secondAttribute="centerX" id="Pg9-tC-lZZ"/>
                             <constraint firstItem="tcs-lM-7EY" firstAttribute="top" secondItem="VKO-pt-s2R" secondAttribute="bottom" id="Q4U-1x-dUw"/>
+                            <constraint firstAttribute="top" secondItem="Hcw-4g-oOj" secondAttribute="top" id="Wnq-WQ-3tC"/>
                             <constraint firstItem="klB-Zz-O7m" firstAttribute="height" secondItem="u8s-ab-8ss" secondAttribute="height" multiplier="0.1" id="WzW-Kh-mPx"/>
                             <constraint firstItem="tcs-lM-7EY" firstAttribute="width" secondItem="u8s-ab-8ss" secondAttribute="width" id="XGt-ZQ-aOM"/>
                             <constraint firstItem="pAu-Lx-TDh" firstAttribute="centerX" secondItem="w7B-k0-ovy" secondAttribute="centerX" id="ahM-wO-olO"/>
@@ -377,6 +422,7 @@
                         <outlet property="weekSubLabel" destination="tJZ-zT-ioP" id="fWb-XD-g4i"/>
                         <outlet property="weekSubView" destination="gUt-7w-GiO" id="qx7-wk-75a"/>
                         <outlet property="weekView" destination="MKL-Iy-Wyz" id="7a9-Z1-6H8"/>
+                        <outlet property="writeContainerView" destination="Hcw-4g-oOj" id="iaV-3r-OvP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jAS-S8-7ro" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -388,7 +434,7 @@
             <objects>
                 <collectionViewController id="gXh-U4-K6H" customClass="MonthCollectionViewController" customModule="Geunal" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" id="V7X-sD-SMw">
-                        <rect key="frame" x="0.0" y="0.0" width="50.000000000000028" height="71.666666666666671"/>
+                        <rect key="frame" x="0.0" y="0.0" width="49.999999999999972" height="71.666666666666671"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="a34-OW-Doh" customClass="MonthFlowLayout" customModule="Geunal" customModuleProvider="target">
@@ -410,7 +456,7 @@
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="28" id="z8u-hU-OdT"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" name="SunBatang-Light" family="SunBatang" pointSize="19"/>
+                                            <fontDescription key="fontDescription" name="SunBatang-Medium" family="SunBatang" pointSize="19"/>
                                             <color key="textColor" name="NormalColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -458,8 +504,8 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sOM-Ht-EWP">
-                                            <rect key="frame" x="-21" y="-11.333333333333334" width="42" height="22.666666666666668"/>
-                                            <fontDescription key="fontDescription" name="SunBatang-Light" family="SunBatang" pointSize="19"/>
+                                            <rect key="frame" x="-21.666666666666668" y="-11.333333333333334" width="43.333333333333336" height="22.666666666666668"/>
+                                            <fontDescription key="fontDescription" name="SunBatang-Medium" family="SunBatang" pointSize="19"/>
                                             <color key="textColor" name="NormalColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -687,10 +733,116 @@
             </objects>
             <point key="canvasLocation" x="1422" y="27"/>
         </scene>
+        <!--Write View Controller-->
+        <scene sceneID="NQT-zc-aab">
+            <objects>
+                <viewController id="g41-lv-aLO" customClass="WriteViewController" customModule="Geunal" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="bcm-Sk-P3N">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pCM-1R-Cne">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HuL-Zq-WsY">
+                                <rect key="frame" x="67" y="218" width="280" height="300"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="날의 기억" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pou-n6-S9k">
+                                        <rect key="frame" x="96.666666666666657" y="80" width="87" height="22.666666666666671"/>
+                                        <fontDescription key="fontDescription" name="SunBatang-Light" family="SunBatang" pointSize="20"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="uFq-O8-zcz">
+                                        <rect key="frame" x="20" y="122.66666666666669" width="240" height="107"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" name="SunBatang-Light" family="SunBatang" pointSize="19"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
+                                    </textView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4lY-JC-8vD">
+                                        <rect key="frame" x="165" y="250" width="90" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="3ne-ed-Qew"/>
+                                            <constraint firstAttribute="width" constant="90" id="5JQ-ME-wdu"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="SunBatang-Light" family="SunBatang" pointSize="19"/>
+                                        <state key="normal" title="취소">
+                                            <color key="titleColor" name="SunColor"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="cancelButton:" destination="g41-lv-aLO" eventType="touchUpInside" id="JJ6-rS-Wme"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3XV-J0-WGA">
+                                        <rect key="frame" x="25" y="250" width="90" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="BMT-FN-Adg"/>
+                                            <constraint firstAttribute="width" constant="90" id="Xci-SQ-nej"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="SunBatang-Light" family="SunBatang" pointSize="19"/>
+                                        <state key="normal" title="기억">
+                                            <color key="titleColor" name="NormalColor"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="writeButton:" destination="g41-lv-aLO" eventType="touchUpInside" id="Toy-5u-zkC"/>
+                                        </connections>
+                                    </button>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mxk-m4-a5B">
+                                        <rect key="frame" x="20" y="239.66666666666669" width="240" height="0.33333333333334281"/>
+                                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="0.5" id="Ahl-TK-WR7"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="4lY-JC-8vD" secondAttribute="bottom" constant="10" id="1r3-7g-lQy"/>
+                                    <constraint firstAttribute="trailing" secondItem="uFq-O8-zcz" secondAttribute="trailing" constant="20" id="5xy-N2-t3o"/>
+                                    <constraint firstItem="uFq-O8-zcz" firstAttribute="top" secondItem="Pou-n6-S9k" secondAttribute="bottom" constant="20" id="83F-ms-gGa"/>
+                                    <constraint firstItem="Pou-n6-S9k" firstAttribute="centerX" secondItem="HuL-Zq-WsY" secondAttribute="centerX" id="FwN-LW-Fqr"/>
+                                    <constraint firstItem="4lY-JC-8vD" firstAttribute="centerX" secondItem="HuL-Zq-WsY" secondAttribute="centerX" multiplier="1.5" id="Qc1-Uo-O0c"/>
+                                    <constraint firstItem="Pou-n6-S9k" firstAttribute="top" secondItem="HuL-Zq-WsY" secondAttribute="top" constant="80" id="TGJ-SF-cfL"/>
+                                    <constraint firstAttribute="bottom" secondItem="3XV-J0-WGA" secondAttribute="bottom" constant="10" id="TlP-XG-g9z"/>
+                                    <constraint firstAttribute="height" constant="300" id="Wqd-FX-GfY"/>
+                                    <constraint firstItem="4lY-JC-8vD" firstAttribute="top" secondItem="mxk-m4-a5B" secondAttribute="bottom" constant="10" id="fnS-N5-6so"/>
+                                    <constraint firstItem="mxk-m4-a5B" firstAttribute="top" secondItem="uFq-O8-zcz" secondAttribute="bottom" constant="10" id="ky0-r7-gG7"/>
+                                    <constraint firstItem="3XV-J0-WGA" firstAttribute="centerX" secondItem="HuL-Zq-WsY" secondAttribute="centerX" multiplier="0.5" id="l3v-Vg-cKa"/>
+                                    <constraint firstItem="mxk-m4-a5B" firstAttribute="centerX" secondItem="uFq-O8-zcz" secondAttribute="centerX" id="lii-zZ-So5"/>
+                                    <constraint firstAttribute="width" constant="280" id="n0W-50-Jgu"/>
+                                    <constraint firstItem="uFq-O8-zcz" firstAttribute="leading" secondItem="HuL-Zq-WsY" secondAttribute="leading" constant="20" id="wyT-rW-GJO"/>
+                                    <constraint firstItem="mxk-m4-a5B" firstAttribute="width" secondItem="uFq-O8-zcz" secondAttribute="width" id="xMu-0q-3ej"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="pCM-1R-Cne" firstAttribute="leading" secondItem="alx-Dz-gvO" secondAttribute="leading" id="E4i-MT-nkk"/>
+                            <constraint firstItem="HuL-Zq-WsY" firstAttribute="centerX" secondItem="alx-Dz-gvO" secondAttribute="centerX" id="LOi-eu-PvI"/>
+                            <constraint firstItem="pCM-1R-Cne" firstAttribute="bottom" secondItem="alx-Dz-gvO" secondAttribute="bottom" id="Q5L-d2-4dy"/>
+                            <constraint firstItem="pCM-1R-Cne" firstAttribute="top" secondItem="bcm-Sk-P3N" secondAttribute="top" id="S1H-zh-bm5"/>
+                            <constraint firstItem="HuL-Zq-WsY" firstAttribute="centerY" secondItem="pCM-1R-Cne" secondAttribute="centerY" id="am3-CU-avL"/>
+                            <constraint firstItem="pCM-1R-Cne" firstAttribute="trailing" secondItem="alx-Dz-gvO" secondAttribute="trailing" id="mRt-tM-vvz"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="alx-Dz-gvO"/>
+                    </view>
+                    <connections>
+                        <outlet property="backgroundView" destination="pCM-1R-Cne" id="3TV-Pd-XDG"/>
+                        <outlet property="inputBackView" destination="HuL-Zq-WsY" id="8Mv-tw-FNV"/>
+                        <outlet property="messageTextView" destination="uFq-O8-zcz" id="DTP-pb-8g2"/>
+                        <outlet property="writeButton" destination="3XV-J0-WGA" id="gde-xW-Yjp"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ll5-0a-1zV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1095.6521739130435" y="1530.9782608695652"/>
+        </scene>
     </scenes>
     <resources>
         <image name="dismissImage" width="30" height="30"/>
         <image name="searchImage" width="20" height="20"/>
+        <namedColor name="GrayColor">
+            <color red="0.39215686274509803" green="0.39215686274509803" blue="0.39215686274509803" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="NormalColor">
             <color red="0.17647058823529413" green="0.17647058823529413" blue="0.17647058823529413" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

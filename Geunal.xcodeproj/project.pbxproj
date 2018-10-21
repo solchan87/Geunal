@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		29194CF4217C6BD200F5E3A3 /* WriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29194CF3217C6BD200F5E3A3 /* WriteViewController.swift */; };
+		29194CF6217C853100F5E3A3 /* SunBatang-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 29194CF5217C853100F5E3A3 /* SunBatang-Medium.ttf */; };
 		291E27582178511A00A196E4 /* PresentAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 291E27572178511A00A196E4 /* PresentAnimator.swift */; };
 		294E20822176F5D400EC7CD7 /* SunBatang-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 294E20812176F5D400EC7CD7 /* SunBatang-Light.ttf */; };
 		2957C5A4217945650072EB96 /* DismissAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2957C5A3217945650072EB96 /* DismissAnimator.swift */; };
@@ -31,6 +33,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		29194CF3217C6BD200F5E3A3 /* WriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteViewController.swift; sourceTree = "<group>"; };
+		29194CF5217C853100F5E3A3 /* SunBatang-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SunBatang-Medium.ttf"; sourceTree = "<group>"; };
 		291E27572178511A00A196E4 /* PresentAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentAnimator.swift; sourceTree = "<group>"; };
 		294E20812176F5D400EC7CD7 /* SunBatang-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SunBatang-Light.ttf"; sourceTree = "<group>"; };
 		2957C5A3217945650072EB96 /* DismissAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissAnimator.swift; sourceTree = "<group>"; };
@@ -87,6 +91,7 @@
 				299A9A7B217323B900390C82 /* YearCollectionViewController.swift */,
 				299A9A7D217323D100390C82 /* MonthCollectionViewController.swift */,
 				2989B1752177C1D20045A319 /* DayViewController.swift */,
+				29194CF3217C6BD200F5E3A3 /* WriteViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -151,6 +156,7 @@
 				29B87FEC2170CDDB003F96C3 /* Assets.xcassets */,
 				29B87FEE2170CDDB003F96C3 /* LaunchScreen.storyboard */,
 				29B87FF12170CDDB003F96C3 /* Info.plist */,
+				29194CF5217C853100F5E3A3 /* SunBatang-Medium.ttf */,
 				294E20812176F5D400EC7CD7 /* SunBatang-Light.ttf */,
 			);
 			path = Geunal;
@@ -233,6 +239,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				29194CF6217C853100F5E3A3 /* SunBatang-Medium.ttf in Resources */,
 				29B87FF02170CDDB003F96C3 /* LaunchScreen.storyboard in Resources */,
 				29B87FED2170CDDB003F96C3 /* Assets.xcassets in Resources */,
 				294E20822176F5D400EC7CD7 /* SunBatang-Light.ttf in Resources */,
@@ -298,6 +305,7 @@
 				299A9A862173276900390C82 /* MonthCollectionViewCell.swift in Sources */,
 				2957C5A62179CB970072EB96 /* DayTableViewCell.swift in Sources */,
 				29B87FFA2170D8B4003F96C3 /* MainCollectionViewCell.swift in Sources */,
+				29194CF4217C6BD200F5E3A3 /* WriteViewController.swift in Sources */,
 				299A9A7C217323B900390C82 /* YearCollectionViewController.swift in Sources */,
 				29B87FE82170CDD7003F96C3 /* MainViewController.swift in Sources */,
 				299A9A932173CEB900390C82 /* YearFlowLayout.swift in Sources */,

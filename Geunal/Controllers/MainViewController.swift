@@ -160,7 +160,7 @@ class MainViewController: UIViewController {
             setButtonState(flag: false)
             
             buttonView.isUserInteractionEnabled = false
-            currentPageButton.layer.cornerRadius = 5
+            currentPageButton.layer.cornerRadius = 8
             
             firstFlag = false
         }

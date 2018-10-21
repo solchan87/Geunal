@@ -12,7 +12,6 @@ import VisualEffectView
 
 class DayTableViewCell: UITableViewCell {
     @IBOutlet weak var messageLabel: UILabel!
-    @IBOutlet weak var filterView: UIView!
     
     var visualEffectView: VisualEffectView!
     

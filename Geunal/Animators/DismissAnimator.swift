@@ -10,7 +10,7 @@ import UIKit
 
 class DismissAnimator: NSObject, UIViewControllerAnimatedTransitioning {
     
-    let setDuration = 0.3
+    let setDuration = 0.0
     let removeDuration = 0.4
     
     var sourceVC: MainCollectionViewController!

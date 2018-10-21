@@ -58,7 +58,7 @@ class MainCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.calendarBackgroundView.layer.cornerRadius = 5
+        self.calendarBackgroundView.layer.cornerRadius = 8
     }
     
     private struct Metric {
