@@ -89,7 +89,6 @@ class MainCollectionViewController: UICollectionViewController {
         
         return indexPath
     }
-    
 }
 
 extension MainCollectionViewController: UICollectionViewDelegateFlowLayout {
@@ -116,5 +115,6 @@ extension MainCollectionViewController: MainCollectionViewCellDelegate {
     func presentDayViewData(dateData: DateData, calendarCellIndexPath: IndexPath) {
         self.delegate?.getPresentData(dateData: dateData, calendarCellIndexPath: calendarCellIndexPath, mainCellIndexPath: getVisiblePageIndex()!)
     }
+    
 }
 

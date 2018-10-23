@@ -7,12 +7,15 @@
 //
 
 import UIKit
+import RealmSwift
 
 protocol MainCollectionViewCellDelegate{
     func presentDayViewData(dateData: DateData, calendarCellIndexPath: IndexPath)
 }
 
 class MainCollectionViewCell: UICollectionViewCell {
+    
+    let realm = try! Realm()
     
     @IBOutlet weak var calendarCollectionView: UICollectionView!
     @IBOutlet weak var calendarBackgroundView: UIView!
@@ -21,8 +24,9 @@ class MainCollectionViewCell: UICollectionViewCell {
     
     var delegate: MainCollectionViewCellDelegate?
     
-    var monthData: MonthData? {
+    var monthData: MonthData! {
         didSet{
+            
             self.calendarCollectionView.reloadData()
             
             switch monthData?.month {
@@ -58,8 +62,10 @@ class MainCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.calendarBackgroundView.layer.cornerRadius = 8
+        calendarCollectionView.reloadData()
+        self.calendarBackgroundView.layer.cornerRadius = 5
     }
+    
     
     private struct Metric {
         // collectionView
@@ -89,6 +95,11 @@ extension MainCollectionViewCell: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CalendarCollectionViewCell", for: indexPath) as! CalendarCollectionViewCell
         cell.dateData = monthData?.dateDatas[indexPath.item]
         
+        if let messageCount = realm.objects(DayMessage.self).filter("year = \(monthData.year) AND month = \(monthData.month) AND date = \(monthData.dateDatas[indexPath.row].date)").first?.messages.count {
+            cell.messageCount = messageCount
+        }else {
+            cell.messageCount = 0
+        }
         return cell
     }
 }

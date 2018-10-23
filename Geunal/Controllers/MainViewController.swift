@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import VisualEffectView
 
 class MainViewController: UIViewController {
     
@@ -26,12 +27,27 @@ class MainViewController: UIViewController {
     
     var calendarCellIndexPath: IndexPath!
     
-    
     var firstFlag = true
     
     @IBOutlet weak var mainContainerView: UIView!
     
     @IBOutlet weak var searchButton: UIButton!
+    
+    
+    @IBOutlet weak var listView: UIView!
+    @IBOutlet weak var messageListButton: UIButton!
+    @IBOutlet weak var moonChangeButton: UIButton!
+    
+    @IBOutlet weak var launchView: UIView!
+    @IBOutlet weak var launchImage: UIImageView!
+    
+    
+    @IBAction func moonChangeButton(_ sender: Any) {
+    }
+    
+    
+    @IBAction func messageListButton(_ sender: Any) {
+    }
     
     @IBAction func searchButton(_ sender: Any) {
         calendarFlag = false
@@ -97,6 +113,18 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "pattern")!)
+        let visualEffectView = VisualEffectView(frame: CGRect(x: 0, y: 0, width: 600, height: 1200))
+        visualEffectView.scale = 1
+        visualEffectView.blurRadius = 10
+        launchImage.addSubview(visualEffectView)
+        UIView.animate(withDuration: 1.0, animations: {
+            visualEffectView.blurRadius = 0
+            self.launchImage.alpha = 1.0
+        }) { (finished) in
+            delay(1.0, closure: {
+                self.launchView.removeFromSuperview()
+            })
+        }
         
     }
     
@@ -144,6 +172,11 @@ class MainViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        if let mainCellIndexPath = mainCellIndexPath {
+            let tempCell = mainCollectionView.collectionViewLayout.collectionView!.cellForItem(at: mainCellIndexPath) as! MainCollectionViewCell
+            tempCell.calendarCollectionView.reloadData()
+        }
+        
         
         if firstFlag {
             let currentTime = calendarService.getCurrentTime()
@@ -160,7 +193,9 @@ class MainViewController: UIViewController {
             setButtonState(flag: false)
             
             buttonView.isUserInteractionEnabled = false
-            currentPageButton.layer.cornerRadius = 8
+            currentPageButton.layer.cornerRadius = 5
+            messageListButton.layer.cornerRadius = 5
+            moonChangeButton.layer.cornerRadius = 5
             
             firstFlag = false
         }
@@ -199,7 +234,6 @@ extension MainViewController: MonthCollectionViewDelegate {
 
 extension MainViewController: MainCollectionViewDelegate {
     func getPresentData(dateData: DateData, calendarCellIndexPath: IndexPath, mainCellIndexPath: IndexPath) {
-        
         self.mainCellIndexPath = mainCellIndexPath
         self.calendarCellIndexPath = calendarCellIndexPath
         
@@ -214,7 +248,6 @@ extension MainViewController: MainCollectionViewDelegate {
         let calendarImage = makeCalendarImage(index: mainCellIndexPath)
         
         dayView.calendarImageView.image = calendarImage
-        
     }
     
     func didChangeVisibleYear(year: Int) {
@@ -237,7 +270,7 @@ extension MainViewController: UIViewControllerTransitioningDelegate {
     }
     
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        
+
         dismissTransition.mainCellIndexPath = self.mainCellIndexPath
         dismissTransition.calendarCellIndexPath = self.calendarCellIndexPath
         dismissTransition.sourceVC = mainCollectionView

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class DayViewController: UIViewController {
     
@@ -32,11 +33,17 @@ class DayViewController: UIViewController {
     
     private var writeViewController: WriteViewController!
     
-    var dateData: DateData? {
+    let realm = try! Realm()
+    
+    var dateData: DateData! {
         didSet{
             configureDate()
+            reloadMessage()
+            writeViewController.dateData = dateData
         }
     }
+    
+    var dayMessage: DayMessage? 
     
     @IBAction func dismissButton(_ sender: Any) {
         
@@ -47,15 +54,23 @@ class DayViewController: UIViewController {
         writeViewController.sendFlag = true
         writeContainerView.isHidden = false
         writeViewController.showWriteView()
+        writeViewController.editFlag = false
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let penGesture = UIPanGestureRecognizer(target: self, action: #selector(DayViewController.penGestureRecognized(penGesture:)))
+        let penGesture = UIPanGestureRecognizer(target: self, action: #selector(self.penGestureRecognized(penGesture:)))
         penGesture.delegate = self
         
         self.dayTableView.addGestureRecognizer(penGesture)
+        
+        let longGesture = UILongPressGestureRecognizer(target: self, action: #selector(self.longGestureRecognized(longGesture:)))
+        longGesture.delegate = self
+        longGesture.minimumPressDuration = 0.6
+        
+        self.dayTableView.addGestureRecognizer(longGesture)
+       
         
         weekView.layer.borderWidth = 0.5
         weekView.layer.cornerRadius = 5
@@ -73,6 +88,15 @@ class DayViewController: UIViewController {
         gradient.locations = [0, 0.2, 0.8, 1]
         midBarView.layer.mask = gradient
         
+        
+        
+    }
+    
+    func reloadMessage() {
+        if let dayMessage = realm.objects(DayMessage.self).filter("year = \(dateData.year) AND month = \(dateData.month) AND date = \(dateData.date)").first {
+            self.dayMessage = dayMessage
+        }
+        dayTableView.reloadData()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -99,12 +123,21 @@ class DayViewController: UIViewController {
         }
     }
     
+    @objc func longGestureRecognized(longGesture: UILongPressGestureRecognizer) {
+        let location = longGesture.location(in: self.dayTableView)
+        guard let indexPath = self.dayTableView.indexPathForRow(at: location) else { return }
+        
+        guard let cell = self.dayTableView.cellForRow(at: indexPath) as? DayTableViewCell else { return }
+        
+        if !cell.buttonViewFlag {
+            cell.buttonViewFlag = true
+        }
+    }
     
     private func configureDate() {
         if let dateData = dateData {
             
             if dateData.dayOfWeek == 1 {
-                print("jebal")
                 dateLabel.textColor = UIColor(named: "SunColor")
                 weekLabel.textColor = UIColor(named: "SunColor")
                 weekView.layer.borderColor = UIColor(named: "SunColor")?.cgColor
@@ -202,16 +235,19 @@ extension DayViewController: UITableViewDelegate {
 
 extension DayViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return (dayMessage?.messages.count ?? 0) + 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.row == 2 {
+        if indexPath.row == (dayMessage?.messages.count ?? 0){
             let testCell = dayTableView.dequeueReusableCell(withIdentifier: "testCell")
             return testCell!
         }else {
             let dayCell = dayTableView.dequeueReusableCell(withIdentifier: "DayTableViewCell") as! DayTableViewCell
-            dayCell.message = "일이삼사오육칠팔구십일이삼사오육칠팔구십일이삼사오육칠팔구십"
+            if let dayMessage = dayMessage {
+                dayCell.message = dayMessage.messages[indexPath.row]
+            }
+            dayCell.delegate = self
             return dayCell
         }
     }
@@ -225,15 +261,35 @@ extension DayViewController: UIGestureRecognizerDelegate {
 
 extension DayViewController: WriteViewControllerDelegate {
     func didCancelButton() {
+        reloadMessage()
         writeContainerView.isHidden = true
     }
     
     func didWriteButton() {
+        reloadMessage()
         writeContainerView.isHidden = true
     }
     
     func didUpdateButton() {
+        reloadMessage()
         writeContainerView.isHidden = true
+    }
+}
+
+extension DayViewController: DayTableViewCellDelegate {
+    func pushUpdateButton(message: Message) {
+        writeViewController.sendFlag = false
+        writeContainerView.isHidden = false
+        writeViewController.editFlag = false
+        writeViewController.message = message
+        writeViewController.showWriteView()
+    }
+    
+    func pushDeleteButton(message: Message) {
+        try! realm.write {
+            realm.delete(message)
+            reloadMessage()
+        }
     }
     
     

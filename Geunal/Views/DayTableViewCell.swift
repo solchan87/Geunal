@@ -9,16 +9,54 @@
 import UIKit
 import VisualEffectView
 
+protocol DayTableViewCellDelegate {
+    func pushUpdateButton(message: Message)
+    func pushDeleteButton(message: Message)
+}
 
 class DayTableViewCell: UITableViewCell {
     @IBOutlet weak var messageLabel: UILabel!
     
+    @IBOutlet weak var messageBackView: UIView!
+    
+    @IBOutlet weak var buttonBackView: UIView!
+    
     var visualEffectView: VisualEffectView!
     
-    var message: String = "" {
+    var delegate: DayTableViewCellDelegate?
+    
+    var message: Message! {
         didSet{
-            self.messageLabel.text = message
+            self.messageLabel.text = message.text
             visualEffectView.blurRadius = 6
+        }
+
+    }
+    
+    var buttonViewFlag: Bool = false {
+        didSet {
+            if buttonViewFlag {
+                showButtonView()
+            }else {
+                hideButtonView()
+            }
+        }
+    }
+    
+    @IBAction func updateButton(_ sender: Any) {
+        delegate?.pushUpdateButton(message: self.message)
+        buttonViewFlag = false
+    }
+    
+    @IBAction func deleteButton(_ sender: Any) {
+        delegate?.pushDeleteButton(message: self.message)
+        buttonViewFlag = false
+    }
+    @IBAction func cancelButton(_ sender: Any) {
+        UIView.animate(withDuration: 0.3, animations: {
+            self.buttonBackView.alpha = 0.0
+        }) { (finished) in
+            self.buttonViewFlag = false
         }
     }
     
@@ -26,7 +64,7 @@ class DayTableViewCell: UITableViewCell {
         super.awakeFromNib()
         visualEffectView = VisualEffectView(frame: self.bounds)
         visualEffectView.scale = 1
-        addSubview(visualEffectView)
+        messageBackView.addSubview(visualEffectView)
     }
     
     override func layoutSubviews() {
@@ -45,6 +83,18 @@ class DayTableViewCell: UITableViewCell {
         UIView.animate(withDuration: 0.5) {
             self.visualEffectView.blurRadius = 6
         }
+    }
+    
+    func showButtonView() {
+        buttonBackView.isHidden = false
+        UIView.animate(withDuration: 0.4) {
+            self.buttonBackView.alpha = 1.0
+        }
+    }
+    
+    func hideButtonView() {
+        buttonBackView.isHidden = true
+        self.buttonBackView.alpha = 0.0
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

@@ -15,6 +15,7 @@ struct MonthData {
 }
 
 struct DateData {
+    var today: Bool
     var year: Int
     var month: Int
     var date: Int
@@ -109,6 +110,16 @@ class CalendarService {
     }
     
     func getDateDatas(year: Int, month: Int) -> [DateData] {
+        let cDate = Date()
+        let formatter = DateFormatter()
+        
+        formatter.dateFormat = "yyyy"
+        let currentYear = Int(formatter.string(from: cDate))!
+        formatter.dateFormat = "MM"
+        let currentMonth = Int(formatter.string(from: cDate))!
+        formatter.dateFormat = "dd"
+        let currentDate = Int(formatter.string(from: cDate))!
+        
         var totalCount = 1
         var weekCount = 1
         var dateCount = 0
@@ -120,11 +131,15 @@ class CalendarService {
         
         for _ in 1..<(lastDate + dayOfWeek) {
             if totalCount < dayOfWeek {
-                let dateData = DateData(year: year, month: month, date: dateCount, dayOfWeek: weekCount, dateType: false)
+                let dateData = DateData(today: false, year: year, month: month, date: dateCount, dayOfWeek: weekCount, dateType: false)
                 dateDatas.append(dateData)
             }else {
                 dateCount += 1
-                let dateData = DateData(year: year, month: month, date: dateCount, dayOfWeek: weekCount, dateType: true)
+                var dateData = DateData(today: false, year: year, month: month, date: dateCount, dayOfWeek: weekCount, dateType: true)
+                
+                if currentYear == year && currentMonth == month && currentDate == dateCount {
+                    dateData.today = true
+                }
                 dateDatas.append(dateData)
             }
             totalCount += 1
@@ -137,4 +152,9 @@ class CalendarService {
         }
         return dateDatas
     }
+}
+
+public func delay(_ delay:Double, closure:@escaping ()->()) {
+    DispatchQueue.main.asyncAfter(
+        deadline: DispatchTime.now() + Double(Int64(delay * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC), execute: closure)
 }
