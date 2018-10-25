@@ -1,0 +1,26 @@
+PODS:
+  - Realm (3.11.1):
+    - Realm/Headers (= 3.11.1)
+  - Realm/Headers (3.11.1)
+  - RealmSwift (3.11.1):
+    - Realm (= 3.11.1)
+  - VisualEffectView (3.1.0)
+
+DEPENDENCIES:
+  - RealmSwift
+  - VisualEffectView
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Realm
+    - RealmSwift
+    - VisualEffectView
+
+SPEC CHECKSUMS:
+  Realm: 037c5919b9ceb59d6beed5d3b031096856b119b3
+  RealmSwift: c9580133e73ef40ed340401af2dbc9a5790dfea7
+  VisualEffectView: 922eedf8d7d7e776a367ac11e0a4d4a0b2ba3545
+
+PODFILE CHECKSUM: 0202257d337a6dc8276250c429e447450e4b6ce7
+
+COCOAPODS: 1.5.3
