@@ -12,14 +12,25 @@ protocol YearCollectionViewDelegate {
     func didChangeYear(year: Int)
 }
 
+
+/// 검색 년도를 관리하는 클래스
 class YearCollectionViewController: UICollectionViewController {
-    
-    private var indexOfCellBeforeDragging = 0
     
     private struct CellMetric {
         static let width: CGFloat = 50
         static let height: CGFloat = 25
     }
+    
+    private var indexOfCellBeforeDragging = 0
+    
+    var year: [Int]!
+    
+    let calendarService = CalendarService()
+    
+    var delegate: YearCollectionViewDelegate?
+    
+    // 처음 시작시에만 실행 함수
+    var firstFlag = true
     
     var searchYear: Int = 0 {
         didSet {
@@ -28,14 +39,6 @@ class YearCollectionViewController: UICollectionViewController {
             }
         }
     }
-    
-    var year: [Int]!
-    
-    let calendarService = CalendarService()
-    
-    var delegate: YearCollectionViewDelegate?
-    
-    var firstFlag = true
     
     override func viewDidLoad() {
         
@@ -52,6 +55,7 @@ class YearCollectionViewController: UICollectionViewController {
         }
     }
     
+    // 검색 후 아래 위 셀들을 숨기는 함수
     func setSearchYear(year: Int, hideFlag: Bool) {
         if year >= calendarService.startYear && calendarService.endYear >= year {
             let indexPath = IndexPath(item: year - calendarService.startYear, section: 0)
@@ -59,6 +63,7 @@ class YearCollectionViewController: UICollectionViewController {
         }
     }
     
+    // 위 아래 여백 계산 함수
     private func calculateSectionInset() -> CGFloat{
         let height: CGFloat = self.collectionViewLayout.collectionView!.frame.height
         let inset = (height - CellMetric.height) / 2
@@ -66,6 +71,7 @@ class YearCollectionViewController: UICollectionViewController {
         return inset
     }
     
+    // 위아래 여백 생성
     private func configureCollectionViewLayoutItemSize() {
         let inset: CGFloat = calculateSectionInset()
         
@@ -74,22 +80,22 @@ class YearCollectionViewController: UICollectionViewController {
         self.collectionViewLayout.collectionView!.contentSize = CGSize(width: self.collectionViewLayout.collectionView!.frame.size.width - inset * 2, height: self.collectionViewLayout.collectionView!.frame.size.height)
     }
     
-
+    
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
-
-
+    
+    
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return year.count
     }
-
+    
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "YearCollectionViewCell", for: indexPath) as! YearCollectionViewCell
-    
+        
         cell.yearNum = year[indexPath.row]
-    
+        
         return cell
     }
     
@@ -110,7 +116,7 @@ extension YearCollectionViewController: UICollectionViewDelegateFlowLayout {
         let index = Int(round(proportionalOffset + 0.5))
         let numberOfItems = self.collectionViewLayout.collectionView!.numberOfItems(inSection: 0)
         let safeIndex = max(0, min(numberOfItems - 1, index))
-
+        
         return safeIndex
     }
     
@@ -118,17 +124,17 @@ extension YearCollectionViewController: UICollectionViewDelegateFlowLayout {
         targetContentOffset.pointee = scrollView.contentOffset
         
         let indexOfMajorCell = self.indexOfYearCell()
-
+        
         let dataSourceCount = collectionView(self.collectionViewLayout.collectionView!, numberOfItemsInSection: 0)
-
+        
         let swipeVelocityThreshold: CGFloat = 0.5
         
         let hasEnoughVelocityToSlideToTheNextCell = indexOfCellBeforeDragging + 1 < dataSourceCount && velocity.y > swipeVelocityThreshold
-
+        
         let hasEnoughVelocityToSlideToThePreviousCell = indexOfCellBeforeDragging - 1 >= 0 && velocity.y < -swipeVelocityThreshold
-
+        
         let majorCellIsTheCellBeforeDragging = indexOfMajorCell == indexOfCellBeforeDragging
-
+        
         let didUseSwipeToSkipCell = majorCellIsTheCellBeforeDragging && (hasEnoughVelocityToSlideToTheNextCell || hasEnoughVelocityToSlideToThePreviousCell)
         
         if didUseSwipeToSkipCell {

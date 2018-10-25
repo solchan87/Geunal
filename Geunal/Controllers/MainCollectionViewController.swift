@@ -8,17 +8,26 @@
 
 import UIKit
 
+
+/// 델리게이트 프로토콜
 protocol MainCollectionViewDelegate {
     func didChangeVisibleYear(year: Int)
     func didChangeVisibleMonth(month: Int)
     func getPresentData(dateData: DateData, calendarCellIndexPath: IndexPath, mainCellIndexPath: IndexPath)
 }
 
+/// MainViewController 내의 CollectionView 관리 클래스
 class MainCollectionViewController: UICollectionViewController {
+    
+    let calendarService = CalendarService()
+    
+    // 델리게이트
+    var delegate: MainCollectionViewDelegate?
     
     var year: [Int]!
     let month: [Int] = Array(1...12)
     
+    // 델리게이트 함수를 통해서 현재 달력 뷰가 바뀔때마다 서치 년, 월을 바꿔주는 변수
     var visibleYear: Int = 0 {
         didSet {
             if oldValue != visibleYear {
@@ -35,10 +44,6 @@ class MainCollectionViewController: UICollectionViewController {
         }
     }
     
-    let calendarService = CalendarService()
-    
-    var delegate: MainCollectionViewDelegate?
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         year = Array(calendarService.startYear...calendarService.endYear)
@@ -48,18 +53,18 @@ class MainCollectionViewController: UICollectionViewController {
         super.viewDidAppear(false)
         
     }
-
+    
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return year.count
     }
-
-
+    
+    
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
         return month.count
     }
-
+    
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let calendarCell = collectionView.dequeueReusableCell(withReuseIdentifier: "MainCollectionViewCell", for: indexPath) as! MainCollectionViewCell
         

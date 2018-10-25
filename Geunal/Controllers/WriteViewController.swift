@@ -16,6 +16,9 @@ protocol WriteViewControllerDelegate {
     func didUpdateButton()
 }
 
+
+/// 뷰를 컨테이너에 담아 hidden 관계로 두려 했으나,
+/// 공통적으로 사용해야될 필요가 있어, 차후 present 관계로 변경해야됨
 class WriteViewController: UIViewController {
     
     let realm = try! Realm()
@@ -29,23 +32,17 @@ class WriteViewController: UIViewController {
     
     @IBOutlet weak var timeTextLabel: UILabel!
     
-    var dateData: DateData!{
-        didSet {
-            timeTextLabel.text = dateToString(dateData: dateData)
-        }
-    }
-    
-    var message: Message? {
-        didSet{
-            messageTextView.becomeFirstResponder()
-            messageTextView.text = message?.text
-        }
-    }
-    
+    // textview 에 placeholder를 구성하면서 빈칸일때,
+    // placeholder 글이 입력되는 것을 방지하기 위한 flag
     var editFlag: Bool = false
-    
     let placeholderText = "기억을 여기에 남기다."
     
+    private var visualEffectView: VisualEffectView!
+    
+    var delegate: WriteViewControllerDelegate?
+    
+    // flag상태에 따라 기억, 수정 구분
+    // storyboard 버그 - 버튼을 누르면 기본 텍스트로 바뀌는 버그가 있다.
     var sendFlag: Bool! {
         didSet {
             switch sendFlag {
@@ -59,8 +56,23 @@ class WriteViewController: UIViewController {
         }
     }
     
+    var dateData: DateData!{
+        didSet {
+            timeTextLabel.text = dateToString(dateData: dateData)
+        }
+    }
+    
+    // edit 시 메시지 가진 변수
+    var message: Message? {
+        didSet{
+            messageTextView.becomeFirstResponder()
+            messageTextView.text = message?.text
+        }
+    }
+    
+    
     @IBAction func writeButton(_ sender: Any) {
-        //xcode burg - 차후 확인 요망 
+        //xcode burg - 차후 확인 요망
         if messageTextView.text != "" && editFlag == true {
             hideWriteView {
                 switch self.sendFlag {
@@ -83,9 +95,6 @@ class WriteViewController: UIViewController {
         }
     }
     
-    private var visualEffectView: VisualEffectView!
-    
-    var delegate: WriteViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -124,11 +133,14 @@ class WriteViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        // textview에는 place 홀더가 없어서 키보드 상태에 따라 view의 텍스트를 조절해줘야 된다.
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
-
+        
     }
     
+    // keyboard
     @objc func keyboardWillShow(notification: Notification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             if self.view.frame.origin.y == 0{
@@ -167,6 +179,7 @@ class WriteViewController: UIViewController {
         return result
     }
     
+    // realm 데이터가 있을때와 없을때를 구분해서 만든다.
     private func writeMessage(text: String){
         if let dayMessage = self.realm.objects(DayMessage.self).filter("year = \(self.dateData.year) AND month = \(self.dateData.month) AND date = \(self.dateData.date)").first {
             try! self.realm.write {
@@ -222,6 +235,8 @@ class WriteViewController: UIViewController {
         }
     }
     
+    
+    // 숫자를 한글로 변환할 때, 더 좋은 방법이 있는지 생각해보기
     private func dateToString(dateData: DateData) -> String {
         
         var monthText: String = ""

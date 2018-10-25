@@ -32,13 +32,14 @@ class Message: Object {
     @objc dynamic var state = ""
     @objc dynamic var text = ""
     let messages = List<SelectTag>()
-
+    
     
     override static func primaryKey() -> String? {
         return "uuid"
     }
 }
 
+// 테그 기능 추가시 Tag db를 추가하여 select DB에 추가한다.
 class SelectTag: Object {
     @objc dynamic var uuid: String = UUID().uuidString
     @objc dynamic var tagId = ""

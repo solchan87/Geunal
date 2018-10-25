@@ -39,6 +39,7 @@ class ListViewController: UIViewController {
         
         let currentTimeToInt: Int = (currentTime.year * 10000) + (currentTime.month * 100) + (currentTime.date)
         
+        // 목록 보기 시 현재에 해당되는 데이터가 있을 때 그 위치로 이동해주는 구문
         if let nextMessage = realm.objects(DayMessage.self).filter("timeNum > \(currentTimeToInt)").sorted(byKeyPath: "timeNum", ascending: true).first {
             if nextMessage.messages.count != 0 {
                 let index = dayMessageList.index(of: nextMessage)
@@ -47,6 +48,7 @@ class ListViewController: UIViewController {
         }
         
         if let nextMessage = realm.objects(DayMessage.self).filter("timeNum <= \(currentTimeToInt)").sorted(byKeyPath: "timeNum", ascending: false).first {
+            // 버그 픽스 - messages의 count가 0개로 잡힐때, indexpath를 찾을 수 없던 오류 수정
             if nextMessage.messages.count != 0 {
                 let index = dayMessageList.index(of: nextMessage)
                 currentIndex = index
@@ -74,7 +76,7 @@ class ListViewController: UIViewController {
             cell.hideMessageLabel()
         }
     }
-
+    
 }
 
 extension ListViewController: UITableViewDelegate {

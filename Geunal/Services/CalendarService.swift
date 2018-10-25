@@ -32,9 +32,14 @@ struct CurrentTime {
     var week: Int?
 }
 
+// 달력에 대한 정보를 반환하는 클래스
 class CalendarService {
     
+    // 음력은 알고리즘으로 짤 수 없기 때문에,
+    // 향후 업데이트 될 음력 전환 기능은, 공공api를 Json으로 크롤링 와서 관리 할 예정이다.
+    // 시작 년도
     let startYear: Int = 1930
+    // 마지막 년도
     let endYear: Int = 2050
     
     func getMonthData(year: Int, month: Int) -> MonthData{
@@ -44,6 +49,7 @@ class CalendarService {
         return monthData
     }
     
+    // 각 월의 마지막 일을 반환
     private func getLastDate(year: Int, month: Int) -> Int{
         switch month {
         case 1, 3, 5, 7, 8, 10, 12:
@@ -57,6 +63,7 @@ class CalendarService {
         }
     }
     
+    // 해당 월 1일에 대한 요일 반환 함수 일요일: 1, 토요일: 7
     func getDayOfWeek(year: Int, month: Int) -> Int {
         var dateToString: String = ""
         if month < 10 {
@@ -75,6 +82,7 @@ class CalendarService {
         return weekDay
     }
     
+    // 오늘 요일 반환 함수 일요일: 1, 토요일: 7
     func getCurrentDayOfWeek(currentTime: CurrentTime) -> Int {
         let tDate = Date()
         let formatter = DateFormatter()
@@ -89,6 +97,7 @@ class CalendarService {
         return weekDay
     }
     
+    //현재 시간 반환
     func getCurrentTime() -> CurrentTime{
         let tDate = Date()
         let formatter = DateFormatter()
@@ -109,6 +118,7 @@ class CalendarService {
         return currentTime
     }
     
+    // 해당 월에 대한 일, 요일을 리스트로 반환하는 함수
     func getDateDatas(year: Int, month: Int) -> [DateData] {
         let cDate = Date()
         let formatter = DateFormatter()
@@ -129,6 +139,7 @@ class CalendarService {
         let lastDate = getLastDate(year: year, month: month)
         let dayOfWeek = getDayOfWeek(year: year, month: month)
         
+        // 해당 월에 오늘이 포함돼 있으면, today를 true로 준다.
         for _ in 1..<(lastDate + dayOfWeek) {
             if totalCount < dayOfWeek {
                 let dateData = DateData(today: false, year: year, month: month, date: dateCount, dayOfWeek: weekCount, dateType: false)

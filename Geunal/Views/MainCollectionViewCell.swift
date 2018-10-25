@@ -95,6 +95,7 @@ extension MainCollectionViewCell: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CalendarCollectionViewCell", for: indexPath) as! CalendarCollectionViewCell
         cell.dateData = monthData?.dateDatas[indexPath.item]
         
+        // messageCount 를 통해 달력에서 보여주는 날짜에 대한 메시지 수를 알려줄 수 있음.
         if let messageCount = realm.objects(DayMessage.self).filter("year = \(monthData.year) AND month = \(monthData.month) AND date = \(monthData.dateDatas[indexPath.row].date)").first?.messages.count {
             cell.messageCount = messageCount
         }else {
@@ -103,6 +104,7 @@ extension MainCollectionViewCell: UICollectionViewDataSource {
         return cell
     }
 }
+
 
 extension MainCollectionViewCell: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

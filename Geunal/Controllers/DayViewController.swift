@@ -9,6 +9,7 @@
 import UIKit
 import RealmSwift
 
+// 일력 페이지 클래스
 class DayViewController: UIViewController {
     
     @IBOutlet weak var dateLabel: UILabel!
@@ -21,16 +22,21 @@ class DayViewController: UIViewController {
     @IBOutlet weak var weekSubLabel: UILabel!
     @IBOutlet weak var weekView: UIView!
     @IBOutlet weak var weekSubView: UIView!
+    
+    @IBOutlet weak var midBarView: UIView!
+    @IBOutlet weak var writeContainerView: UIView!
+    
     @IBOutlet weak var calendarImageView: UIImageView!
     
     @IBOutlet weak var dayTableView: UITableView!
     
-    @IBOutlet weak var midBarView: UIView!
-    
-    @IBOutlet weak var writeContainerView: UIView!
-    
     private var sourceIndexPath: IndexPath?
     
+    let realm = try! Realm()
+    
+    private var writeViewController: WriteViewController!
+    
+    // 셀 수정창이 한개의 셀에서만 나오게 하는 변수
     private var selectCell: DayTableViewCell! {
         didSet {
             if let cell = oldValue {
@@ -40,10 +46,6 @@ class DayViewController: UIViewController {
         }
     }
     
-    private var writeViewController: WriteViewController!
-    
-    let realm = try! Realm()
-    
     var dateData: DateData! {
         didSet{
             configureDate()
@@ -52,13 +54,12 @@ class DayViewController: UIViewController {
         }
     }
     
-    var dayMessage: DayMessage? 
+    var dayMessage: DayMessage?
     
     @IBAction func dismissButton(_ sender: Any) {
-        
-    presentingViewController?.dismiss(animated: true, completion: nil)
-        
+        presentingViewController?.dismiss(animated: true, completion: nil)
     }
+    
     @IBAction func writeMessageButton(_ sender: Any) {
         writeViewController.sendFlag = true
         writeContainerView.isHidden = false
@@ -69,6 +70,7 @@ class DayViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // 제스처 관련
         let penGesture = UIPanGestureRecognizer(target: self, action: #selector(self.penGestureRecognized(penGesture:)))
         penGesture.delegate = self
         
@@ -79,7 +81,6 @@ class DayViewController: UIViewController {
         longGesture.minimumPressDuration = 0.6
         
         self.dayTableView.addGestureRecognizer(longGesture)
-       
         
         weekView.layer.borderWidth = 0.5
         weekView.layer.cornerRadius = 5
@@ -89,6 +90,7 @@ class DayViewController: UIViewController {
         monthView.layer.cornerRadius = 5
         monthView.layer.borderColor = UIColor(named: "NormalColor")?.cgColor
         
+        // 그라데이션
         let gradient = CAGradientLayer()
         gradient.frame = midBarView.bounds
         gradient.startPoint = CGPoint(x: 0.0, y: 0.5)
@@ -122,6 +124,7 @@ class DayViewController: UIViewController {
         
         guard let cell = self.dayTableView.cellForRow(at: indexPath) as? DayTableViewCell else { return }
         
+        // 이동하는 것 만큼 블러 Radius 변경
         let point = penGesture.translation(in: cell).x
         cell.showMessageLabel(point: point.magnitude)
         
@@ -130,6 +133,7 @@ class DayViewController: UIViewController {
         }
     }
     
+    // long press gesture 로 셀 수정창 관리
     @objc func longGestureRecognized(longGesture: UILongPressGestureRecognizer) {
         let location = longGesture.location(in: self.dayTableView)
         guard let indexPath = self.dayTableView.indexPathForRow(at: location) else { return }
@@ -227,7 +231,7 @@ class DayViewController: UIViewController {
             
         }
     }
-
+    
 }
 
 extension DayViewController: UIViewControllerTransitioningDelegate {

@@ -42,6 +42,7 @@ class DayTableViewCell: UITableViewCell {
         }
     }
     
+    // 버튼 뷰의 버튼에 해당되는 delegate가 있다.
     @IBAction func updateButton(_ sender: Any) {
         delegate?.pushUpdateButton(message: self.message)
         buttonViewFlag = false
@@ -91,11 +92,11 @@ class DayTableViewCell: UITableViewCell {
         buttonBackView.isHidden = true
         self.buttonBackView.alpha = 0.0
     }
-
+    // 중요 - 차후 cell selected 를 long Press로 바꿔야 된다!!
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
     }
-
+    
 }

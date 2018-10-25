@@ -12,22 +12,16 @@ protocol MonthCollectionViewDelegate {
     func didChangeMonth(month: Int)
 }
 
+
+/// 월 검색 관리 클래스
 class MonthCollectionViewController: UICollectionViewController {
-    
-    private var indexOfCellBeforeDragging = 0
     
     private struct CellMetric {
         static let width: CGFloat = 50
         static let height: CGFloat = 25
     }
     
-    var searchMonth: Int = 0 {
-        didSet {
-            if oldValue != searchMonth {
-                self.delegate?.didChangeMonth(month: searchMonth)
-            }
-        }
-    }
+    private var indexOfCellBeforeDragging = 0
     
     var delegate: MonthCollectionViewDelegate?
     
@@ -37,9 +31,17 @@ class MonthCollectionViewController: UICollectionViewController {
     
     var firstFlag = true
     
+    var searchMonth: Int = 0 {
+        didSet {
+            if oldValue != searchMonth {
+                self.delegate?.didChangeMonth(month: searchMonth)
+            }
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -49,7 +51,8 @@ class MonthCollectionViewController: UICollectionViewController {
             firstFlag = false
         }
     }
-
+    
+    // 월 검색 스크롤 중 숨겨야 될 함수
     func setSearchMonth(month: Int, hideFlag: Bool) {
         
         var searchMonth = month
@@ -71,6 +74,7 @@ class MonthCollectionViewController: UICollectionViewController {
         visibelMonth = searchMonth
     }
     
+    // 인셋 사이즈 관리 함수
     private func calculateSectionInset() -> CGFloat{
         let height: CGFloat = self.collectionViewLayout.collectionView!.frame.height
         let inset = (height - CellMetric.height) / 2
@@ -78,6 +82,7 @@ class MonthCollectionViewController: UICollectionViewController {
         return inset
     }
     
+    // 인셋 세팅 함수
     private func configureCollectionViewLayoutItemSize() {
         let inset: CGFloat = calculateSectionInset()
         
@@ -86,26 +91,26 @@ class MonthCollectionViewController: UICollectionViewController {
         self.collectionViewLayout.collectionView!.contentSize = CGSize(width: self.collectionViewLayout.collectionView!.frame.size.width - inset * 2, height: self.collectionViewLayout.collectionView!.frame.size.height)
     }
     
-
+    
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
-
-
+    
+    
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
         return month.count
     }
-
+    
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MonthCollectionViewCell", for: indexPath) as! MonthCollectionViewCell
-    
+        
         cell.monthNum = month[indexPath.row]
-    
+        
         return cell
     }
-
+    
 }
 
 extension MonthCollectionViewController: UICollectionViewDelegateFlowLayout {
@@ -117,36 +122,37 @@ extension MonthCollectionViewController: UICollectionViewDelegateFlowLayout {
         return 0
     }
     
+    // 현재 해당되는 셀의 함수
     private func indexOfYearCell() -> Int {
         let proportionalOffset = self.collectionViewLayout.collectionView!.contentOffset.y / CellMetric.height
         let index = Int(round(proportionalOffset + 0.5))
         let numberOfItems = self.collectionViewLayout.collectionView!.numberOfItems(inSection: 0)
         let safeIndex = max(0, min(numberOfItems - 1, index))
-
+        
         return safeIndex
     }
     
     override func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         targetContentOffset.pointee = scrollView.contentOffset
-
+        
         let indexOfMajorCell = self.indexOfYearCell()
-
+        
         let dataSourceCount = collectionView(self.collectionViewLayout.collectionView!, numberOfItemsInSection: 0)
-
+        
         let swipeVelocityThreshold: CGFloat = 0.5
-
+        
         let hasEnoughVelocityToSlideToTheNextCell = indexOfCellBeforeDragging + 1 < dataSourceCount && velocity.y > swipeVelocityThreshold
-
+        
         let hasEnoughVelocityToSlideToThePreviousCell = indexOfCellBeforeDragging - 1 >= 0 && velocity.y < -swipeVelocityThreshold
-
+        
         let majorCellIsTheCellBeforeDragging = indexOfMajorCell == indexOfCellBeforeDragging
-
+        
         let didUseSwipeToSkipCell = majorCellIsTheCellBeforeDragging && (hasEnoughVelocityToSlideToTheNextCell || hasEnoughVelocityToSlideToThePreviousCell)
-
+        
         if didUseSwipeToSkipCell {
             let snapToIndex = indexOfCellBeforeDragging + (hasEnoughVelocityToSlideToTheNextCell ? 1 : -1)
             let toValue = CellMetric.height * CGFloat(snapToIndex)
-
+            
             UIView.animate(withDuration: 0.2, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: velocity.x, options: .allowUserInteraction, animations: {
                 scrollView.contentOffset = CGPoint(x: toValue, y: 0)
                 scrollView.layoutIfNeeded()
@@ -179,6 +185,7 @@ extension MonthCollectionViewController: UICollectionViewDelegateFlowLayout {
         })
     }
     
+    // 셀 위치에 따른 셀 숨김 함수
     func setCellHideFlag(index: Int){
         var tempArray: [Int] = []
         if index == 1 {
@@ -197,6 +204,6 @@ extension MonthCollectionViewController: UICollectionViewDelegateFlowLayout {
             cell.cellFadeFlag = false
         }
     }
-
+    
 }
 
