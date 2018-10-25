@@ -1,4 +1,4 @@
-# 어디주유 Where Gas Stations
+# 그날
 <p align="left">
 <img src="https://img.shields.io/badge/swift-4.2-blue.svg" />
 <img src="https://img.shields.io/badge/xcode-10.0-green.svg" />
