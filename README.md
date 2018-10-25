@@ -35,7 +35,7 @@
 <img src="PreviewImages/firstImage.jpeg" width="210" />
 <img src="PreviewImages/secondImage.jpeg" width="210" />
 <img src="PreviewImages/thirdImage.jpeg" width="210" />
-<img src="PreviewImages/ListImage.jpeg" width="210" />
+<img src="PreviewImages/listImage.jpeg" width="210" />
 </p>
 
 ## Version History
