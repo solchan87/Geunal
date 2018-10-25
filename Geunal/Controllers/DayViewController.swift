@@ -31,6 +31,15 @@ class DayViewController: UIViewController {
     
     private var sourceIndexPath: IndexPath?
     
+    private var selectCell: DayTableViewCell! {
+        didSet {
+            if let cell = oldValue {
+                cell.buttonViewFlag = false
+            }
+            selectCell.buttonViewFlag = true
+        }
+    }
+    
     private var writeViewController: WriteViewController!
     
     let realm = try! Realm()
@@ -88,8 +97,6 @@ class DayViewController: UIViewController {
         gradient.locations = [0, 0.2, 0.8, 1]
         midBarView.layer.mask = gradient
         
-        
-        
     }
     
     func reloadMessage() {
@@ -127,10 +134,10 @@ class DayViewController: UIViewController {
         let location = longGesture.location(in: self.dayTableView)
         guard let indexPath = self.dayTableView.indexPathForRow(at: location) else { return }
         
-        guard let cell = self.dayTableView.cellForRow(at: indexPath) as? DayTableViewCell else { return }
-        
-        if !cell.buttonViewFlag {
-            cell.buttonViewFlag = true
+        if longGesture.state == .began {
+            if let cell = self.dayTableView.cellForRow(at: indexPath) as? DayTableViewCell {
+                self.selectCell = cell
+            }
         }
     }
     

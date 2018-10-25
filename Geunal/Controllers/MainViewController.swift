@@ -43,10 +43,14 @@ class MainViewController: UIViewController {
     
     
     @IBAction func moonChangeButton(_ sender: Any) {
+        
     }
     
     
     @IBAction func messageListButton(_ sender: Any) {
+        let listView = storyboard!.instantiateViewController(withIdentifier: "ListViewController") as! ListViewController
+        
+        present(listView, animated: true, completion: nil)
     }
     
     @IBAction func searchButton(_ sender: Any) {
@@ -173,8 +177,9 @@ class MainViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         if let mainCellIndexPath = mainCellIndexPath {
-            let tempCell = mainCollectionView.collectionViewLayout.collectionView!.cellForItem(at: mainCellIndexPath) as! MainCollectionViewCell
-            tempCell.calendarCollectionView.reloadData()
+            if let tempCell = mainCollectionView.collectionViewLayout.collectionView!.cellForItem(at: mainCellIndexPath) as? MainCollectionViewCell {
+                tempCell.calendarCollectionView.reloadData()
+            }
         }
         
         

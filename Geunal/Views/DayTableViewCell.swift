@@ -30,7 +30,6 @@ class DayTableViewCell: UITableViewCell {
             self.messageLabel.text = message.text
             visualEffectView.blurRadius = 6
         }
-
     }
     
     var buttonViewFlag: Bool = false {
@@ -65,10 +64,6 @@ class DayTableViewCell: UITableViewCell {
         visualEffectView = VisualEffectView(frame: self.bounds)
         visualEffectView.scale = 1
         messageBackView.addSubview(visualEffectView)
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
     }
     
     func showMessageLabel(point: CGFloat) {

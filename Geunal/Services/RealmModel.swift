@@ -31,6 +31,17 @@ class Message: Object {
     @objc dynamic var createDate = Date()
     @objc dynamic var state = ""
     @objc dynamic var text = ""
+    let messages = List<SelectTag>()
+
+    
+    override static func primaryKey() -> String? {
+        return "uuid"
+    }
+}
+
+class SelectTag: Object {
+    @objc dynamic var uuid: String = UUID().uuidString
+    @objc dynamic var tagId = ""
     
     override static func primaryKey() -> String? {
         return "uuid"
