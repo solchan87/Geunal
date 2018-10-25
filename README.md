@@ -41,7 +41,7 @@
 ## Version History
 
 - ver 1.0.00 : App Store release(18.10.25)
-- ver 1.0.01 : Bug fix(18.10.25)
+- ver 1.0.01 : Bug fixes(18.10.25)
 
 <br>
 
