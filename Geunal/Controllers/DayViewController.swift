@@ -303,5 +303,4 @@ extension DayViewController: DayTableViewCellDelegate {
         }
     }
     
-    
 }

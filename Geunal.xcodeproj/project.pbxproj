@@ -9,9 +9,12 @@
 /* Begin PBXBuildFile section */
 		29194CF4217C6BD200F5E3A3 /* WriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29194CF3217C6BD200F5E3A3 /* WriteViewController.swift */; };
 		29194CF6217C853100F5E3A3 /* SunBatang-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 29194CF5217C853100F5E3A3 /* SunBatang-Medium.ttf */; };
-		291E27582178511A00A196E4 /* PresentAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 291E27572178511A00A196E4 /* PresentAnimator.swift */; };
 		294E20822176F5D400EC7CD7 /* SunBatang-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 294E20812176F5D400EC7CD7 /* SunBatang-Light.ttf */; };
-		2957C5A4217945650072EB96 /* DismissAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2957C5A3217945650072EB96 /* DismissAnimator.swift */; };
+		2957C5232185FF4600AA7B7F /* MonthModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2957C5222185FF4600AA7B7F /* MonthModel.swift */; };
+		2957C5272186390E00AA7B7F /* DateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2957C5262186390E00AA7B7F /* DateModel.swift */; };
+		2957C52A2186426800AA7B7F /* CurrentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2957C5292186426800AA7B7F /* CurrentViewModel.swift */; };
+		2957C52C218642C900AA7B7F /* Dynamic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2957C52B218642C900AA7B7F /* Dynamic.swift */; };
+		2957C52E2186432300AA7B7F /* SearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2957C52D2186432300AA7B7F /* SearchModel.swift */; };
 		2957C5A62179CB970072EB96 /* DayTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2957C5A52179CB970072EB96 /* DayTableViewCell.swift */; };
 		2989B1762177C1D20045A319 /* DayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2989B1752177C1D20045A319 /* DayViewController.swift */; };
 		299A9A7C217323B900390C82 /* YearCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299A9A7B217323B900390C82 /* YearCollectionViewController.swift */; };
@@ -38,9 +41,12 @@
 /* Begin PBXFileReference section */
 		29194CF3217C6BD200F5E3A3 /* WriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteViewController.swift; sourceTree = "<group>"; };
 		29194CF5217C853100F5E3A3 /* SunBatang-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SunBatang-Medium.ttf"; sourceTree = "<group>"; };
-		291E27572178511A00A196E4 /* PresentAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentAnimator.swift; sourceTree = "<group>"; };
 		294E20812176F5D400EC7CD7 /* SunBatang-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SunBatang-Light.ttf"; sourceTree = "<group>"; };
-		2957C5A3217945650072EB96 /* DismissAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissAnimator.swift; sourceTree = "<group>"; };
+		2957C5222185FF4600AA7B7F /* MonthModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthModel.swift; sourceTree = "<group>"; };
+		2957C5262186390E00AA7B7F /* DateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateModel.swift; sourceTree = "<group>"; };
+		2957C5292186426800AA7B7F /* CurrentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentViewModel.swift; sourceTree = "<group>"; };
+		2957C52B218642C900AA7B7F /* Dynamic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dynamic.swift; sourceTree = "<group>"; };
+		2957C52D2186432300AA7B7F /* SearchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchModel.swift; sourceTree = "<group>"; };
 		2957C5A52179CB970072EB96 /* DayTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayTableViewCell.swift; sourceTree = "<group>"; };
 		2989B1752177C1D20045A319 /* DayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayViewController.swift; sourceTree = "<group>"; };
 		299A9A7B217323B900390C82 /* YearCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YearCollectionViewController.swift; sourceTree = "<group>"; };
@@ -83,8 +89,6 @@
 		291E2754217849CA00A196E4 /* Animators */ = {
 			isa = PBXGroup;
 			children = (
-				291E27572178511A00A196E4 /* PresentAnimator.swift */,
-				2957C5A3217945650072EB96 /* DismissAnimator.swift */,
 			);
 			path = Animators;
 			sourceTree = "<group>";
@@ -110,6 +114,25 @@
 				29F73829217D124100D7728A /* RealmModel.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		2957C5212185FAD100AA7B7F /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				2957C5222185FF4600AA7B7F /* MonthModel.swift */,
+				2957C5262186390E00AA7B7F /* DateModel.swift */,
+				2957C52D2186432300AA7B7F /* SearchModel.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		2957C528218641F700AA7B7F /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				2957C5292186426800AA7B7F /* CurrentViewModel.swift */,
+				2957C52B218642C900AA7B7F /* Dynamic.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		299A9A8C21739C9300390C82 /* Views */ = {
@@ -155,6 +178,8 @@
 		29B87FE42170CDD7003F96C3 /* Geunal */ = {
 			isa = PBXGroup;
 			children = (
+				2957C528218641F700AA7B7F /* ViewModels */,
+				2957C5212185FAD100AA7B7F /* Models */,
 				291E2755217849E600A196E4 /* Controllers */,
 				299A9A8C21739C9300390C82 /* Views */,
 				291E275621784A0200A196E4 /* Services */,
@@ -329,19 +354,22 @@
 				29194CF4217C6BD200F5E3A3 /* WriteViewController.swift in Sources */,
 				299A9A7C217323B900390C82 /* YearCollectionViewController.swift in Sources */,
 				29B87FE82170CDD7003F96C3 /* MainViewController.swift in Sources */,
+				2957C5232185FF4600AA7B7F /* MonthModel.swift in Sources */,
 				299A9A932173CEB900390C82 /* YearFlowLayout.swift in Sources */,
 				29FE7CC2217F50A200137ECE /* ListViewController.swift in Sources */,
+				2957C52C218642C900AA7B7F /* Dynamic.swift in Sources */,
 				29FE7CC4217F6DEB00137ECE /* ListTableViewCell.swift in Sources */,
 				29B87FF82170D7B9003F96C3 /* MainCollectionViewController.swift in Sources */,
 				29B87FFC2170D944003F96C3 /* CalendarService.swift in Sources */,
 				2989B1762177C1D20045A319 /* DayViewController.swift in Sources */,
-				291E27582178511A00A196E4 /* PresentAnimator.swift in Sources */,
 				299A9A952173D1EF00390C82 /* MonthFlowLayout.swift in Sources */,
 				29F7382A217D124100D7728A /* RealmModel.swift in Sources */,
 				29B87FE62170CDD7003F96C3 /* AppDelegate.swift in Sources */,
+				2957C52E2186432300AA7B7F /* SearchModel.swift in Sources */,
 				299A9A84217326F700390C82 /* YearCollectionViewCell.swift in Sources */,
-				2957C5A4217945650072EB96 /* DismissAnimator.swift in Sources */,
+				2957C52A2186426800AA7B7F /* CurrentViewModel.swift in Sources */,
 				299A9A7E217323D100390C82 /* MonthCollectionViewController.swift in Sources */,
+				2957C5272186390E00AA7B7F /* DateModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

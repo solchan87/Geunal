@@ -30,7 +30,7 @@
                                 <rect key="frame" x="0.0" y="93" width="375" height="467"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
-                                    <segue destination="2Ew-YL-Xhy" kind="embed" identifier="mainSegue" id="97J-gd-b7F"/>
+                                    <segue destination="2Ew-YL-Xhy" kind="embed" id="9js-aJ-500"/>
                                 </connections>
                             </containerView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bxm-46-ddY">
@@ -280,6 +280,11 @@
                             <constraint firstItem="bxm-46-ddY" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="mvp-il-hYP"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="I2v-eB-xwH"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
                         <outlet property="buttonDateLabel" destination="OUd-86-3T4" id="ZY1-cY-PAa"/>
@@ -755,9 +760,6 @@
                                     <constraint firstItem="3L7-eO-xl6" firstAttribute="centerY" secondItem="O4c-QH-7bh" secondAttribute="centerY" id="dVn-bu-Rcp"/>
                                     <constraint firstItem="3L7-eO-xl6" firstAttribute="leading" secondItem="O4c-QH-7bh" secondAttribute="leading" id="qPz-4z-V4W"/>
                                 </constraints>
-                                <connections>
-                                    <outlet property="monthLabel" destination="3L7-eO-xl6" id="dTg-2q-NW3"/>
-                                </connections>
                             </collectionViewCell>
                         </cells>
                         <connections>
@@ -804,9 +806,6 @@
                                     <constraint firstItem="sOM-Ht-EWP" firstAttribute="centerY" secondItem="tEJ-Js-1Wc" secondAttribute="centerY" id="O3T-Qm-ph2"/>
                                     <constraint firstItem="sOM-Ht-EWP" firstAttribute="centerX" secondItem="tEJ-Js-1Wc" secondAttribute="centerX" id="oKJ-yR-5Rc"/>
                                 </constraints>
-                                <connections>
-                                    <outlet property="yearLabel" destination="sOM-Ht-EWP" id="xYZ-Mq-aLY"/>
-                                </connections>
                             </collectionViewCell>
                         </cells>
                         <connections>
@@ -986,12 +985,6 @@
                                                                 <constraint firstItem="gop-iR-Nlt" firstAttribute="centerX" secondItem="sAi-V0-PRj" secondAttribute="centerX" id="TCT-s0-i00"/>
                                                                 <constraint firstItem="GGT-9w-Fvp" firstAttribute="centerY" secondItem="sAi-V0-PRj" secondAttribute="centerY" id="oHw-BP-lDs"/>
                                                             </constraints>
-                                                            <connections>
-                                                                <outlet property="dateLabel" destination="GGT-9w-Fvp" id="24p-4P-2hm"/>
-                                                                <outlet property="firstDot" destination="mbf-f1-biy" id="ANz-vg-zjY"/>
-                                                                <outlet property="secondDot" destination="OUN-OU-XLG" id="4fF-ld-vDH"/>
-                                                                <outlet property="thirdDot" destination="Mfe-ke-FLc" id="0QY-ES-pQM"/>
-                                                            </connections>
                                                         </collectionViewCell>
                                                     </cells>
                                                     <connections>
@@ -1039,11 +1032,6 @@
                                     <constraint firstItem="bUQ-JP-ptz" firstAttribute="width" secondItem="nZS-th-FE0" secondAttribute="width" multiplier="0.85" id="dh1-I7-AlA"/>
                                 </constraints>
                                 <size key="customSize" width="375" height="467"/>
-                                <connections>
-                                    <outlet property="calendarBackgroundView" destination="bUQ-JP-ptz" id="R1Z-hC-J6g"/>
-                                    <outlet property="calendarCollectionView" destination="VGh-FN-43g" id="eDz-mF-XKm"/>
-                                    <outlet property="monthTitle" destination="0cZ-I9-5Bg" id="dtg-0H-t3f"/>
-                                </connections>
                             </collectionViewCell>
                         </cells>
                         <connections>

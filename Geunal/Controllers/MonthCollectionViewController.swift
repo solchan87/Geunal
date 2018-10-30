@@ -8,10 +8,6 @@
 
 import UIKit
 
-protocol MonthCollectionViewDelegate {
-    func didChangeMonth(month: Int)
-}
-
 
 /// 월 검색 관리 클래스
 class MonthCollectionViewController: UICollectionViewController {
@@ -23,55 +19,16 @@ class MonthCollectionViewController: UICollectionViewController {
     
     private var indexOfCellBeforeDragging = 0
     
-    var delegate: MonthCollectionViewDelegate?
-    
-    let month: [Int] = [12,1,2,3,4,5,6,7,8,9,10,11,12,1]
-    
-    var visibelMonth: Int = 0
-    
-    var firstFlag = true
-    
-    var searchMonth: Int = 0 {
-        didSet {
-            if oldValue != searchMonth {
-                self.delegate?.didChangeMonth(month: searchMonth)
-            }
-        }
-    }
+    let cellCount = 1000000
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+//        configureCollectionViewLayoutItemSize()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(false)
-        if firstFlag {
-            configureCollectionViewLayoutItemSize()
-            firstFlag = false
-        }
-    }
-    
-    // 월 검색 스크롤 중 숨겨야 될 함수
-    func setSearchMonth(month: Int, hideFlag: Bool) {
         
-        var searchMonth = month
-        if visibelMonth == 2 && searchMonth == 1{
-            searchMonth = 1
-        }else if visibelMonth == 1 && searchMonth == 12 {
-            searchMonth = 0
-        }else if visibelMonth == 11 && searchMonth == 12 {
-            searchMonth = 12
-        }else if visibelMonth == 12 && searchMonth == 1 {
-            searchMonth = 13
-        }else if visibelMonth == 13 && searchMonth == 12 {
-            searchMonth = 0
-        }else if visibelMonth == 0 && searchMonth == 1 {
-            searchMonth = 13
-        }
-        let indexPath = IndexPath(item: searchMonth, section: 0)
-        self.collectionViewLayout.collectionView!.scrollToItem(at: indexPath, at: .centeredVertically, animated: hideFlag)
-        visibelMonth = searchMonth
     }
     
     // 인셋 사이즈 관리 함수
@@ -93,21 +50,19 @@ class MonthCollectionViewController: UICollectionViewController {
     
     
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
+        
         return 1
     }
     
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of items
-        return month.count
+        return cellCount
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MonthCollectionViewCell", for: indexPath) as! MonthCollectionViewCell
         
-        cell.monthNum = month[indexPath.row]
-        
+        print("ghfghf")
         return cell
     }
     
@@ -160,50 +115,7 @@ extension MonthCollectionViewController: UICollectionViewDelegateFlowLayout {
         } else {
             let indexPath = IndexPath(row: indexOfMajorCell, section: 0)
             self.collectionViewLayout.collectionView!.scrollToItem(at: indexPath, at: .centeredVertically, animated: true)
-            self.searchMonth = month[indexOfMajorCell]
         }
     }
-    
-    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        
-        let X = scrollView.contentOffset.y
-        if X > 0
-        {
-            if X >=  (CellMetric.height * CGFloat(month.count - 1)) - calculateSectionInset() {
-                self.collectionViewLayout.collectionView!.contentOffset = CGPoint(x:0 , y:  CellMetric.height - calculateSectionInset())
-            }
-        }
-        else if X < 0
-        {
-            self.collectionViewLayout.collectionView!.contentOffset = CGPoint(x:0 , y:  CellMetric.height * CGFloat(month.count - 2))
-        }
-    }
-    
-    override func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600), execute: {
-            self.setCellHideFlag(index: self.indexOfYearCell())
-        })
-    }
-    
-    // 셀 위치에 따른 셀 숨김 함수
-    func setCellHideFlag(index: Int){
-        var tempArray: [Int] = []
-        if index == 1 {
-            tempArray.append(0)
-            tempArray.append(2)
-        }else if index == 12 {
-            tempArray.append(11)
-            tempArray.append(13)
-        }else if 1 < index && index < 12 {
-            tempArray.append(index - 1)
-            tempArray.append(index + 1)
-        }
-        
-        for num in tempArray {
-            let cell = self.collectionViewLayout.collectionView!.cellForItem(at: IndexPath(item: num, section: 0)) as! MonthCollectionViewCell
-            cell.cellFadeFlag = false
-        }
-    }
-    
 }
 
