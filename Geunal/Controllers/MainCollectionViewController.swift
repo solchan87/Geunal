@@ -11,26 +11,34 @@ import UIKit
 /// MainViewController 내의 CollectionView 관리 클래스
 class MainCollectionViewController: UICollectionViewController {
     
+    var calendarYearLimit: [Int] = []
+    
+    var viewModel: MainCollectionViewModel = MainCollectionViewModelFromCurrentTime(withCurrentTime: CurrentTimeModel()){
+        didSet {
+            self.calendarYearLimit = viewModel.calendarYearLimit
+            self.collectionViewLayout.collectionView!.reloadData()
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
     }
     
     
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 10
+        return calendarYearLimit.count
     }
     
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of items
-        return 10
+        // 각 해에 해당하는 월 수 : 12
+        return 12
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let calendarCell = collectionView.dequeueReusableCell(withReuseIdentifier: "MainCollectionViewCell", for: indexPath) as! MainCollectionViewCell
-        print("asasaas")
+        
         return calendarCell
     }
     

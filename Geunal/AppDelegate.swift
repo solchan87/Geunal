@@ -16,10 +16,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-        let viewModel = CurrentViewModelFromMain()
-        
-        let mainViewController: MainViewController = window?.rootViewController as! MainViewController
-        mainViewController.viewModel = viewModel
+//        let viewModel = CurrentViewModelFromMain(withCurrentTime: CurrentTimeModel())
+//
+//        let mainViewController: MainViewController = window?.rootViewController as! MainViewController
+//        mainViewController.viewModel = viewModel
         
         return true
     }

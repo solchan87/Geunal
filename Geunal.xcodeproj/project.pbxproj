@@ -12,9 +12,10 @@
 		294E20822176F5D400EC7CD7 /* SunBatang-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 294E20812176F5D400EC7CD7 /* SunBatang-Light.ttf */; };
 		2957C5232185FF4600AA7B7F /* MonthModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2957C5222185FF4600AA7B7F /* MonthModel.swift */; };
 		2957C5272186390E00AA7B7F /* DateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2957C5262186390E00AA7B7F /* DateModel.swift */; };
-		2957C52A2186426800AA7B7F /* CurrentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2957C5292186426800AA7B7F /* CurrentViewModel.swift */; };
+		2957C52A2186426800AA7B7F /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2957C5292186426800AA7B7F /* MainViewModel.swift */; };
 		2957C52C218642C900AA7B7F /* Dynamic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2957C52B218642C900AA7B7F /* Dynamic.swift */; };
 		2957C52E2186432300AA7B7F /* SearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2957C52D2186432300AA7B7F /* SearchModel.swift */; };
+		2957C5532188EA8D00AA7B7F /* CurrentTimeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2957C5522188EA8D00AA7B7F /* CurrentTimeModel.swift */; };
 		2957C5A62179CB970072EB96 /* DayTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2957C5A52179CB970072EB96 /* DayTableViewCell.swift */; };
 		2989B1762177C1D20045A319 /* DayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2989B1752177C1D20045A319 /* DayViewController.swift */; };
 		299A9A7C217323B900390C82 /* YearCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299A9A7B217323B900390C82 /* YearCollectionViewController.swift */; };
@@ -23,6 +24,7 @@
 		299A9A862173276900390C82 /* MonthCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299A9A852173276900390C82 /* MonthCollectionViewCell.swift */; };
 		299A9A932173CEB900390C82 /* YearFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299A9A922173CEB900390C82 /* YearFlowLayout.swift */; };
 		299A9A952173D1EF00390C82 /* MonthFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299A9A942173D1EF00390C82 /* MonthFlowLayout.swift */; };
+		29B2BAC2218A418100BA5497 /* MainCollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B2BAC1218A418100BA5497 /* MainCollectionViewModel.swift */; };
 		29B87FE62170CDD7003F96C3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B87FE52170CDD7003F96C3 /* AppDelegate.swift */; };
 		29B87FE82170CDD7003F96C3 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B87FE72170CDD7003F96C3 /* MainViewController.swift */; };
 		29B87FEB2170CDD7003F96C3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 29B87FE92170CDD7003F96C3 /* Main.storyboard */; };
@@ -44,9 +46,10 @@
 		294E20812176F5D400EC7CD7 /* SunBatang-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SunBatang-Light.ttf"; sourceTree = "<group>"; };
 		2957C5222185FF4600AA7B7F /* MonthModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthModel.swift; sourceTree = "<group>"; };
 		2957C5262186390E00AA7B7F /* DateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateModel.swift; sourceTree = "<group>"; };
-		2957C5292186426800AA7B7F /* CurrentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentViewModel.swift; sourceTree = "<group>"; };
+		2957C5292186426800AA7B7F /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		2957C52B218642C900AA7B7F /* Dynamic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dynamic.swift; sourceTree = "<group>"; };
 		2957C52D2186432300AA7B7F /* SearchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchModel.swift; sourceTree = "<group>"; };
+		2957C5522188EA8D00AA7B7F /* CurrentTimeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentTimeModel.swift; sourceTree = "<group>"; };
 		2957C5A52179CB970072EB96 /* DayTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayTableViewCell.swift; sourceTree = "<group>"; };
 		2989B1752177C1D20045A319 /* DayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayViewController.swift; sourceTree = "<group>"; };
 		299A9A7B217323B900390C82 /* YearCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YearCollectionViewController.swift; sourceTree = "<group>"; };
@@ -55,6 +58,7 @@
 		299A9A852173276900390C82 /* MonthCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthCollectionViewCell.swift; sourceTree = "<group>"; };
 		299A9A922173CEB900390C82 /* YearFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YearFlowLayout.swift; sourceTree = "<group>"; };
 		299A9A942173D1EF00390C82 /* MonthFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthFlowLayout.swift; sourceTree = "<group>"; };
+		29B2BAC1218A418100BA5497 /* MainCollectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCollectionViewModel.swift; sourceTree = "<group>"; };
 		29B87FE22170CDD7003F96C3 /* Geunal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Geunal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		29B87FE52170CDD7003F96C3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		29B87FE72170CDD7003F96C3 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -119,6 +123,7 @@
 		2957C5212185FAD100AA7B7F /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				2957C5522188EA8D00AA7B7F /* CurrentTimeModel.swift */,
 				2957C5222185FF4600AA7B7F /* MonthModel.swift */,
 				2957C5262186390E00AA7B7F /* DateModel.swift */,
 				2957C52D2186432300AA7B7F /* SearchModel.swift */,
@@ -129,8 +134,9 @@
 		2957C528218641F700AA7B7F /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				2957C5292186426800AA7B7F /* CurrentViewModel.swift */,
+				2957C5292186426800AA7B7F /* MainViewModel.swift */,
 				2957C52B218642C900AA7B7F /* Dynamic.swift */,
+				29B2BAC1218A418100BA5497 /* MainCollectionViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -350,6 +356,7 @@
 				29B87FFE2170DA9A003F96C3 /* CalendarCollectionViewCell.swift in Sources */,
 				299A9A862173276900390C82 /* MonthCollectionViewCell.swift in Sources */,
 				2957C5A62179CB970072EB96 /* DayTableViewCell.swift in Sources */,
+				29B2BAC2218A418100BA5497 /* MainCollectionViewModel.swift in Sources */,
 				29B87FFA2170D8B4003F96C3 /* MainCollectionViewCell.swift in Sources */,
 				29194CF4217C6BD200F5E3A3 /* WriteViewController.swift in Sources */,
 				299A9A7C217323B900390C82 /* YearCollectionViewController.swift in Sources */,
@@ -367,7 +374,8 @@
 				29B87FE62170CDD7003F96C3 /* AppDelegate.swift in Sources */,
 				2957C52E2186432300AA7B7F /* SearchModel.swift in Sources */,
 				299A9A84217326F700390C82 /* YearCollectionViewCell.swift in Sources */,
-				2957C52A2186426800AA7B7F /* CurrentViewModel.swift in Sources */,
+				2957C5532188EA8D00AA7B7F /* CurrentTimeModel.swift in Sources */,
+				2957C52A2186426800AA7B7F /* MainViewModel.swift in Sources */,
 				299A9A7E217323D100390C82 /* MonthCollectionViewController.swift in Sources */,
 				2957C5272186390E00AA7B7F /* DateModel.swift in Sources */,
 			);

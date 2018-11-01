@@ -8,16 +8,6 @@
 
 import Foundation
 
-enum StringOf {
-    static let sunday = "일요일"
-    static let monday = "월요일"
-    static let tuesday = "화요일"
-    static let wednesday = "수요일"
-    static let thursday = "목요일"
-    static let friday = "금요일"
-    static let saturday = "토요일"
-}
-
 struct MonthData {
     var year: Int
     var month: Int

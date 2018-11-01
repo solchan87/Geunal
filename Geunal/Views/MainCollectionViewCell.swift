@@ -14,6 +14,10 @@ protocol MainCollectionViewCellDelegate{
 
 class MainCollectionViewCell: UICollectionViewCell {
     
+    @IBOutlet weak var calendarCollectionView: UICollectionView!
+    
+    @IBOutlet weak var yearTitleLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
     }
@@ -55,10 +59,10 @@ extension MainCollectionViewCell: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let itemSpacing = Metric.itemSpacing * (Metric.numberOfItem - 1)
         let lineSpacing = Metric.lineSpacing * (Metric.numberOfLine - 1)
-//        let width = (calendarCollectionView.frame.width - itemSpacing) / Metric.numberOfItem
-//        let height = (calendarCollectionView.frame.height - lineSpacing) / Metric.numberOfLine
+        let width = (calendarCollectionView.frame.width - itemSpacing) / Metric.numberOfItem
+        let height = (calendarCollectionView.frame.height - lineSpacing) / Metric.numberOfLine
         
-        return CGSize(width: 20, height: 20)
+        return CGSize(width: width, height: height)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {

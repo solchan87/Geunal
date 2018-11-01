@@ -11,9 +11,8 @@ import VisualEffectView
 
 class MainViewController: UIViewController {
     
-    @IBOutlet weak var mainContainerView: UIView!
-    
     @IBOutlet weak var searchButton: UIButton!
+    
     @IBOutlet weak var messageListButton: UIButton!
     @IBOutlet weak var moonChangeButton: UIButton!
     @IBOutlet weak var currentPageButton: UIButton!
@@ -28,7 +27,7 @@ class MainViewController: UIViewController {
     @IBOutlet weak var buttonDateLabel: UILabel!
     @IBOutlet weak var buttonWeekLabel: UILabel!
     
-    var viewModel: CurrentViewModel? {
+    var viewModel: MainViewModel = MainViewModelFromCurrentTime(withCurrentTime: CurrentTimeModel()) {
         didSet {
             fillCurrenPageButton()
         }
@@ -51,7 +50,7 @@ class MainViewController: UIViewController {
     
     // 오늘 날짜에 맞는 달력으로 이동하는 버튼
     @IBAction func currentPageButton(_ sender: Any) {
-        
+        viewModel.getCurrentDate()
     }
     
     override func viewDidLoad() {
@@ -62,6 +61,7 @@ class MainViewController: UIViewController {
         styleUI()
         
         fillCurrenPageButton()
+        
     }
     
     fileprivate func startLunchAnimation() {
@@ -92,10 +92,6 @@ class MainViewController: UIViewController {
             return
         }
         
-        guard let viewModel = viewModel else {
-            return
-        }
-        
         viewModel.currentMonth.bindAndFire { (data) in
             self.buttonMonthLabel.text = String(data)
         }
@@ -104,7 +100,7 @@ class MainViewController: UIViewController {
             self.buttonDateLabel.text = String(data)
         }
         
-        viewModel.currentDay.bindAndFire { (data) in
+        viewModel.currentDayToString.bindAndFire { (data) in
             self.buttonWeekLabel.text = String(data)
         }
     }
