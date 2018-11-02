@@ -27,6 +27,8 @@ class MainViewController: UIViewController {
     @IBOutlet weak var buttonDateLabel: UILabel!
     @IBOutlet weak var buttonWeekLabel: UILabel!
     
+//    var mainCollectionView: MainCollectionViewController?
+    
     var viewModel: MainViewModel = MainViewModelFromCurrentTime(withCurrentTime: CurrentTimeModel()) {
         didSet {
             fillCurrenPageButton()
@@ -64,6 +66,28 @@ class MainViewController: UIViewController {
         
     }
     
+    // 컨테이너 세그 관리
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        
+        
+//        if (segue.identifier == "yearSegue") {
+//            yearCollectionView = segue.destination as? YearCollectionViewController
+//            yearCollectionView.delegate = self
+//        }
+        
+//        if (segue.identifier == "monthSegue") {
+//            monthCollectionView = segue.destination as? MonthCollectionViewController
+//            monthCollectionView.delegate = self
+//        }
+
+//        if (segue.identifier == "MainSegue") {
+//            mainCollectionView = segue.destination as? MainCollectionViewController
+//        }
+    }
+    
+    
+    
     fileprivate func startLunchAnimation() {
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "pattern")!)
         let visualEffectView = VisualEffectView(frame: CGRect(x: 0, y: 0, width: 600, height: 1200))
@@ -88,6 +112,7 @@ class MainViewController: UIViewController {
     }
     
     fileprivate func fillCurrenPageButton() {
+        
         if !isViewLoaded {
             return
         }
@@ -104,6 +129,7 @@ class MainViewController: UIViewController {
             self.buttonWeekLabel.text = String(data)
         }
     }
+    
 }
 
 // snapshot 관련 함수

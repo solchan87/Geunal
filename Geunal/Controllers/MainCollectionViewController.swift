@@ -11,12 +11,9 @@ import UIKit
 /// MainViewController 내의 CollectionView 관리 클래스
 class MainCollectionViewController: UICollectionViewController {
     
-    var calendarYearLimit: [Int] = []
-    
-    var viewModel: MainCollectionViewModel = MainCollectionViewModelFromCurrentTime(withCurrentTime: CurrentTimeModel()){
+    var viewModel: MainCollectionViewModel = MainCollectionViewModelFrom(currentTimeModel: CurrentTimeModel()) {
         didSet {
-            self.calendarYearLimit = viewModel.calendarYearLimit
-            self.collectionViewLayout.collectionView!.reloadData()
+            moveCalendarPage()
         }
     }
     
@@ -24,21 +21,33 @@ class MainCollectionViewController: UICollectionViewController {
         super.viewDidLoad()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        moveCalendarPage()
+    }
+    
+    fileprivate func moveCalendarPage(){
+        if !isViewLoaded {
+            return
+        }
+        
+        self.collectionViewLayout.collectionView!.scrollToItem(at: viewModel.getIndexPath(), at: .centeredHorizontally, animated: false)
+    }
+    
     
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return calendarYearLimit.count
+        return viewModel.calendarYearRange.count ?? 0
     }
     
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // 각 해에 해당하는 월 수 : 12
-        return 12
+        return viewModel.calendarMonthRange.count ?? 0
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let calendarCell = collectionView.dequeueReusableCell(withReuseIdentifier: "MainCollectionViewCell", for: indexPath) as! MainCollectionViewCell
-        
+        calendarCell.yearTitleLabel.text = String(viewModel.calendarMonthRange[indexPath.row])
         return calendarCell
     }
     

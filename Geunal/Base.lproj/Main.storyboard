@@ -30,7 +30,7 @@
                                 <rect key="frame" x="0.0" y="93" width="375" height="467"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
-                                    <segue destination="2Ew-YL-Xhy" kind="embed" id="9js-aJ-500"/>
+                                    <segue destination="2Ew-YL-Xhy" kind="embed" identifier="MainSegue" id="9js-aJ-500"/>
                                 </connections>
                             </containerView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bxm-46-ddY">
@@ -295,7 +295,6 @@
                         <outlet property="launchImage" destination="1Ag-e9-x5X" id="Os8-6j-LPv"/>
                         <outlet property="launchView" destination="I2v-eB-xwH" id="hDi-82-TPo"/>
                         <outlet property="listView" destination="2mC-VH-2kV" id="9hA-ac-KVx"/>
-                        <outlet property="mainContainerView" destination="FnR-g0-cqG" id="BBm-dO-Ism"/>
                         <outlet property="messageListButton" destination="piV-zw-ZHr" id="Yck-aU-RHx"/>
                         <outlet property="moonChangeButton" destination="IHV-Yd-go4" id="Z3x-7N-sGT"/>
                         <outlet property="searchButton" destination="6j3-Xr-vPr" id="CuN-F6-cYE"/>
@@ -806,6 +805,9 @@
                                     <constraint firstItem="sOM-Ht-EWP" firstAttribute="centerY" secondItem="tEJ-Js-1Wc" secondAttribute="centerY" id="O3T-Qm-ph2"/>
                                     <constraint firstItem="sOM-Ht-EWP" firstAttribute="centerX" secondItem="tEJ-Js-1Wc" secondAttribute="centerX" id="oKJ-yR-5Rc"/>
                                 </constraints>
+                                <connections>
+                                    <outlet property="yearLabel" destination="sOM-Ht-EWP" id="Pgb-sR-3Tn"/>
+                                </connections>
                             </collectionViewCell>
                         </cells>
                         <connections>

@@ -9,5 +9,5 @@
 import UIKit
 
 class YearCollectionViewCell: UICollectionViewCell {
-    
+    @IBOutlet weak var yearLabel: UILabel!
 }

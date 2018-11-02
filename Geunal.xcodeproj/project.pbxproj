@@ -25,6 +25,7 @@
 		299A9A932173CEB900390C82 /* YearFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299A9A922173CEB900390C82 /* YearFlowLayout.swift */; };
 		299A9A952173D1EF00390C82 /* MonthFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299A9A942173D1EF00390C82 /* MonthFlowLayout.swift */; };
 		29B2BAC2218A418100BA5497 /* MainCollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B2BAC1218A418100BA5497 /* MainCollectionViewModel.swift */; };
+		29B2BAC4218B8E2100BA5497 /* YearCollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B2BAC3218B8E2100BA5497 /* YearCollectionViewModel.swift */; };
 		29B87FE62170CDD7003F96C3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B87FE52170CDD7003F96C3 /* AppDelegate.swift */; };
 		29B87FE82170CDD7003F96C3 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B87FE72170CDD7003F96C3 /* MainViewController.swift */; };
 		29B87FEB2170CDD7003F96C3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 29B87FE92170CDD7003F96C3 /* Main.storyboard */; };
@@ -59,6 +60,7 @@
 		299A9A922173CEB900390C82 /* YearFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YearFlowLayout.swift; sourceTree = "<group>"; };
 		299A9A942173D1EF00390C82 /* MonthFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthFlowLayout.swift; sourceTree = "<group>"; };
 		29B2BAC1218A418100BA5497 /* MainCollectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCollectionViewModel.swift; sourceTree = "<group>"; };
+		29B2BAC3218B8E2100BA5497 /* YearCollectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YearCollectionViewModel.swift; sourceTree = "<group>"; };
 		29B87FE22170CDD7003F96C3 /* Geunal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Geunal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		29B87FE52170CDD7003F96C3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		29B87FE72170CDD7003F96C3 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -134,9 +136,10 @@
 		2957C528218641F700AA7B7F /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				2957C5292186426800AA7B7F /* MainViewModel.swift */,
 				2957C52B218642C900AA7B7F /* Dynamic.swift */,
+				2957C5292186426800AA7B7F /* MainViewModel.swift */,
 				29B2BAC1218A418100BA5497 /* MainCollectionViewModel.swift */,
+				29B2BAC3218B8E2100BA5497 /* YearCollectionViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -362,6 +365,7 @@
 				299A9A7C217323B900390C82 /* YearCollectionViewController.swift in Sources */,
 				29B87FE82170CDD7003F96C3 /* MainViewController.swift in Sources */,
 				2957C5232185FF4600AA7B7F /* MonthModel.swift in Sources */,
+				29B2BAC4218B8E2100BA5497 /* YearCollectionViewModel.swift in Sources */,
 				299A9A932173CEB900390C82 /* YearFlowLayout.swift in Sources */,
 				29FE7CC2217F50A200137ECE /* ListViewController.swift in Sources */,
 				2957C52C218642C900AA7B7F /* Dynamic.swift in Sources */,

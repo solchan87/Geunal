@@ -17,18 +17,31 @@ class YearCollectionViewController: UICollectionViewController {
         static let height: CGFloat = 25
     }
     
-    private var indexOfCellBeforeDragging = 0
+    var viewModel: YearCollectionViewModel = YearCollectionViewModelFrom(currentTimeModel: CurrentTimeModel()) {
+        didSet {
+            moveCalendarPage()
+        }
+    }
     
-    var year: [Int] = Array(CalendarYear.min...CalendarYear.max)
+    private var indexOfCellBeforeDragging = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        configureCollectionViewLayoutItemSize()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(false)
-        
+        configureCollectionViewLayoutItemSize()
+        moveCalendarPage()
+    }
+    
+    fileprivate func moveCalendarPage(){
+        if !isViewLoaded {
+            return
+        }
+        print(viewModel.getIndexPath())
+        self.collectionViewLayout.collectionView!.scrollToItem(at: viewModel.getIndexPath(), at: .centeredVertically, animated: false)
     }
     
     // 위 아래 여백 계산 함수
@@ -56,11 +69,13 @@ class YearCollectionViewController: UICollectionViewController {
     
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return year.count
+        return viewModel.calendarYearRange.count ?? 0
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "YearCollectionViewCell", for: indexPath) as! YearCollectionViewCell
+        
+        cell.yearLabel.text = String(viewModel.calendarYearRange[indexPath.row])
         
         return cell
     }

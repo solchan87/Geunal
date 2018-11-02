@@ -20,12 +20,10 @@ enum MonthNotifications {
 class MonthModel: NSObject {
     let year: Int
     let month: Int
-    let date: [DateModel]
     
     init(year: Int, month: Int) {
         self.year = year
         self.month = month
-        self.date = []
     }
     
     // MARK: private
