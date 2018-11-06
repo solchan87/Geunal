@@ -19,7 +19,7 @@ class MonthCollectionViewController: UICollectionViewController {
     
     private var indexOfCellBeforeDragging = 0
     
-    let cellCount = 1000000
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()

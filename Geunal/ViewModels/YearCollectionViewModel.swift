@@ -13,7 +13,7 @@ protocol YearCollectionViewModel {
     
     var year: Dynamic<Int> { get }
     
-    func getIndexPath() -> IndexPath
+    func getCurrentIndexPath() -> IndexPath
 }
 
 class YearCollectionViewModelFrom: NSObject, YearCollectionViewModel {
@@ -34,7 +34,7 @@ class YearCollectionViewModelFrom: NSObject, YearCollectionViewModel {
     }
     
     
-    func getIndexPath() -> IndexPath {
+    func getCurrentIndexPath() -> IndexPath {
         let section = 0
         let row = self.year.value - CalendarYear.min
         let indexPath = IndexPath(row: row, section: section)

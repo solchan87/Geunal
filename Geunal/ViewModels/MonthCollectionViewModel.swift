@@ -12,7 +12,9 @@ protocol MonthCollectionViewModel {
     
     var month: Dynamic<Int> { get }
     
-    func getIndexPath() -> IndexPath
+    var cellCount: Int { get }
+    
+    func getCurrentIndexPath() -> IndexPath
 }
 
 class MonthCollectionViewModelFrom: NSObject, MonthCollectionViewModel {
@@ -20,6 +22,8 @@ class MonthCollectionViewModelFrom: NSObject, MonthCollectionViewModel {
     let currentTimeModel: CurrentTimeModel
     
     var month: Dynamic<Int>
+    
+    let cellCount = 1000000
     
     init(currentTimeModel: CurrentTimeModel) {
         
@@ -29,7 +33,7 @@ class MonthCollectionViewModelFrom: NSObject, MonthCollectionViewModel {
     }
     
     
-    func getIndexPath() -> IndexPath {
+    func getCurrentIndexPath() -> IndexPath {
         let section = 0
         let row = self.month.value - CalendarYear.min
         let indexPath = IndexPath(row: row, section: section)

@@ -40,8 +40,8 @@ class YearCollectionViewController: UICollectionViewController {
         if !isViewLoaded {
             return
         }
-        print(viewModel.getIndexPath())
-        self.collectionViewLayout.collectionView!.scrollToItem(at: viewModel.getIndexPath(), at: .centeredVertically, animated: false)
+        
+        self.collectionViewLayout.collectionView!.scrollToItem(at: viewModel.getCurrentIndexPath(), at: .centeredVertically, animated: false)
     }
     
     // 위 아래 여백 계산 함수
