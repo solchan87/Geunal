@@ -1,26 +1,39 @@
 PODS:
-  - Realm (3.11.1):
-    - Realm/Headers (= 3.11.1)
-  - Realm/Headers (3.11.1)
-  - RealmSwift (3.11.1):
-    - Realm (= 3.11.1)
+  - Realm (3.13.1):
+    - Realm/Headers (= 3.13.1)
+  - Realm/Headers (3.13.1)
+  - RealmSwift (3.13.1):
+    - Realm (= 3.13.1)
+  - RxAtomic (4.4.0)
+  - RxCocoa (4.4.0):
+    - RxSwift (~> 4.0)
+  - RxSwift (4.4.0):
+    - RxAtomic (~> 4.4)
   - VisualEffectView (3.1.0)
 
 DEPENDENCIES:
   - RealmSwift
+  - RxCocoa
+  - RxSwift
   - VisualEffectView
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Realm
     - RealmSwift
+    - RxAtomic
+    - RxCocoa
+    - RxSwift
     - VisualEffectView
 
 SPEC CHECKSUMS:
-  Realm: 037c5919b9ceb59d6beed5d3b031096856b119b3
-  RealmSwift: c9580133e73ef40ed340401af2dbc9a5790dfea7
+  Realm: 50071da38fe079e0735e47c9f2eae738c68c5996
+  RealmSwift: 8a1e6a02b7a08cd17a31e3115143fb69fe5f3fb9
+  RxAtomic: eacf60db868c96bfd63320e28619fe29c179656f
+  RxCocoa: df63ebf7b9a70d6b4eeea407ed5dd4efc8979749
+  RxSwift: 5976ecd04fc2fefd648827c23de5e11157faa973
   VisualEffectView: 922eedf8d7d7e776a367ac11e0a4d4a0b2ba3545
 
-PODFILE CHECKSUM: 0202257d337a6dc8276250c429e447450e4b6ce7
+PODFILE CHECKSUM: 1ab7f3d1e63d1b4988857e40a3db92ff0e8abc06
 
 COCOAPODS: 1.5.3

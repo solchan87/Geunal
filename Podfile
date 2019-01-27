@@ -8,5 +8,7 @@ target 'Geunal' do
   # Pods for Geunal
   pod 'VisualEffectView'
   pod 'RealmSwift'
+  pod 'RxSwift'
+  pod 'RxCocoa' 
 
 end
