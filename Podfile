@@ -10,5 +10,5 @@ target 'Geunal' do
   pod 'RealmSwift'
   pod 'RxSwift'
   pod 'RxCocoa' 
-
+  pod 'ReactorKit'
 end
