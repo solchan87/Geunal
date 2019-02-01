@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import VisualEffectView
 
 class ListTableViewCell: UITableViewCell {
 

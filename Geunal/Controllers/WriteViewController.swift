@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import VisualEffectView
 import RealmSwift
 
 protocol WriteViewControllerDelegate {

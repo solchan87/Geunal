@@ -1,44 +1,57 @@
 PODS:
+  - Differentiator (3.1.0)
   - ReactorKit (1.2.1):
     - RxSwift (>= 4.0.0)
-  - Realm (3.13.1):
-    - Realm/Headers (= 3.13.1)
-  - Realm/Headers (3.13.1)
-  - RealmSwift (3.13.1):
-    - Realm (= 3.13.1)
+  - Realm (3.12.0):
+    - Realm/Headers (= 3.12.0)
+  - Realm/Headers (3.12.0)
+  - RealmSwift (3.12.0):
+    - Realm (= 3.12.0)
   - RxAtomic (4.4.0)
   - RxCocoa (4.4.0):
     - RxSwift (~> 4.0)
+  - RxDataSources (3.1.0):
+    - Differentiator (~> 3.0)
+    - RxCocoa (~> 4.0)
+    - RxSwift (~> 4.0)
+  - RxKeyboard (0.9.0):
+    - RxCocoa (>= 4.3.1)
+    - RxSwift (>= 4.3.1)
   - RxSwift (4.4.0):
     - RxAtomic (~> 4.4)
-  - VisualEffectView (3.1.0)
 
 DEPENDENCIES:
-  - ReactorKit
-  - RealmSwift
-  - RxCocoa
-  - RxSwift
-  - VisualEffectView
+  - ReactorKit (~> 1.2.1)
+  - Realm (~> 3.12.0)
+  - RealmSwift (~> 3.12.0)
+  - RxCocoa (~> 4.4.0)
+  - RxDataSources (~> 3.0)
+  - RxKeyboard (~> 0.9.0)
+  - RxSwift (~> 4.4.0)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - Differentiator
     - ReactorKit
     - Realm
     - RealmSwift
     - RxAtomic
     - RxCocoa
+    - RxDataSources
+    - RxKeyboard
     - RxSwift
-    - VisualEffectView
 
 SPEC CHECKSUMS:
+  Differentiator: be49ca3408f0ecfc761e4c7763d20c62be01b9ad
   ReactorKit: 8be57f0527ad1ac2963cd5c338274a46a01e57a3
-  Realm: 50071da38fe079e0735e47c9f2eae738c68c5996
-  RealmSwift: 8a1e6a02b7a08cd17a31e3115143fb69fe5f3fb9
+  Realm: cdaef23c4ddb36ab1ddffed23f5a7f3332fc5585
+  RealmSwift: 5576324033f0aa5ef1e0a839a3da2281dff47a7f
   RxAtomic: eacf60db868c96bfd63320e28619fe29c179656f
   RxCocoa: df63ebf7b9a70d6b4eeea407ed5dd4efc8979749
+  RxDataSources: a843bad90c29817f5923ec8163f4af2de084ceb3
+  RxKeyboard: 4f782303f499f41577b41c96c6a9a5d7acd51a47
   RxSwift: 5976ecd04fc2fefd648827c23de5e11157faa973
-  VisualEffectView: 922eedf8d7d7e776a367ac11e0a4d4a0b2ba3545
 
-PODFILE CHECKSUM: 869ce1b9f9a740bc42dca9db1ace5b7f5c3e5b72
+PODFILE CHECKSUM: 3dbd91b2fbb428a57ff0919d72565f9ccebacec6
 
 COCOAPODS: 1.5.3

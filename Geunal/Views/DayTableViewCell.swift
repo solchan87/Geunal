@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import VisualEffectView
 
 protocol DayTableViewCellDelegate {
     func pushUpdateButton(message: Message)
