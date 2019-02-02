@@ -129,12 +129,7 @@ class MainViewController: UIViewController {
         
         // 런치 스크린 애니메이션 연장
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "pattern")!)
-        let visualEffectView = VisualEffectView(frame: CGRect(x: 0, y: 0, width: 600, height: 1200))
-        visualEffectView.scale = 1
-        visualEffectView.blurRadius = 10
-        launchImage.addSubview(visualEffectView)
         UIView.animate(withDuration: 1.0, animations: {
-            visualEffectView.blurRadius = 0
             self.launchImage.alpha = 1.0
         }) { (finished) in
             delay(1.0, closure: {

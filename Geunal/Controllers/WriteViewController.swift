@@ -36,8 +36,6 @@ class WriteViewController: UIViewController {
     var editFlag: Bool = false
     let placeholderText = "기억을 여기에 남기다."
     
-    private var visualEffectView: VisualEffectView!
-    
     var delegate: WriteViewControllerDelegate?
     
     // flag상태에 따라 기억, 수정 구분
@@ -100,18 +98,9 @@ class WriteViewController: UIViewController {
         setPlaceholderText()
         self.hideKeyboardOnTap(#selector(self.dismissKeyboard))
         
-        visualEffectView = VisualEffectView(frame: self.view.bounds)
-        
-        visualEffectView.colorTint = .darkGray
-        visualEffectView.colorTintAlpha = 0.6
-        visualEffectView.blurRadius = 0
-        visualEffectView.scale = 1
-        
-        backgroundView.addSubview(visualEffectView)
         
         inputBackView.layer.cornerRadius = 10
         inputBackView.alpha = 0.0
-        visualEffectView.alpha = 0.0
     }
     
     @objc private func dismissKeyboard() {
@@ -158,14 +147,6 @@ class WriteViewController: UIViewController {
     }
     
     func showWriteView(){
-        UIView.animate(withDuration: 0.4, delay: 0.0, options: .curveEaseOut, animations: {
-            self.visualEffectView.blurRadius = 4
-            self.visualEffectView.alpha = 1.0
-        }) { (finished) in
-            UIView.animate(withDuration: 0.2, animations: {
-                self.inputBackView.alpha = 1.0
-            })
-        }
     }
     
     func subDateToInt(dateData: DateData) -> Int{
@@ -225,8 +206,6 @@ class WriteViewController: UIViewController {
             self.inputBackView.alpha = 0.0
         }) { (finished) in
             UIView.animate(withDuration: 0.3, delay: 0.0, options: .curveEaseOut, animations: {
-                self.visualEffectView.blurRadius = 0
-                self.visualEffectView.alpha = 0.0
             }, completion: { (finished) in
                 completion()
                 self.setPlaceholderText()

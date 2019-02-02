@@ -12,33 +12,26 @@ class ListTableViewCell: UITableViewCell {
 
     @IBOutlet weak var messageLabel: UILabel!
     
-    var visualEffectView: VisualEffectView!
     
     var message: Message! {
         didSet{
             self.messageLabel.text = message.text
-            visualEffectView.blurRadius = 6
         }
     }
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        visualEffectView = VisualEffectView(frame: self.bounds)
-        visualEffectView.scale = 1
-        self.addSubview(visualEffectView)
     }
     
     func showMessageLabel(point: CGFloat) {
         let maxSize = self.frame.width * 0.65
         if point <= maxSize {
             let value = 6 * (point / maxSize)
-            visualEffectView.blurRadius = 6 - value
         }
     }
     
     func hideMessageLabel() {
         UIView.animate(withDuration: 0.5) {
-            self.visualEffectView.blurRadius = 6
         }
     }
 
