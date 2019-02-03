@@ -36,6 +36,15 @@ class CalendarViewController: UIViewController, View {
     // MARK: Rx
     var disposeBag = DisposeBag()
     
+    lazy var dataSource = RxCollectionViewSectionedReloadDataSource<CalendarSection>(
+        configureCell: { [weak self] dataSource, collectionView, indexPath, sectionItem in
+            guard let self = self else { return UICollectionViewCell() }
+            
+            let cell = CalendarCCell()
+            
+            return cell
+    })
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
