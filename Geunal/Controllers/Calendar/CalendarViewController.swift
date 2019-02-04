@@ -24,14 +24,6 @@ class CalendarViewController: UIViewController, View {
     @IBOutlet weak var calendarCollectionView: UICollectionView!
     
     // MARK: Initializing
-    init(reactor: CalendarReactor) {
-        defer { self.reactor = reactor }
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required convenience init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
     
     // MARK: Rx
     var disposeBag = DisposeBag()
@@ -40,9 +32,11 @@ class CalendarViewController: UIViewController, View {
         configureCell: { [weak self] dataSource, collectionView, indexPath, sectionItem in
             guard let self = self else { return UICollectionViewCell() }
             
-            let cell = CalendarCCell()
+            let calendarCCell = self.calendarCollectionView.dequeueReusableCell(withReuseIdentifier: "CalendarCCell", for: indexPath) as! CalendarCCell
             
-            return cell
+            calendarCCell.reactor = sectionItem
+            
+            return calendarCCell
     })
     
     override func viewDidLoad() {
@@ -51,9 +45,19 @@ class CalendarViewController: UIViewController, View {
     
     func bind(reactor: CalendarReactor) {
         self.calendarCollectionView.rx.setDelegate(self).disposed(by: self.disposeBag)
+        
+        reactor.state.map { $0.calendarSection }
+            .bind(to: self.calendarCollectionView.rx.items(dataSource: dataSource))
+            .disposed(by: self.disposeBag)
     }
 }
 
 extension CalendarViewController: UICollectionViewDelegateFlowLayout {
-    
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        return CGSize(width: self.calendarCollectionView.frame.width,
+                      height: self.calendarCollectionView.frame.height)
+    }
 }

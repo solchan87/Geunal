@@ -34,7 +34,7 @@ class CalendarReactor: Reactor {
             calendarSection.append(CalendarSection(year: year, items: items))
         }
         
-        self.initialState = State()
+        self.initialState = State(calendarSection: calendarSection)
         _ = self.state
     }
 }
