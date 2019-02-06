@@ -13,7 +13,7 @@ import RxCocoa
 import RxDataSources
 import RxSwift
 
-class CalendarViewController: UIViewController, View {
+class CalendarViewController: UIViewController, StoryboardView {
     
     // MARK: Properties
     fileprivate struct Metric {
@@ -41,10 +41,11 @@ class CalendarViewController: UIViewController, View {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "pattern")!)
     }
     
     func bind(reactor: CalendarReactor) {
-        self.calendarCollectionView.rx.setDelegate(self).disposed(by: self.disposeBag)
         
         reactor.state.map { $0.calendarSection }
             .bind(to: self.calendarCollectionView.rx.items(dataSource: dataSource))

@@ -12,13 +12,13 @@ import ReactorKit
 import RxCocoa
 import RxDataSources
 import RxSwift
-
+    
 class CalendarReactor: Reactor {
     
     typealias Action = NoAction
     
     struct State {
-        var calendarSection: [CalendarSection] = []
+        var calendarSection: [CalendarSection]
     }
     
     let initialState : State
@@ -29,7 +29,7 @@ class CalendarReactor: Reactor {
         for year in 1970...2050 {
             var items: [CalendarCCellReactor] = []
             for month in 1...12 {
-                items.append(CalendarCCellReactor(month: month))
+                items.append(CalendarCCellReactor(year: year, month: month))
             }
             calendarSection.append(CalendarSection(year: year, items: items))
         }

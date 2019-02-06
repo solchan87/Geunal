@@ -20,3 +20,15 @@ extension CalendarSection: SectionModelType {
         self.items = items
     }
 }
+
+struct DatesSection {
+    var items: [Item]
+}
+extension DatesSection: SectionModelType {
+    typealias Item = CalendarCCellReactor
+    
+    init(original: DatesSection, items: [Item]) {
+        self = original
+        self.items = items
+    }
+}

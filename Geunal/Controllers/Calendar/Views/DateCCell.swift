@@ -1,8 +1,8 @@
 //
-//  CalendarCCell.swift
+//  DateCCell.swift
 //  Geunal
 //
-//  Created by SolChan Ahn on 01/02/2019.
+//  Created by SolChan Ahn on 06/02/2019.
 //  Copyright © 2019 SolChan Ahn. All rights reserved.
 //
 
@@ -12,10 +12,14 @@ import ReactorKit
 import RxCocoa
 import RxSwift
 
-class CalendarCCell: UICollectionViewCell, StoryboardView {
+
+class DateCCell: UICollectionViewCell, StoryboardView {
     
-    @IBOutlet weak var yearLabel: UILabel!
-    @IBOutlet weak var daysCollectionView: UICollectionView!
+    @IBOutlet weak var dateLabel: UILabel!
+    
+    @IBOutlet weak var firstIssue: UIView!
+    @IBOutlet weak var secondIssue: UIView!
+    @IBOutlet weak var thirdIssue: UIView!
     
     var disposeBag = DisposeBag()
     
@@ -29,7 +33,8 @@ class CalendarCCell: UICollectionViewCell, StoryboardView {
         self.disposeBag = DisposeBag()
     }
     
-    func bind(reactor: CalendarCCellReactor) {
+    func bind(reactor: DateCCellReactor) {
         
     }
+    
 }

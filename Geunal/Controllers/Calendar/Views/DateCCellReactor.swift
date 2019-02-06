@@ -1,8 +1,8 @@
 //
-//  CalendarCCellReactor.swift
+//  DateCCellReactor.swift
 //  Geunal
 //
-//  Created by SolChan Ahn on 01/02/2019.
+//  Created by SolChan Ahn on 06/02/2019.
 //  Copyright © 2019 SolChan Ahn. All rights reserved.
 //
 
@@ -10,7 +10,7 @@ import Foundation
 
 import ReactorKit
 
-class CalendarCCellReactor: Reactor {
+class DateCCellReactor: Reactor {
     
     typealias Action = NoAction
     
