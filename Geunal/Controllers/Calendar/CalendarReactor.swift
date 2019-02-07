@@ -26,7 +26,7 @@ class CalendarReactor: Reactor {
     init() {
         var calendarSection: [CalendarSection] = []
         
-        for year in 1970...2050 {
+        for year in CalendarService.startYear...CalendarService.endYear {
             var items: [CalendarCCellReactor] = []
             for month in 1...12 {
                 items.append(CalendarCCellReactor(year: year, month: month))

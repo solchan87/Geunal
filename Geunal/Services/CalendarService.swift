@@ -33,14 +33,14 @@ struct CurrentTime {
 }
 
 // 달력에 대한 정보를 반환하는 클래스
-class CalendarService {
+final class CalendarService {
     
     // 음력은 알고리즘으로 짤 수 없기 때문에,
     // 향후 업데이트 될 음력 전환 기능은, 공공api를 Json으로 크롤링 와서 관리 할 예정이다.
     // 시작 년도
-    let startYear: Int = 1930
+    static let startYear: Int = 1930
     // 마지막 년도
-    let endYear: Int = 2050
+    static let endYear: Int = 2050
     
     func getMonthData(year: Int, month: Int) -> MonthData{
         

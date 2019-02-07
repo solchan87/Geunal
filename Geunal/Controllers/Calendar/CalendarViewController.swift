@@ -32,7 +32,10 @@ class CalendarViewController: UIViewController, StoryboardView {
         configureCell: { [weak self] dataSource, collectionView, indexPath, sectionItem in
             guard let self = self else { return UICollectionViewCell() }
             
-            let calendarCCell = self.calendarCollectionView.dequeueReusableCell(withReuseIdentifier: "CalendarCCell", for: indexPath) as! CalendarCCell
+            guard let calendarCCell =
+                self.calendarCollectionView.dequeueReusableCell(withReuseIdentifier: "CalendarCCell",
+                                                                for: indexPath)
+                    as? CalendarCCell else { return UICollectionViewCell() }
             
             calendarCCell.reactor = sectionItem
             
