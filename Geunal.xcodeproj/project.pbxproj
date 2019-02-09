@@ -37,6 +37,7 @@
 		29B87FFE2170DA9A003F96C3 /* CalendarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B87FFD2170DA9A003F96C3 /* CalendarCollectionViewCell.swift */; };
 		29C37EFE220B194E000916A1 /* DateCCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C37EFD220B194E000916A1 /* DateCCell.swift */; };
 		29C37F00220B195D000916A1 /* DateCCellReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C37EFF220B195D000916A1 /* DateCCellReactor.swift */; };
+		29D66253220E810A00C411A0 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29D66252220E810A00C411A0 /* Date.swift */; };
 		29F7382A217D124100D7728A /* RealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F73829217D124100D7728A /* RealmModel.swift */; };
 		29FE7CC2217F50A200137ECE /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FE7CC1217F50A200137ECE /* ListViewController.swift */; };
 		29FE7CC4217F6DEB00137ECE /* ListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FE7CC3217F6DEB00137ECE /* ListTableViewCell.swift */; };
@@ -76,6 +77,7 @@
 		29B87FFD2170DA9A003F96C3 /* CalendarCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCollectionViewCell.swift; sourceTree = "<group>"; };
 		29C37EFD220B194E000916A1 /* DateCCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateCCell.swift; sourceTree = "<group>"; };
 		29C37EFF220B195D000916A1 /* DateCCellReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateCCellReactor.swift; sourceTree = "<group>"; };
+		29D66252220E810A00C411A0 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		29F73829217D124100D7728A /* RealmModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmModel.swift; sourceTree = "<group>"; };
 		29FE7CC1217F50A200137ECE /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		29FE7CC3217F6DEB00137ECE /* ListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableViewCell.swift; sourceTree = "<group>"; };
@@ -202,6 +204,7 @@
 		29B87FE42170CDD7003F96C3 /* Geunal */ = {
 			isa = PBXGroup;
 			children = (
+				29D66251220E80FA00C411A0 /* Extensions */,
 				299158FA2205CE69006D3E94 /* Sections */,
 				291E2755217849E600A196E4 /* Controllers */,
 				299A9A8C21739C9300390C82 /* Views */,
@@ -216,6 +219,14 @@
 				29B87FF12170CDDB003F96C3 /* Info.plist */,
 			);
 			path = Geunal;
+			sourceTree = "<group>";
+		};
+		29D66251220E80FA00C411A0 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				29D66252220E810A00C411A0 /* Date.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		29F7382B217D125500D7728A /* Fonts */ = {
@@ -387,6 +398,7 @@
 				29C37EFE220B194E000916A1 /* DateCCell.swift in Sources */,
 				2957C5A62179CB970072EB96 /* DayTableViewCell.swift in Sources */,
 				29B87FFA2170D8B4003F96C3 /* MainCollectionViewCell.swift in Sources */,
+				29D66253220E810A00C411A0 /* Date.swift in Sources */,
 				29194CF4217C6BD200F5E3A3 /* WriteViewController.swift in Sources */,
 				299A9A7C217323B900390C82 /* YearCollectionViewController.swift in Sources */,
 				29B87FE82170CDD7003F96C3 /* MainViewController.swift in Sources */,

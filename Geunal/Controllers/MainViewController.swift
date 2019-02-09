@@ -127,15 +127,6 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // 런치 스크린 애니메이션 연장
-        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "pattern")!)
-        UIView.animate(withDuration: 1.0, animations: {
-            self.launchImage.alpha = 1.0
-        }) { (finished) in
-            delay(1.0, closure: {
-                self.launchView.removeFromSuperview()
-            })
-        }
     }
     
     // 검색 버튼 상태 변경 함수
@@ -251,7 +242,7 @@ extension MainViewController: MonthCollectionViewDelegate {
 extension MainViewController: MainCollectionViewDelegate {
     
     // 메인 컨트롤러와 센 사이의 델리게이션 방식 으로 데이터 전송
-    func getPresentData(dateData: DateData, calendarCellIndexPath: IndexPath, mainCellIndexPath: IndexPath) {
+    func getPresentData(dateData: DateModel, calendarCellIndexPath: IndexPath, mainCellIndexPath: IndexPath) {
         self.mainCellIndexPath = mainCellIndexPath
         self.calendarCellIndexPath = calendarCellIndexPath
         

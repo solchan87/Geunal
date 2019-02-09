@@ -16,7 +16,7 @@ class CalendarCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var secondDot: UIImageView!
     @IBOutlet weak var thirdDot: UIImageView!
     
-    var dateData: DateData? {
+    var dateData: DateModel? {
         didSet{
             configureDate()
         }

@@ -53,7 +53,7 @@ class WriteViewController: UIViewController {
         }
     }
     
-    var dateData: DateData!{
+    var dateData: DateModel!{
         didSet {
             timeTextLabel.text = dateToString(dateData: dateData)
         }
@@ -149,7 +149,7 @@ class WriteViewController: UIViewController {
     func showWriteView(){
     }
     
-    func subDateToInt(dateData: DateData) -> Int{
+    func subDateToInt(dateData: DateModel) -> Int{
         let year = dateData.year * 10000
         let month = dateData.month * 100
         let date = dateData.date
@@ -215,7 +215,7 @@ class WriteViewController: UIViewController {
     
     
     // 숫자를 한글로 변환할 때, 더 좋은 방법이 있는지 생각해보기
-    private func dateToString(dateData: DateData) -> String {
+    private func dateToString(dateData: DateModel) -> String {
         
         var monthText: String = ""
         var dayText: String  = ""

@@ -46,7 +46,7 @@ class DayViewController: UIViewController {
         }
     }
     
-    var dateData: DateData! {
+    var dateData: DateModel! {
         didSet{
             configureDate()
             reloadMessage()

@@ -21,13 +21,13 @@ extension CalendarSection: SectionModelType {
     }
 }
 
-struct DatesSection {
+struct MonthSection {
     var items: [Item]
 }
-extension DatesSection: SectionModelType {
-    typealias Item = CalendarCCellReactor
+extension MonthSection: SectionModelType {
+    typealias Item = DateCCellReactor
     
-    init(original: DatesSection, items: [Item]) {
+    init(original: MonthSection, items: [Item]) {
         self = original
         self.items = items
     }

@@ -16,26 +16,22 @@ import RxSwift
 class CalendarCCell: UICollectionViewCell, StoryboardView {
     
     // MARK: Properties
-    fileprivate struct Metric {
-        static let shotTileSectionInsetLeftRight = 10
-        static let shotTileSectionItemSpacing = 10
-    }
     
     @IBOutlet weak var yearLabel: UILabel!
-    @IBOutlet weak var daysCollectionView: UICollectionView!
+    @IBOutlet weak var monthCollectionView: UICollectionView!
     
     // MARK: Rx
     var disposeBag = DisposeBag()
     
-    lazy var dataSource = RxCollectionViewSectionedReloadDataSource<CalendarSection>(
+    lazy var dataSource = RxCollectionViewSectionedReloadDataSource<MonthSection>(
         configureCell: { [weak self] dataSource, collectionView, indexPath, sectionItem in
             guard let self = self else { return UICollectionViewCell() }
             
-            let calendarCCell = self.daysCollectionView.dequeueReusableCell(withReuseIdentifier: "CalendarCCell", for: indexPath) as! CalendarCCell
+            let dateCCell = self.monthCollectionView.dequeueReusableCell(withReuseIdentifier: "DateCCell", for: indexPath) as! DateCCell
             
-            calendarCCell.reactor = sectionItem
+            dateCCell.reactor = sectionItem
             
-            return calendarCCell
+            return dateCCell
     })
     
     override func layoutSubviews() {
@@ -50,5 +46,25 @@ class CalendarCCell: UICollectionViewCell, StoryboardView {
     
     func bind(reactor: CalendarCCellReactor) {
         
+        self.rx.methodInvoked(#selector(UICollectionViewCell.layoutSubviews)).asObservable()
+            .map {_ in Reactor.Action.getDateList() }
+            .bind(to: reactor.action)
+            .disposed(by: self.disposeBag)
+        
+        reactor.state.map { $0.monthSection }
+            .bind(to: self.monthCollectionView.rx.items(dataSource: dataSource))
+            .disposed(by: self.disposeBag)
+        
+    }
+    
+}
+
+extension CalendarCCell: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        return CGSize(width: (self.monthCollectionView.frame.width - 10) / 7,
+                      height: self.monthCollectionView.frame.height / 6)
     }
 }

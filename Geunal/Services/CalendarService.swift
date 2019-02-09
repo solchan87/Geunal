@@ -8,13 +8,13 @@
 
 import Foundation
 
-struct MonthData {
+struct MonthModel {
     var year: Int
     var month: Int
-    var dateDatas: [DateData]
+    var dateDatas: [Date]
 }
 
-struct DateData {
+struct DateModel {
     var today: Bool
     var year: Int
     var month: Int
@@ -38,48 +38,15 @@ final class CalendarService {
     // 음력은 알고리즘으로 짤 수 없기 때문에,
     // 향후 업데이트 될 음력 전환 기능은, 공공api를 Json으로 크롤링 와서 관리 할 예정이다.
     // 시작 년도
-    static let startYear: Int = 1930
+    let startYear: Int = 1930
     // 마지막 년도
-    static let endYear: Int = 2050
+    let endYear: Int = 2050
     
-    func getMonthData(year: Int, month: Int) -> MonthData{
+    func getMonthData(year: Int, month: Int) -> MonthModel{
         
-        let monthData = MonthData(year: year, month: month, dateDatas: getDateDatas(year: year, month: month))
+        let monthData = MonthModel(year: year, month: month, dateDatas: getDateDatas(year: year, month: month))
         
         return monthData
-    }
-    
-    // 각 월의 마지막 일을 반환
-    private func getLastDate(year: Int, month: Int) -> Int{
-        switch month {
-        case 1, 3, 5, 7, 8, 10, 12:
-            return 31
-        case 4, 6, 9, 11:
-            return 30
-        case 2:
-            return year % 4 == 0 && (year % 100 != 0 || year % 400 == 0) ? 29 : 28
-        default:
-            return 0
-        }
-    }
-    
-    // 해당 월 1일에 대한 요일 반환 함수 일요일: 1, 토요일: 7
-    func getDayOfWeek(year: Int, month: Int) -> Int {
-        var dateToString: String = ""
-        if month < 10 {
-            dateToString = "\(year)0\(month)01"
-        }else {
-            dateToString = "\(year)\(month)01"
-        }
-        
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyyMMdd"
-        
-        let firstDate = formatter.date(from: dateToString)
-        let myCalendar = Calendar(identifier: .gregorian)
-        let weekDay = myCalendar.component(.weekday, from: firstDate!)
-        
-        return weekDay
     }
     
     // 오늘 요일 반환 함수 일요일: 1, 토요일: 7
@@ -119,53 +86,51 @@ final class CalendarService {
     }
     
     // 해당 월에 대한 일, 요일을 리스트로 반환하는 함수
-    func getDateDatas(year: Int, month: Int) -> [DateData] {
-        let cDate = Date()
+    func getDateDatas(year: Int, month: Int) -> [Date] {
         let formatter = DateFormatter()
-        
-        formatter.dateFormat = "yyyy"
-        let currentYear = Int(formatter.string(from: cDate))!
-        formatter.dateFormat = "MM"
-        let currentMonth = Int(formatter.string(from: cDate))!
-        formatter.dateFormat = "dd"
-        let currentDate = Int(formatter.string(from: cDate))!
-        
-        var totalCount = 1
-        var weekCount = 1
-        var dateCount = 0
-        
-        var dateDatas:[DateData] = []
-        
-        let lastDate = getLastDate(year: year, month: month)
-        let dayOfWeek = getDayOfWeek(year: year, month: month)
-        
-        // 해당 월에 오늘이 포함돼 있으면, today를 true로 준다.
-        for _ in 1..<(lastDate + dayOfWeek) {
-            if totalCount < dayOfWeek {
-                let dateData = DateData(today: false, year: year, month: month, date: dateCount, dayOfWeek: weekCount, dateType: false)
-                dateDatas.append(dateData)
-            }else {
-                dateCount += 1
-                var dateData = DateData(today: false, year: year, month: month, date: dateCount, dayOfWeek: weekCount, dateType: true)
-                
-                if currentYear == year && currentMonth == month && currentDate == dateCount {
-                    dateData.today = true
-                }
-                dateDatas.append(dateData)
-            }
-            totalCount += 1
-            if weekCount == 7 {
-                weekCount = 1
-            }else {
-                weekCount += 1
-            }
-            
-        }
-        return dateDatas
-    }
-}
+        formatter.dateFormat = "yyyy-MM-dd"
+        guard let firstDate = formatter.date(from: "\(year)-\(month)-01") else { return [] }
 
-public func delay(_ delay:Double, closure:@escaping ()->()) {
-    DispatchQueue.main.asyncAfter(
-        deadline: DispatchTime.now() + Double(Int64(delay * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC), execute: closure)
+        guard let startDayOfWeek = firstDate.dayNumberOfWeek() else { return [] }
+        guard let endDate = firstDate.endDate() else { return [] }
+        guard let lastEndDate = firstDate.lastEndDate() else { return [] }
+        
+        let restCount = ((startDayOfWeek - 1) + endDate) % 7
+        
+        var nextMonthCount = 0
+        if restCount != 0 {
+            nextMonthCount = 7 - restCount + 1
+        }
+        
+        var dateList: [Date] = []
+        
+        // 이전 월에 해당하는 날짜 리스트 구현
+        if startDayOfWeek > 1 {
+            let prevMonth = month == 1 ? 12 : (month - 1)
+            
+            for count in 1..<startDayOfWeek {
+                let date = lastEndDate - (startDayOfWeek - (count + 1))
+                guard let resultDate = formatter.date(from: "\(year)-\(prevMonth)-\(date)") else { return [] }
+                dateList.append(resultDate)
+            }
+        }
+        
+        // 현재 월에 해당하는 날짜 리스트 구현
+        for date in 1...endDate {
+            guard let resultDate = formatter.date(from: "\(year)-\(month)-\(date)") else { return [] }
+            dateList.append(resultDate)
+        }
+        
+        // 다음 월에 해당하는 날짜 리스트 구현
+        if nextMonthCount > 1 {
+            let nextMonth = month == 12 ? 1 : (month + 1)
+            
+            for date in 1..<nextMonthCount {
+                guard let resultDate = formatter.date(from: "\(year)-\(nextMonth)-\(date)") else { return [] }
+                dateList.append(resultDate)
+            }
+        }
+        
+        return dateList
+    }
 }

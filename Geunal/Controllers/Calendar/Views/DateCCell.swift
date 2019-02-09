@@ -35,6 +35,15 @@ class DateCCell: UICollectionViewCell, StoryboardView {
     
     func bind(reactor: DateCCellReactor) {
         
+        reactor.state.map {$0.date}
+            .map {$0.getDate()}
+            .bind(to: dateLabel.rx.text)
+            .disposed(by: self.disposeBag)
+        
+        reactor.state.map {$0.date}
+            .map {$0.getDate()}
+            .bind(to: dateLabel.rx.text)
+            .disposed(by: self.disposeBag)
     }
     
 }

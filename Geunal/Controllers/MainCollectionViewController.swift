@@ -13,7 +13,7 @@ import UIKit
 protocol MainCollectionViewDelegate {
     func didChangeVisibleYear(year: Int)
     func didChangeVisibleMonth(month: Int)
-    func getPresentData(dateData: DateData, calendarCellIndexPath: IndexPath, mainCellIndexPath: IndexPath)
+    func getPresentData(dateData: DateModel, calendarCellIndexPath: IndexPath, mainCellIndexPath: IndexPath)
 }
 
 /// MainViewController 내의 CollectionView 관리 클래스
@@ -117,7 +117,7 @@ extension MainCollectionViewController: UICollectionViewDelegateFlowLayout {
 }
 
 extension MainCollectionViewController: MainCollectionViewCellDelegate {
-    func presentDayViewData(dateData: DateData, calendarCellIndexPath: IndexPath) {
+    func presentDayViewData(dateData: DateModel, calendarCellIndexPath: IndexPath) {
         self.delegate?.getPresentData(dateData: dateData, calendarCellIndexPath: calendarCellIndexPath, mainCellIndexPath: getVisiblePageIndex()!)
     }
     

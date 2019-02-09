@@ -10,7 +10,7 @@ import UIKit
 import RealmSwift
 
 protocol MainCollectionViewCellDelegate{
-    func presentDayViewData(dateData: DateData, calendarCellIndexPath: IndexPath)
+    func presentDayViewData(dateData: DateModel, calendarCellIndexPath: IndexPath)
 }
 
 class MainCollectionViewCell: UICollectionViewCell {
@@ -24,7 +24,7 @@ class MainCollectionViewCell: UICollectionViewCell {
     
     var delegate: MainCollectionViewCellDelegate?
     
-    var monthData: MonthData! {
+    var monthData: MonthModel! {
         didSet{
             
             self.calendarCollectionView.reloadData()
@@ -93,14 +93,6 @@ extension MainCollectionViewCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CalendarCollectionViewCell", for: indexPath) as! CalendarCollectionViewCell
-        cell.dateData = monthData?.dateDatas[indexPath.item]
-        
-        // messageCount 를 통해 달력에서 보여주는 날짜에 대한 메시지 수를 알려줄 수 있음.
-        if let messageCount = realm.objects(DayMessage.self).filter("year = \(monthData.year) AND month = \(monthData.month) AND date = \(monthData.dateDatas[indexPath.row].date)").first?.messages.count {
-            cell.messageCount = messageCount
-        }else {
-            cell.messageCount = 0
-        }
         return cell
     }
 }

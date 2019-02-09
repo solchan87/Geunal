@@ -23,10 +23,12 @@ class CalendarReactor: Reactor {
     
     let initialState : State
     
+    let calendarService = CalendarService()
+    
     init() {
         var calendarSection: [CalendarSection] = []
         
-        for year in CalendarService.startYear...CalendarService.endYear {
+        for year in calendarService.startYear...calendarService.endYear {
             var items: [CalendarCCellReactor] = []
             for month in 1...12 {
                 items.append(CalendarCCellReactor(year: year, month: month))

@@ -9,21 +9,64 @@
 import Foundation
 
 import ReactorKit
+import RxSwift
 
 class CalendarCCellReactor: Reactor {
     
-    typealias Action = NoAction
+    enum Action {
+        case getDateList()
+    }
+    
+    enum Mutation {
+        case setDatesSection()
+    }
     
     struct State {
+        let year: Int
         let month: Int
+        var monthSection: [MonthSection] = []
+        init(year: Int, month: Int) {
+            self.year = year
+            self.month = month
+        }
     }
     
     let initialState : State
     
+    let calendarService = CalendarService()
+    
     init(year: Int, month: Int) {
         
-        self.initialState = State(month: month)
-        
+        self.initialState = State(
+            year: year,
+            month: month
+        )
         _ = self.state
+    }
+    
+    func mutate(action: Action) -> Observable<Mutation> {
+        switch action {
+        case .getDateList :
+            return .just(Mutation.setDatesSection())
+        }
+    }
+    
+    func reduce(state: State, mutation: Mutation) -> State {
+        var state = state
+        switch mutation {
+        case .setDatesSection:
+            let dateListInMonth: [Date] = calendarService.getDateDatas(
+                year: initialState.year, month: initialState.month
+            )
+            var dateItems: [DateCCellReactor] = []
+            
+            for date in dateListInMonth {
+                dateItems.append(DateCCellReactor(date: date))
+            }
+            
+            state.monthSection = [MonthSection(items: dateItems)]
+        }
+        return state
+        
     }
 }
