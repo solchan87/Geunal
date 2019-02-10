@@ -38,6 +38,7 @@
 		29C37EFE220B194E000916A1 /* DateCCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C37EFD220B194E000916A1 /* DateCCell.swift */; };
 		29C37F00220B195D000916A1 /* DateCCellReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C37EFF220B195D000916A1 /* DateCCellReactor.swift */; };
 		29D66253220E810A00C411A0 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29D66252220E810A00C411A0 /* Date.swift */; };
+		29D66255220FEF2200C411A0 /* RX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29D66254220FEF2200C411A0 /* RX.swift */; };
 		29F7382A217D124100D7728A /* RealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F73829217D124100D7728A /* RealmModel.swift */; };
 		29FE7CC2217F50A200137ECE /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FE7CC1217F50A200137ECE /* ListViewController.swift */; };
 		29FE7CC4217F6DEB00137ECE /* ListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FE7CC3217F6DEB00137ECE /* ListTableViewCell.swift */; };
@@ -78,6 +79,7 @@
 		29C37EFD220B194E000916A1 /* DateCCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateCCell.swift; sourceTree = "<group>"; };
 		29C37EFF220B195D000916A1 /* DateCCellReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateCCellReactor.swift; sourceTree = "<group>"; };
 		29D66252220E810A00C411A0 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
+		29D66254220FEF2200C411A0 /* RX.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RX.swift; sourceTree = "<group>"; };
 		29F73829217D124100D7728A /* RealmModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmModel.swift; sourceTree = "<group>"; };
 		29FE7CC1217F50A200137ECE /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		29FE7CC3217F6DEB00137ECE /* ListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableViewCell.swift; sourceTree = "<group>"; };
@@ -225,6 +227,7 @@
 			isa = PBXGroup;
 			children = (
 				29D66252220E810A00C411A0 /* Date.swift */,
+				29D66254220FEF2200C411A0 /* RX.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -416,6 +419,7 @@
 				2989B1762177C1D20045A319 /* DayViewController.swift in Sources */,
 				299158F022046FB0006D3E94 /* CalendarReactor.swift in Sources */,
 				291E27582178511A00A196E4 /* PresentAnimator.swift in Sources */,
+				29D66255220FEF2200C411A0 /* RX.swift in Sources */,
 				299A9A952173D1EF00390C82 /* MonthFlowLayout.swift in Sources */,
 				29F7382A217D124100D7728A /* RealmModel.swift in Sources */,
 				29B87FE62170CDD7003F96C3 /* AppDelegate.swift in Sources */,

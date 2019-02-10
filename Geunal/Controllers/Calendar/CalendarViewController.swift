@@ -23,6 +23,11 @@ class CalendarViewController: UIViewController, StoryboardView {
     
     @IBOutlet weak var calendarCollectionView: UICollectionView!
     
+    @IBOutlet weak var yearCollectionView: UICollectionView!
+    @IBOutlet weak var monthCollectionView: UICollectionView!
+    
+    @IBOutlet weak var searchButton: UIButton!
+    
     // MARK: Initializing
     
     // MARK: Rx
@@ -44,11 +49,19 @@ class CalendarViewController: UIViewController, StoryboardView {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.setAttributes()
+    }
+    
+    func setAttributes() {
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "pattern")!)
     }
     
     func bind(reactor: CalendarReactor) {
+        
+        self.rx.methodInvoked(#selector(UIViewController.viewDidLoad)).asObservable()
+            .map {_ in Reactor.Action.setCalendar()}
+            .bind(to: reactor.action)
+            .disposed(by: self.disposeBag)
         
         reactor.state.map { $0.calendarSection }
             .bind(to: self.calendarCollectionView.rx.items(dataSource: dataSource))
@@ -61,7 +74,12 @@ extension CalendarViewController: UICollectionViewDelegateFlowLayout {
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        return CGSize(width: self.calendarCollectionView.frame.width,
-                      height: self.calendarCollectionView.frame.height)
+        switch collectionView {
+        case calendarCollectionView:
+            return CGSize(width: self.calendarCollectionView.frame.width,
+                          height: self.calendarCollectionView.frame.height)
+        default:
+            return .zero
+        }
     }
 }

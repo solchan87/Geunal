@@ -54,6 +54,13 @@ extension Date {
         return dateFormatter.string(from: self)
     }
     
+    func getWeekDay() -> Int {
+        let myCalendar = Calendar(identifier: .gregorian)
+        let weekDay = myCalendar.component(.weekday, from: self)
+        
+        return weekDay
+    }
+    
     
     func toString() -> String {
         let dateFormatter = DateFormatter()

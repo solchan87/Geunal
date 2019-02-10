@@ -42,13 +42,6 @@ final class CalendarService {
     // 마지막 년도
     let endYear: Int = 2050
     
-    func getMonthData(year: Int, month: Int) -> MonthModel{
-        
-        let monthData = MonthModel(year: year, month: month, dateDatas: getDateDatas(year: year, month: month))
-        
-        return monthData
-    }
-    
     // 오늘 요일 반환 함수 일요일: 1, 토요일: 7
     func getCurrentDayOfWeek(currentTime: CurrentTime) -> Int {
         let tDate = Date()
@@ -85,8 +78,39 @@ final class CalendarService {
         return currentTime
     }
     
+    func getString(of month: Int) -> String{
+        switch month {
+        case 1:
+            return "일월"
+        case 2:
+            return "이월"
+        case 3:
+            return "삼월"
+        case 4:
+            return "사월"
+        case 5:
+            return "오월"
+        case 6:
+            return "유월"
+        case 7:
+            return "칠월"
+        case 8:
+            return "팔월"
+        case 9:
+            return "구월"
+        case 10:
+            return "시월"
+        case 11:
+            return "십일월"
+        case 12:
+            return "십이월"
+        default:
+            return ""
+        }
+    }
+    
     // 해당 월에 대한 일, 요일을 리스트로 반환하는 함수
-    func getDateDatas(year: Int, month: Int) -> [Date] {
+    func getDateDatas(year: Int, month: Int) -> [DateCCellReactor] {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
         guard let firstDate = formatter.date(from: "\(year)-\(month)-01") else { return [] }
@@ -102,32 +126,32 @@ final class CalendarService {
             nextMonthCount = 7 - restCount + 1
         }
         
-        var dateList: [Date] = []
+        var dateList: [DateCCellReactor] = []
         
         // 이전 월에 해당하는 날짜 리스트 구현
         if startDayOfWeek > 1 {
             let prevMonth = month == 1 ? 12 : (month - 1)
-            
+
             for count in 1..<startDayOfWeek {
                 let date = lastEndDate - (startDayOfWeek - (count + 1))
                 guard let resultDate = formatter.date(from: "\(year)-\(prevMonth)-\(date)") else { return [] }
-                dateList.append(resultDate)
+                dateList.append(DateCCellReactor(date: resultDate, isIncludedInMonth: false))
             }
         }
-        
+
         // 현재 월에 해당하는 날짜 리스트 구현
         for date in 1...endDate {
             guard let resultDate = formatter.date(from: "\(year)-\(month)-\(date)") else { return [] }
-            dateList.append(resultDate)
+            dateList.append(DateCCellReactor(date: resultDate, isIncludedInMonth: true))
         }
-        
+
         // 다음 월에 해당하는 날짜 리스트 구현
         if nextMonthCount > 1 {
             let nextMonth = month == 12 ? 1 : (month + 1)
-            
+
             for date in 1..<nextMonthCount {
                 guard let resultDate = formatter.date(from: "\(year)-\(nextMonth)-\(date)") else { return [] }
-                dateList.append(resultDate)
+                dateList.append(DateCCellReactor(date: resultDate, isIncludedInMonth: false))
             }
         }
         

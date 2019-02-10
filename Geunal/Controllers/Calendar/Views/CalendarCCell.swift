@@ -17,8 +17,11 @@ class CalendarCCell: UICollectionViewCell, StoryboardView {
     
     // MARK: Properties
     
-    @IBOutlet weak var yearLabel: UILabel!
+    @IBOutlet weak var monthLabel: UILabel!
     @IBOutlet weak var monthCollectionView: UICollectionView!
+    @IBOutlet weak var backView: UIView!
+    
+    let calendarService = CalendarService()
     
     // MARK: Rx
     var disposeBag = DisposeBag()
@@ -36,12 +39,16 @@ class CalendarCCell: UICollectionViewCell, StoryboardView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        
+        self.setAttributes()
     }
     
     override func prepareForReuse() {
         super.prepareForReuse()
         self.disposeBag = DisposeBag()
+    }
+    
+    func setAttributes() {
+        self.backView.layer.cornerRadius = 8
     }
     
     func bind(reactor: CalendarCCellReactor) {
@@ -55,6 +62,12 @@ class CalendarCCell: UICollectionViewCell, StoryboardView {
             .bind(to: self.monthCollectionView.rx.items(dataSource: dataSource))
             .disposed(by: self.disposeBag)
         
+        reactor.state.map {$0.month}
+            .bind { [weak self] month in
+                guard let self = self else {return}
+                self.monthLabel.text = self.calendarService.getString(of: month)
+            }
+            .disposed(by: self.disposeBag)
     }
     
 }
@@ -64,7 +77,7 @@ extension CalendarCCell: UICollectionViewDelegateFlowLayout {
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        return CGSize(width: (self.monthCollectionView.frame.width - 10) / 7,
+        return CGSize(width: (self.monthCollectionView.frame.width - 1) / 7,
                       height: self.monthCollectionView.frame.height / 6)
     }
 }

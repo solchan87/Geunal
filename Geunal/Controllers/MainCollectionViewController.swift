@@ -68,8 +68,6 @@ class MainCollectionViewController: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let calendarCell = collectionView.dequeueReusableCell(withReuseIdentifier: "MainCollectionViewCell", for: indexPath) as! MainCollectionViewCell
         
-        let monthData = calendarService.getMonthData(year: year[indexPath.section], month: month[indexPath.row])
-        calendarCell.monthData = monthData
         
         calendarCell.delegate = self
         

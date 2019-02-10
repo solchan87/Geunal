@@ -15,10 +15,16 @@ import RxSwift
     
 class CalendarReactor: Reactor {
     
-    typealias Action = NoAction
+    enum Action {
+        case setCalendar()
+    }
+    
+    enum Mutation {
+        case setCalendar()
+    }
     
     struct State {
-        var calendarSection: [CalendarSection]
+        var calendarSection: [CalendarSection] = []
     }
     
     let initialState : State
@@ -26,18 +32,35 @@ class CalendarReactor: Reactor {
     let calendarService = CalendarService()
     
     init() {
-        var calendarSection: [CalendarSection] = []
-        
-        for year in calendarService.startYear...calendarService.endYear {
-            var items: [CalendarCCellReactor] = []
-            for month in 1...12 {
-                items.append(CalendarCCellReactor(year: year, month: month))
-            }
-            calendarSection.append(CalendarSection(year: year, items: items))
-        }
-        
-        self.initialState = State(calendarSection: calendarSection)
+        self.initialState = State()
         _ = self.state
+    }
+    
+    func mutate(action: Action) -> Observable<Mutation> {
+        switch action {
+        case .setCalendar() :
+            return .just(Mutation.setCalendar())
+        }
+    }
+    
+    func reduce(state: State, mutation: Mutation) -> State {
+        var state = state
+        switch mutation {
+        case .setCalendar():
+            var calendarSection: [CalendarSection] = []
+            
+            for year in calendarService.startYear...calendarService.endYear {
+                var items: [CalendarCCellReactor] = []
+                for month in 1...12 {
+                    items.append(CalendarCCellReactor(year: year, month: month))
+                }
+                calendarSection.append(CalendarSection(year: year, items: items))
+            }
+            print(calendarSection.count)
+            state.calendarSection = calendarSection
+        }
+        return state
+        
     }
 }
 

@@ -55,14 +55,9 @@ class CalendarCCellReactor: Reactor {
         var state = state
         switch mutation {
         case .setDatesSection:
-            let dateListInMonth: [Date] = calendarService.getDateDatas(
+            let dateItems: [DateCCellReactor] = calendarService.getDateDatas(
                 year: initialState.year, month: initialState.month
             )
-            var dateItems: [DateCCellReactor] = []
-            
-            for date in dateListInMonth {
-                dateItems.append(DateCCellReactor(date: date))
-            }
             
             state.monthSection = [MonthSection(items: dateItems)]
         }
