@@ -24,7 +24,9 @@ class CalendarCCellReactor: Reactor {
     struct State {
         let year: Int
         let month: Int
+        
         var monthSection: [MonthSection] = []
+        
         init(year: Int, month: Int) {
             self.year = year
             self.month = month

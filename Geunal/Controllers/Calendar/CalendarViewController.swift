@@ -58,13 +58,20 @@ class CalendarViewController: UIViewController, StoryboardView {
     
     func bind(reactor: CalendarReactor) {
         
-        self.rx.methodInvoked(#selector(UIViewController.viewDidLoad)).asObservable()
-            .map {_ in Reactor.Action.setCalendar()}
+        self.rx.methodInvoked(#selector(UIViewController.viewDidAppear(_:))).asObservable()
+            .map {_ in Reactor.Action.start}
             .bind(to: reactor.action)
             .disposed(by: self.disposeBag)
         
         reactor.state.map { $0.calendarSection }
             .bind(to: self.calendarCollectionView.rx.items(dataSource: dataSource))
+            .disposed(by: self.disposeBag)
+        
+        reactor.state.map {$0.isLoaded}
+            .filter { $0 }
+            .bind { _ in
+                self.calendarCollectionView.
+            }
             .disposed(by: self.disposeBag)
     }
 }

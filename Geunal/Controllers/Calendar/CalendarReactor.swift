@@ -16,15 +16,18 @@ import RxSwift
 class CalendarReactor: Reactor {
     
     enum Action {
-        case setCalendar()
+        case start
     }
     
     enum Mutation {
-        case setCalendar()
+        case setCalendar
+        case setCurrentPage
     }
     
     struct State {
         var calendarSection: [CalendarSection] = []
+        
+        var isLoaded: Bool = false
     }
     
     let initialState : State
@@ -38,15 +41,17 @@ class CalendarReactor: Reactor {
     
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
-        case .setCalendar() :
-            return .just(Mutation.setCalendar())
+        case .start:
+            let setCalendar = Observable<Mutation>.just(.setCalendar)
+            let setCurrentPage = Observable<Mutation>.just(.setCurrentPage)
+            return .concat([setCalendar, setCurrentPage])
         }
     }
     
     func reduce(state: State, mutation: Mutation) -> State {
         var state = state
         switch mutation {
-        case .setCalendar():
+        case .setCalendar:
             var calendarSection: [CalendarSection] = []
             
             for year in calendarService.startYear...calendarService.endYear {
@@ -56,8 +61,10 @@ class CalendarReactor: Reactor {
                 }
                 calendarSection.append(CalendarSection(year: year, items: items))
             }
-            print(calendarSection.count)
+            
             state.calendarSection = calendarSection
+        case .setCurrentPage:
+            state.isLoaded = true
         }
         return state
         
