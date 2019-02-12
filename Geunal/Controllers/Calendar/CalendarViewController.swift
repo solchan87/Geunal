@@ -70,7 +70,8 @@ class CalendarViewController: UIViewController, StoryboardView {
         reactor.state.map {$0.isLoaded}
             .filter { $0 }
             .bind { _ in
-                self.calendarCollectionView.
+                let indexPath = reactor.currentState.indexPathOfCurrentTime
+                self.calendarCollectionView.scrollToItem(at: indexPath, at: UICollectionView.ScrollPosition.centeredHorizontally, animated: false)
             }
             .disposed(by: self.disposeBag)
     }

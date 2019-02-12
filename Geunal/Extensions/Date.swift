@@ -33,25 +33,28 @@ extension Date {
         return Calendar.current.dateComponents([.weekday], from: self.startOfMonth()).weekday
     }
     
-    func getYear() -> String {
+    func getYear() -> Int {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy"
+        let result = Int(dateFormatter.string(from: self)) ?? 0
         
-        return dateFormatter.string(from: self)
+        return result
     }
     
-    func getMonth() -> String {
+    func getMonth() -> Int {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "M"
+        let result = Int(dateFormatter.string(from: self)) ?? 0
         
-        return dateFormatter.string(from: self)
+        return result
     }
     
-    func getDate() -> String {
+    func getDate() -> Int {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd"
+        let result = Int(dateFormatter.string(from: self)) ?? 0
         
-        return dateFormatter.string(from: self)
+        return result
     }
     
     func getWeekDay() -> Int {

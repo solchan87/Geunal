@@ -25,9 +25,19 @@ class CalendarReactor: Reactor {
     }
     
     struct State {
+        let currentYear: Int
+        let currentMonth: Int
+        
+        var indexPathOfCurrentTime: IndexPath = .init(item: 0, section: 0)
+        
         var calendarSection: [CalendarSection] = []
         
         var isLoaded: Bool = false
+        
+        init(currentYear: Int, currentMonth: Int) {
+            self.currentYear = currentYear
+            self.currentMonth = currentMonth
+        }
     }
     
     let initialState : State
@@ -35,7 +45,9 @@ class CalendarReactor: Reactor {
     let calendarService = CalendarService()
     
     init() {
-        self.initialState = State()
+        let currentDate = Date()
+        
+        self.initialState = State(currentYear: currentDate.getYear(), currentMonth: currentDate.getMonth())
         _ = self.state
     }
     
@@ -64,6 +76,13 @@ class CalendarReactor: Reactor {
             
             state.calendarSection = calendarSection
         case .setCurrentPage:
+            let sectionOfYear: Int = initialState.currentYear - calendarService.startYear
+            let itemOfMonth: Int = initialState.currentMonth - 1
+            
+            print(sectionOfYear, itemOfMonth)
+            
+            state.indexPathOfCurrentTime = IndexPath(item: itemOfMonth, section: sectionOfYear)
+            
             state.isLoaded = true
         }
         return state
