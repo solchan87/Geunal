@@ -17,8 +17,8 @@ class CalendarViewController: UIViewController, StoryboardView {
     
     // MARK: Properties
     fileprivate struct Metric {
-        static let shotTileSectionInsetLeftRight = 10
-        static let shotTileSectionItemSpacing = 10
+        static let searchCellWidth = 50
+        static let searchCellHeight = 25
     }
     
     @IBOutlet weak var calendarCollectionView: UICollectionView!
@@ -74,6 +74,18 @@ class CalendarViewController: UIViewController, StoryboardView {
                 self.calendarCollectionView.scrollToItem(at: indexPath, at: UICollectionView.ScrollPosition.centeredHorizontally, animated: false)
             }
             .disposed(by: self.disposeBag)
+        
+        reactor.state.map { $0.yearList }
+            .bind(to: self.yearCollectionView.rx.items(cellIdentifier: "YearCCell", cellType: YearCCell.self)) { indexPath, repo, cell in
+                cell.reactor = YearCCellReactor(year: repo)
+            }
+            .disposed(by: disposeBag)
+        
+        reactor.state.map { $0.monthList }
+            .bind(to: self.monthCollectionView.rx.items(cellIdentifier: "MonthCCell", cellType: MonthCCell.self)) { indexPath, repo, cell in
+                cell.reactor = MonthCCellReactor(month: repo)
+            }
+            .disposed(by: disposeBag)
     }
 }
 
@@ -86,6 +98,8 @@ extension CalendarViewController: UICollectionViewDelegateFlowLayout {
         case calendarCollectionView:
             return CGSize(width: self.calendarCollectionView.frame.width,
                           height: self.calendarCollectionView.frame.height)
+        case yearCollectionView, monthCollectionView:
+            return CGSize(width: Metric.searchCellWidth, height: Metric.searchCellHeight)
         default:
             return .zero
         }

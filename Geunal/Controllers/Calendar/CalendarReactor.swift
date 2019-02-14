@@ -31,12 +31,16 @@ class CalendarReactor: Reactor {
         var indexPathOfCurrentTime: IndexPath = .init(item: 0, section: 0)
         
         var calendarSection: [CalendarSection] = []
+        let yearList: [Int]
+        let monthList: [Int]
         
         var isLoaded: Bool = false
         
-        init(currentYear: Int, currentMonth: Int) {
+        init(currentYear: Int, currentMonth: Int, yearList: [Int], monthList: [Int]) {
             self.currentYear = currentYear
             self.currentMonth = currentMonth
+            self.yearList = yearList
+            self.monthList = monthList
         }
     }
     
@@ -46,8 +50,10 @@ class CalendarReactor: Reactor {
     
     init() {
         let currentDate = Date()
+        let yearList: [Int] = Array(calendarService.startYear...calendarService.endYear)
+        let monthList: [Int] = Array(1...12)
         
-        self.initialState = State(currentYear: currentDate.getYear(), currentMonth: currentDate.getMonth())
+        self.initialState = State(currentYear: currentDate.getYear(), currentMonth: currentDate.getMonth(), yearList: yearList, monthList: monthList)
         _ = self.state
     }
     
