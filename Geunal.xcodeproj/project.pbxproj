@@ -43,6 +43,12 @@
 		29F6C08E2215ABCB00F6C698 /* YearCCellReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F6C08D2215ABCB00F6C698 /* YearCCellReactor.swift */; };
 		29F6C0902215ABD900F6C698 /* MonthCCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F6C08F2215ABD900F6C698 /* MonthCCell.swift */; };
 		29F6C0922215ABE900F6C698 /* MonthCCellReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F6C0912215ABE900F6C698 /* MonthCCellReactor.swift */; };
+		29F6C0942216FB7500F6C698 /* ChangeTypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F6C0932216FB7500F6C698 /* ChangeTypeView.swift */; };
+		29F6C0962216FBCC00F6C698 /* ChangeTypeViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F6C0952216FBCC00F6C698 /* ChangeTypeViewReactor.swift */; };
+		29F6C0982216FBE700F6C698 /* IssueListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F6C0972216FBE700F6C698 /* IssueListView.swift */; };
+		29F6C09A2216FBFB00F6C698 /* IssueListViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F6C0992216FBFB00F6C698 /* IssueListViewReactor.swift */; };
+		29F6C09C2216FC1000F6C698 /* TodayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F6C09B2216FC1000F6C698 /* TodayView.swift */; };
+		29F6C09E2216FC1F00F6C698 /* TodayViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F6C09D2216FC1F00F6C698 /* TodayViewReactor.swift */; };
 		29F7382A217D124100D7728A /* RealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F73829217D124100D7728A /* RealmModel.swift */; };
 		29FE7CC2217F50A200137ECE /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FE7CC1217F50A200137ECE /* ListViewController.swift */; };
 		29FE7CC4217F6DEB00137ECE /* ListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FE7CC3217F6DEB00137ECE /* ListTableViewCell.swift */; };
@@ -88,6 +94,12 @@
 		29F6C08D2215ABCB00F6C698 /* YearCCellReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YearCCellReactor.swift; sourceTree = "<group>"; };
 		29F6C08F2215ABD900F6C698 /* MonthCCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthCCell.swift; sourceTree = "<group>"; };
 		29F6C0912215ABE900F6C698 /* MonthCCellReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthCCellReactor.swift; sourceTree = "<group>"; };
+		29F6C0932216FB7500F6C698 /* ChangeTypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeTypeView.swift; sourceTree = "<group>"; };
+		29F6C0952216FBCC00F6C698 /* ChangeTypeViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeTypeViewReactor.swift; sourceTree = "<group>"; };
+		29F6C0972216FBE700F6C698 /* IssueListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueListView.swift; sourceTree = "<group>"; };
+		29F6C0992216FBFB00F6C698 /* IssueListViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueListViewReactor.swift; sourceTree = "<group>"; };
+		29F6C09B2216FC1000F6C698 /* TodayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayView.swift; sourceTree = "<group>"; };
+		29F6C09D2216FC1F00F6C698 /* TodayViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewReactor.swift; sourceTree = "<group>"; };
 		29F73829217D124100D7728A /* RealmModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmModel.swift; sourceTree = "<group>"; };
 		29FE7CC1217F50A200137ECE /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		29FE7CC3217F6DEB00137ECE /* ListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableViewCell.swift; sourceTree = "<group>"; };
@@ -163,6 +175,12 @@
 				29F6C08D2215ABCB00F6C698 /* YearCCellReactor.swift */,
 				29F6C08F2215ABD900F6C698 /* MonthCCell.swift */,
 				29F6C0912215ABE900F6C698 /* MonthCCellReactor.swift */,
+				29F6C0932216FB7500F6C698 /* ChangeTypeView.swift */,
+				29F6C0952216FBCC00F6C698 /* ChangeTypeViewReactor.swift */,
+				29F6C0972216FBE700F6C698 /* IssueListView.swift */,
+				29F6C0992216FBFB00F6C698 /* IssueListViewReactor.swift */,
+				29F6C09B2216FC1000F6C698 /* TodayView.swift */,
+				29F6C09D2216FC1F00F6C698 /* TodayViewReactor.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -411,7 +429,9 @@
 				29B87FFE2170DA9A003F96C3 /* CalendarCollectionViewCell.swift in Sources */,
 				299A9A862173276900390C82 /* MonthCollectionViewCell.swift in Sources */,
 				29C37EFE220B194E000916A1 /* DateCCell.swift in Sources */,
+				29F6C09A2216FBFB00F6C698 /* IssueListViewReactor.swift in Sources */,
 				2957C5A62179CB970072EB96 /* DayTableViewCell.swift in Sources */,
+				29F6C09E2216FC1F00F6C698 /* TodayViewReactor.swift in Sources */,
 				29B87FFA2170D8B4003F96C3 /* MainCollectionViewCell.swift in Sources */,
 				29D66253220E810A00C411A0 /* Date.swift in Sources */,
 				29194CF4217C6BD200F5E3A3 /* WriteViewController.swift in Sources */,
@@ -421,9 +441,12 @@
 				299A9A932173CEB900390C82 /* YearFlowLayout.swift in Sources */,
 				29FE7CC2217F50A200137ECE /* ListViewController.swift in Sources */,
 				299158FC2205CE81006D3E94 /* CalendarSection.swift in Sources */,
+				29F6C0982216FBE700F6C698 /* IssueListView.swift in Sources */,
+				29F6C0962216FBCC00F6C698 /* ChangeTypeViewReactor.swift in Sources */,
 				29FE7CC4217F6DEB00137ECE /* ListTableViewCell.swift in Sources */,
 				299158F922047132006D3E94 /* CalendarCCellReactor.swift in Sources */,
 				29096A1D21FDE5F20057E005 /* CalendarViewController.swift in Sources */,
+				29F6C09C2216FC1000F6C698 /* TodayView.swift in Sources */,
 				29C37F00220B195D000916A1 /* DateCCellReactor.swift in Sources */,
 				299158F722047111006D3E94 /* CalendarCCell.swift in Sources */,
 				29B87FF82170D7B9003F96C3 /* MainCollectionViewController.swift in Sources */,
@@ -434,6 +457,7 @@
 				29F6C08C2215ABBA00F6C698 /* YearCCell.swift in Sources */,
 				29F6C0902215ABD900F6C698 /* MonthCCell.swift in Sources */,
 				299158F022046FB0006D3E94 /* CalendarReactor.swift in Sources */,
+				29F6C0942216FB7500F6C698 /* ChangeTypeView.swift in Sources */,
 				291E27582178511A00A196E4 /* PresentAnimator.swift in Sources */,
 				29D66255220FEF2200C411A0 /* RX.swift in Sources */,
 				299A9A952173D1EF00390C82 /* MonthFlowLayout.swift in Sources */,

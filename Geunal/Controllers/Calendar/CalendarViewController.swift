@@ -28,6 +28,11 @@ class CalendarViewController: UIViewController, StoryboardView {
     
     @IBOutlet weak var searchButton: UIButton!
     
+    @IBOutlet weak var changeTypeButton: ChangeTypeView!
+    @IBOutlet weak var issueListView: IssueListView!
+    @IBOutlet weak var todayView: TodayView!
+    
+    
     // MARK: Initializing
     
     // MARK: Rx
@@ -50,6 +55,8 @@ class CalendarViewController: UIViewController, StoryboardView {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setAttributes()
+        
+        self.todayView.reactor = TodayViewReactor()
     }
     
     func setAttributes() {
