@@ -19,7 +19,7 @@ class IssueListView: UIView, StoryboardView {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        self.layer.cornerRadius = 8
+        self.layer.cornerRadius = 5
     }
     
     func bind(reactor: IssueListViewReactor) {

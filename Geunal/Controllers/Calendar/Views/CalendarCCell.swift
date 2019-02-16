@@ -48,7 +48,7 @@ class CalendarCCell: UICollectionViewCell, StoryboardView {
     }
     
     func setAttributes() {
-        self.backView.layer.cornerRadius = 8
+        self.backView.layer.cornerRadius = 5
     }
     
     func bind(reactor: CalendarCCellReactor) {

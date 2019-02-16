@@ -66,6 +66,7 @@ class CalendarViewController: UIViewController, StoryboardView {
     func bind(reactor: CalendarReactor) {
         
         self.rx.methodInvoked(#selector(UIViewController.viewDidAppear(_:))).asObservable()
+            .take(1)
             .map {_ in Reactor.Action.start}
             .bind(to: reactor.action)
             .disposed(by: self.disposeBag)
