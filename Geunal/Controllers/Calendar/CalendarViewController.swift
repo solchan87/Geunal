@@ -91,7 +91,8 @@ class CalendarViewController: UIViewController, StoryboardView {
         
         reactor.state.map { $0.monthList }
             .bind(to: self.monthCollectionView.rx.items(cellIdentifier: "MonthCCell", cellType: MonthCCell.self)) { indexPath, repo, cell in
-                cell.reactor = MonthCCellReactor(month: repo)
+                let month = (repo % 12) == 0 ? 12 : (repo % 12)
+                cell.reactor = MonthCCellReactor(month: month)
             }
             .disposed(by: disposeBag)
     }

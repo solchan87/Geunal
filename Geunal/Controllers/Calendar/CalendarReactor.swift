@@ -51,7 +51,7 @@ class CalendarReactor: Reactor {
     init() {
         let currentDate = Date()
         let yearList: [Int] = Array(calendarService.startYear...calendarService.endYear)
-        let monthList: [Int] = Array(1...12)
+        let monthList: [Int] = Array(1...12000)
         
         self.initialState = State(currentYear: currentDate.getYear(), currentMonth: currentDate.getMonth(), yearList: yearList, monthList: monthList)
         _ = self.state
