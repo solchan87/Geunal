@@ -31,16 +31,14 @@ class CalendarReactor: Reactor {
         var indexPathOfCurrentTime: IndexPath = .init(item: 0, section: 0)
         
         var calendarSection: [CalendarSection] = []
-        let yearList: [Int]
-        let monthList: [Int]
+        var yearSection: [YearSection] = []
+        var monthSection: [MonthSection] = []
         
         var isLoaded: Bool = false
         
-        init(currentYear: Int, currentMonth: Int, yearList: [Int], monthList: [Int]) {
+        init(currentYear: Int, currentMonth: Int) {
             self.currentYear = currentYear
             self.currentMonth = currentMonth
-            self.yearList = yearList
-            self.monthList = monthList
         }
     }
     
@@ -50,10 +48,8 @@ class CalendarReactor: Reactor {
     
     init() {
         let currentDate = Date()
-        let yearList: [Int] = Array(calendarService.startYear...calendarService.endYear)
-        let monthList: [Int] = Array(1...12000)
         
-        self.initialState = State(currentYear: currentDate.getYear(), currentMonth: currentDate.getMonth(), yearList: yearList, monthList: monthList)
+        self.initialState = State(currentYear: currentDate.getYear(), currentMonth: currentDate.getMonth())
         _ = self.state
     }
     
@@ -71,21 +67,30 @@ class CalendarReactor: Reactor {
         switch mutation {
         case .setCalendar:
             var calendarSection: [CalendarSection] = []
+            var yearSection: [YearSection] = []
+            var monthSection: [MonthSection] = []
             
             for year in calendarService.startYear...calendarService.endYear {
-                var items: [CalendarCCellReactor] = []
+                var calendarItems: [CalendarCCellReactor] = []
+                let yearItems: [YearCCellReactor] = [YearCCellReactor(year: year)]
+                var monthItems: [MonthCCellReactor] = []
+                
                 for month in 1...12 {
-                    items.append(CalendarCCellReactor(year: year, month: month))
+                    calendarItems.append(CalendarCCellReactor(year: year, month: month))
+                    monthItems.append(MonthCCellReactor(year: year,month: month))
                 }
-                calendarSection.append(CalendarSection(year: year, items: items))
+                calendarSection.append(CalendarSection(year: year, items: calendarItems))
+                yearSection.append(YearSection(items: yearItems))
+                monthSection.append(MonthSection(items: monthItems))
             }
             
             state.calendarSection = calendarSection
+            state.yearSection = yearSection
+            state.monthSection = monthSection
+            
         case .setCurrentPage:
             let sectionOfYear: Int = initialState.currentYear - calendarService.startYear
             let itemOfMonth: Int = initialState.currentMonth - 1
-            
-            print(sectionOfYear, itemOfMonth)
             
             state.indexPathOfCurrentTime = IndexPath(item: itemOfMonth, section: sectionOfYear)
             

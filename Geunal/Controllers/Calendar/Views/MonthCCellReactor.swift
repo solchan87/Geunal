@@ -15,14 +15,16 @@ class MonthCCellReactor: Reactor {
     typealias Action = NoAction
     
     struct State {
+        let year: Int
         let month: Int
     }
     
     let initialState : State
     
-    init(month: Int) {
+    init(year: Int, month: Int) {
         
         self.initialState = State(
+            year: year,
             month: month
         )
         

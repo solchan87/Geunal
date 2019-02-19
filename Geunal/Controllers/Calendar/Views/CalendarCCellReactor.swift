@@ -25,7 +25,7 @@ class CalendarCCellReactor: Reactor {
         let year: Int
         let month: Int
         
-        var monthSection: [MonthSection] = []
+        var monthSection: [DateSection] = []
         
         init(year: Int, month: Int) {
             self.year = year
@@ -61,7 +61,7 @@ class CalendarCCellReactor: Reactor {
                 year: initialState.year, month: initialState.month
             )
             
-            state.monthSection = [MonthSection(items: dateItems)]
+            state.monthSection = [DateSection(items: dateItems)]
         }
         return state
         

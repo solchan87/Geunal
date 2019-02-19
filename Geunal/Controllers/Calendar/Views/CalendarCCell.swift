@@ -26,7 +26,7 @@ class CalendarCCell: UICollectionViewCell, StoryboardView {
     // MARK: Rx
     var disposeBag = DisposeBag()
     
-    lazy var dataSource = RxCollectionViewSectionedReloadDataSource<MonthSection>(
+    lazy var dataSource = RxCollectionViewSectionedReloadDataSource<DateSection>(
         configureCell: { [weak self] dataSource, collectionView, indexPath, sectionItem in
             guard let self = self else { return UICollectionViewCell() }
             
