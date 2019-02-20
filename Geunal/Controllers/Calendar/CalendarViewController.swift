@@ -112,13 +112,17 @@ class CalendarViewController: UIViewController, StoryboardView {
             .disposed(by: self.disposeBag)
         
         reactor.state.map {$0.isLoaded}
+            .throttle(1, scheduler: MainScheduler.instance)
             .filter { $0 }
             .bind { _ in
                 let indexPath = reactor.currentState.indexPathOfCurrentTime
                 self.calendarCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: false)
+                self.yearCollectionView.scrollToItem(at: IndexPath(item: 0, section: indexPath.section), at: .centeredHorizontally, animated: false)
                 self.monthCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: false)
             }
             .disposed(by: self.disposeBag)
+        
+        
     }
 }
 
