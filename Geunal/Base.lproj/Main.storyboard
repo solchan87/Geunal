@@ -1150,6 +1150,7 @@
                                         <accessibility key="accessibilityConfiguration">
                                             <accessibilityTraits key="traits" button="YES"/>
                                         </accessibility>
+                                        <gestureRecognizers/>
                                         <constraints>
                                             <constraint firstItem="lbj-aR-KOb" firstAttribute="centerY" secondItem="aRX-6P-U7x" secondAttribute="centerY" id="0QN-z5-uw7"/>
                                             <constraint firstItem="8af-xD-i4J" firstAttribute="top" secondItem="ibl-SB-u2O" secondAttribute="bottom" constant="3" id="Frb-Mr-p3C"/>
@@ -1166,6 +1167,7 @@
                                             <outlet property="dateLabel" destination="cPM-br-Saq" id="X6K-3s-CVB"/>
                                             <outlet property="dayOfWeakLabel" destination="lbj-aR-KOb" id="nky-85-dUk"/>
                                             <outlet property="monthLabel" destination="ibl-SB-u2O" id="kGe-ju-pTC"/>
+                                            <outletCollection property="gestureRecognizers" destination="6dZ-IT-E76" appends="YES" id="8yA-Xr-3Tw"/>
                                         </connections>
                                     </view>
                                     <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Re8-n3-h63" customClass="IssueListView" customModule="Geunal" customModuleProvider="target">
@@ -1250,10 +1252,12 @@
                         <outlet property="monthCollectionView" destination="YAW-hR-Cay" id="NxC-xO-F4S"/>
                         <outlet property="searchButton" destination="W1d-Hb-AWv" id="iEM-Iv-REN"/>
                         <outlet property="todayView" destination="aRX-6P-U7x" id="ko6-zC-psx"/>
+                        <outlet property="todayViewTapGesture" destination="6dZ-IT-E76" id="Opc-sq-Tht"/>
                         <outlet property="yearCollectionView" destination="Qgn-Dv-Qp9" id="ZGO-7O-JJX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dXd-bO-6A5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="6dZ-IT-E76"/>
             </objects>
             <point key="canvasLocation" x="2704.8000000000002" y="60.719640179910051"/>
         </scene>

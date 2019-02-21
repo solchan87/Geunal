@@ -17,8 +17,8 @@ class CalendarViewController: UIViewController, StoryboardView {
     
     // MARK: Properties
     fileprivate struct Metric {
-        static let searchCellWidth = 50
-        static let searchCellHeight = 25
+        static let searchCellWidth: CGFloat = 50.0
+        static let searchCellHeight: CGFloat = 25.0
     }
     
     @IBOutlet weak var calendarCollectionView: UICollectionView!
@@ -32,7 +32,7 @@ class CalendarViewController: UIViewController, StoryboardView {
     @IBOutlet weak var issueListView: IssueListView!
     @IBOutlet weak var todayView: TodayView!
     
-    
+    @IBOutlet var todayViewTapGesture: UITapGestureRecognizer!
     // MARK: Initializing
     
     // MARK: Rx
@@ -91,6 +91,42 @@ class CalendarViewController: UIViewController, StoryboardView {
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "pattern")!)
     }
     
+    func setCurrentDatePage(with indexPath: IndexPath, animated: Bool) {
+        self.calendarCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: animated)
+        self.yearCollectionView.scrollToItem(at: IndexPath(item: 0, section: indexPath.section), at: .centeredVertically, animated: animated)
+        self.monthCollectionView.scrollToItem(at: indexPath, at: .centeredVertically, animated: animated)
+    }
+    
+    // 위아래 여백 생성
+    func configureCollectionViewLayoutItemSize() {
+        let height: CGFloat = self.yearCollectionView.frame.height
+        let inset = (height - Metric.searchCellHeight) / 2
+        
+        self.yearCollectionView.contentInset = UIEdgeInsets(top: inset, left: 0, bottom: inset, right: 0)
+        
+        self.monthCollectionView.contentInset = UIEdgeInsets(top: inset, left: 0, bottom: inset, right: 0)
+        
+        guard let yearContentWidth = self.yearCollectionView.collectionViewLayout
+            .collectionView?.frame.size.width else { return }
+        
+        guard let yearContentHeight = self.yearCollectionView.collectionViewLayout
+            .collectionView?.frame.size.height else { return }
+        
+        self.yearCollectionView.contentSize = CGSize(
+            width: yearContentWidth - inset * 2,
+            height: yearContentHeight)
+        
+        guard let monthContentWidth = self.monthCollectionView.collectionViewLayout
+            .collectionView?.frame.size.width else { return }
+        
+        guard let monthContentHeight = self.monthCollectionView.collectionViewLayout
+            .collectionView?.frame.size.height else { return }
+        
+        self.monthCollectionView.contentSize = CGSize(
+            width: monthContentWidth - inset * 2,
+            height: monthContentHeight)
+    }
+    
     func bind(reactor: CalendarReactor) {
         
         self.rx.methodInvoked(#selector(UIViewController.viewDidAppear(_:))).asObservable()
@@ -112,17 +148,36 @@ class CalendarViewController: UIViewController, StoryboardView {
             .disposed(by: self.disposeBag)
         
         reactor.state.map {$0.isLoaded}
-            .throttle(1, scheduler: MainScheduler.instance)
             .filter { $0 }
             .bind { _ in
+                self.configureCollectionViewLayoutItemSize()
+                
                 let indexPath = reactor.currentState.indexPathOfCurrentTime
-                self.calendarCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: false)
-                self.yearCollectionView.scrollToItem(at: IndexPath(item: 0, section: indexPath.section), at: .centeredHorizontally, animated: false)
-                self.monthCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: false)
+                self.setCurrentDatePage(with: indexPath, animated: false)
             }
             .disposed(by: self.disposeBag)
         
+        self.todayViewTapGesture.rx.event
+            .bind{_ in
+                let indexPath = reactor.currentState.indexPathOfCurrentTime
+                self.setCurrentDatePage(with: indexPath, animated: true)
+            }
+            .disposed(by: self.disposeBag)
         
+        self.yearCollectionView.rx.contentOffset
+            .bind {offset in
+                var visibleRect = CGRect()
+                
+                visibleRect.origin = self.yearCollectionView.contentOffset
+                visibleRect.size = self.yearCollectionView.bounds.size
+                
+                let visiblePoint = CGPoint(x: visibleRect.midX, y: visibleRect.midY)
+                
+                guard let indexPath = self.yearCollectionView.indexPathForItem(at: visiblePoint) else { return }
+                
+                print(indexPath)
+            }
+            .disposed(by: self.disposeBag)
     }
 }
 
