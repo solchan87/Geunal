@@ -165,7 +165,7 @@ class CalendarViewController: UIViewController, StoryboardView {
             .disposed(by: self.disposeBag)
         
         self.yearCollectionView.rx.contentOffset
-            .bind {offset in
+            .map {offset in
                 var visibleRect = CGRect()
                 
                 visibleRect.origin = self.yearCollectionView.contentOffset
@@ -173,10 +173,27 @@ class CalendarViewController: UIViewController, StoryboardView {
                 
                 let visiblePoint = CGPoint(x: visibleRect.midX, y: visibleRect.midY)
                 
-                guard let indexPath = self.yearCollectionView.indexPathForItem(at: visiblePoint) else { return }
+                guard let indexPath = self.yearCollectionView.indexPathForItem(at: visiblePoint) else { return Reactor.Action.none}
                 
-                print(indexPath)
+                return Reactor.Action.changeSearchYear(indexPath: indexPath)
             }
+            .bind(to: reactor.action)
+            .disposed(by: self.disposeBag)
+        
+        self.monthCollectionView.rx.contentOffset
+            .map {offset in
+                var visibleRect = CGRect()
+                
+                visibleRect.origin = self.monthCollectionView.contentOffset
+                visibleRect.size = self.monthCollectionView.bounds.size
+                
+                let visiblePoint = CGPoint(x: visibleRect.midX, y: visibleRect.midY)
+                
+                guard let indexPath = self.monthCollectionView.indexPathForItem(at: visiblePoint) else { return Reactor.Action.none }
+                
+                return Reactor.Action.changeSearchMonth(indexPath: indexPath)
+            }
+            .bind(to: reactor.action)
             .disposed(by: self.disposeBag)
     }
 }
