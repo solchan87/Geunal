@@ -164,37 +164,49 @@ class CalendarViewController: UIViewController, StoryboardView {
             }
             .disposed(by: self.disposeBag)
         
-        self.yearCollectionView.rx.contentOffset
-            .map {offset in
-                var visibleRect = CGRect()
-                
-                visibleRect.origin = self.yearCollectionView.contentOffset
-                visibleRect.size = self.yearCollectionView.bounds.size
-                
-                let visiblePoint = CGPoint(x: visibleRect.midX, y: visibleRect.midY)
-                
-                guard let indexPath = self.yearCollectionView.indexPathForItem(at: visiblePoint) else { return Reactor.Action.none}
-                
-                return Reactor.Action.changeSearchYear(indexPath: indexPath)
+        self.yearCollectionView.rx.didEndDragging
+            .bind {a in
+                print("didEndDragging - ", a)
             }
-            .bind(to: reactor.action)
             .disposed(by: self.disposeBag)
         
-        self.monthCollectionView.rx.contentOffset
-            .map {offset in
-                var visibleRect = CGRect()
-                
-                visibleRect.origin = self.monthCollectionView.contentOffset
-                visibleRect.size = self.monthCollectionView.bounds.size
-                
-                let visiblePoint = CGPoint(x: visibleRect.midX, y: visibleRect.midY)
-                
-                guard let indexPath = self.monthCollectionView.indexPathForItem(at: visiblePoint) else { return Reactor.Action.none }
-                
-                return Reactor.Action.changeSearchMonth(indexPath: indexPath)
+        self.yearCollectionView.rx.didEndDecelerating
+            .bind {a in
+                print("didEndDecelerationg - ", a)
             }
-            .bind(to: reactor.action)
             .disposed(by: self.disposeBag)
+        
+//        self.yearCollectionView.rx.contentOffset
+//            .map {offset in
+//                var visibleRect = CGRect()
+//
+//                visibleRect.origin = self.yearCollectionView.contentOffset
+//                visibleRect.size = self.yearCollectionView.bounds.size
+//
+//                let visiblePoint = CGPoint(x: visibleRect.midX, y: visibleRect.midY)
+//
+//                guard let indexPath = self.yearCollectionView.indexPathForItem(at: visiblePoint) else { return Reactor.Action.none}
+//
+//                return Reactor.Action.changeSearchYear(indexPath: indexPath)
+//            }
+//            .bind(to: reactor.action)
+//            .disposed(by: self.disposeBag)
+//
+//        self.monthCollectionView.rx.contentOffset
+//            .map {offset in
+//                var visibleRect = CGRect()
+//
+//                visibleRect.origin = self.monthCollectionView.contentOffset
+//                visibleRect.size = self.monthCollectionView.bounds.size
+//
+//                let visiblePoint = CGPoint(x: visibleRect.midX, y: visibleRect.midY)
+//
+//                guard let indexPath = self.monthCollectionView.indexPathForItem(at: visiblePoint) else { return Reactor.Action.none }
+//
+//                return Reactor.Action.changeSearchMonth(indexPath: indexPath)
+//            }
+//            .bind(to: reactor.action)
+//            .disposed(by: self.disposeBag)
     }
 }
 
@@ -213,4 +225,28 @@ extension CalendarViewController: UICollectionViewDelegateFlowLayout {
             return .zero
         }
     }
+    
 }
+
+//extension CalendarViewController: UICollectionViewFlowLayout {
+//
+//    override func targetContentOffset(forProposedContentOffset proposedContentOffset: CGPoint, withScrollingVelocity velocity: CGPoint) -> CGPoint {
+//        guard let collectionView = collectionView else { return super.targetContentOffset(forProposedContentOffset: proposedContentOffset, withScrollingVelocity: velocity) }
+//
+//        var offsetAdjustment = CGFloat.greatestFiniteMagnitude
+//        let horizontalOffset = proposedContentOffset.x + collectionView.contentInset.left
+//
+//        let targetRect = CGRect(x: proposedContentOffset.x, y: 0, width: collectionView.bounds.size.width, height: collectionView.bounds.size.height)
+//
+//        let layoutAttributesArray = super.layoutAttributesForElements(in: targetRect)
+//
+//        layoutAttributesArray?.forEach({ (layoutAttributes) in
+//            let itemOffset = layoutAttributes.frame.origin.x
+//            if fabsf(Float(itemOffset - horizontalOffset)) < fabsf(Float(offsetAdjustment)) {
+//                offsetAdjustment = itemOffset - horizontalOffset
+//            }
+//        })
+//
+//        return CGPoint(x: proposedContentOffset.x + offsetAdjustment, y: proposedContentOffset.y)
+//    }
+//}
